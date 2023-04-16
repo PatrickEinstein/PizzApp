@@ -3,44 +3,44 @@ import { createSlice } from "@reduxjs/toolkit";
 export const recipeReducer = createSlice({
   name: "recipe",
   initialState: {
-    twoballsize: false,
-    fats: false,
-    ct: false,
-    olddoughin: false,
-    olddoughout: false,
-    autolysis: false,
-    biga: false,
-    poolish: false,
-    displayon: false,
+    twoballsize: 0,
+    fats: 0,
+    ct: 0,
+    olddoughin: 0,
+    olddoughout: 0,
+    autolysis: 0,
+    biga: 0,
+    poolish: 0,
+    displayon: 0,
     
   },
   reducers: {
    toggleTwoballsize :  (state, action) => {    
-      state.twoballsize = action.payload  
+      state.twoballsize = action.payload
     },  
     toggleFats :  (state, action) => {    
-      state.twoballsize = action.payload  
+      state.fats = action.payload  
     },  
     togglect :  (state, action) => {    
-      state.twoballsize = action.payload  
+      state.ct= action.payload  
     }, 
     toggleoldoughin :  (state, action) => {    
-      state.twoballsize = action.payload  
+      state.olddoughin = action.payload  
     }, 
     toggleoldoughout :  (state, action) => {    
-      state.twoballsize = action.payload  
+      state.olddoughout = action.payload  
     }, 
     toggleautolysis :  (state, action) => {    
-      state.twoballsize = action.payload  
+      state.autolysis = action.payload  
     }, 
     togglebiga :  (state, action) => {    
-      state.twoballsize = action.payload  
+      state.biga = action.payload  
     }, 
     togglepoolish :  (state, action) => {    
-      state.twoballsize = action.payload  
+      state.poolish = action.payload  
     }, 
     toggledisplayon :  (state, action) => {    
-      state.twoballsize = action.payload  
+      state.displayon = action.payload  
     }, 
   },
 });

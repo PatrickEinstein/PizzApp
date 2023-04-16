@@ -17,8 +17,8 @@ const Home = () => {
 
   return (
     <Provider store={store}>
-    <PersistGate loading={null} persistor={persistStore(store)}>
-    <SafeAreaView
+     <PersistGate loading={null} persistor={persistStore(store)}>
+    <SafeAreaView 
       style={{
         flex: 1,
         backgroundColor: COLORS.lightWhite,
@@ -61,7 +61,7 @@ const Home = () => {
         <Text>" "</Text>
         )}
      </SafeAreaView>
-     </PersistGate>
+    </PersistGate>
      </Provider>
   );
 };

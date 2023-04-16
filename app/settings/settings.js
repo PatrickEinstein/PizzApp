@@ -27,17 +27,18 @@ export const Settings = () => {
   const [displayOn, setDisplayOn] = useState(0);
 
   const onToggleTwoBallSize = () => {
-    setTwoBallSize((prev) => !prev);
-    dispatch(toggleTwoballsize(twoBallSize));
+    setTwoBallSize((prev) => !prev), dispatch(toggleTwoballsize(twoBallSize));
   };
+// console.log(`ballsize ==> ${twoBallSize}`)
   const onToggleFats = () => {
-    setFats((prev) => !prev);
-    dispatch(toggleFats(fats));
+    setFats((prev) => !prev), dispatch(toggleFats(fats));
   };
+ 
   const onToggleCT = () => {
-    setCT((prev) => !prev);
+    setCT((prev) => !prev),
     dispatch(togglect(CT));
   };
+  // console.log(`fats ==> ${fats}`)
   const onToggleoldDoughIn = () => {
     setOldDoughIn((prev) => !prev);
     dispatch(toggleoldoughin(oldDoughIn));
@@ -47,9 +48,9 @@ export const Settings = () => {
     dispatch(toggleoldoughout(oldDoughOut));
   };
   const onToggleautolysis = () => {
-    setAutolysis((prev) => !prev);
-    dispatch(toggleautolysis(autolysis));
+    setAutolysis((prev) => !prev), dispatch(toggleautolysis(autolysis));
   };
+
   const onTogglebiga = () => {
     setBiga((prev) => !prev);
     dispatch(togglebiga(biga));

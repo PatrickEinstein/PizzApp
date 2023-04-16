@@ -5,6 +5,17 @@
       "bundler": "metro"
     },
     "name": "sam",
-    "slug": "sam"
+    "slug": "sam",
+    "extra": {
+      "eas": {
+        "projectId": "a69023f0-6339-4fbd-aac7-b971f7e45331"
+      }
+    },
+    "android": {
+      "package": "pizz.app.pat"
+    },
+    "ios": {
+      "bundleIdentifier": "pizz.app.pat"
+    }
   }
 }

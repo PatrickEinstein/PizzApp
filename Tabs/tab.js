@@ -1,7 +1,8 @@
 import * as React from "react";
 import { View, useWindowDimensions } from "react-native";
 import { TabView, SceneMap } from "react-native-tab-view";
-import Inputs from "../Inputs/inputs";
+import Inputs from "../Inputs/neapolitan";
+import Inputs2 from "../Inputs/panpizza";
 import { ScrollView } from "react-native";
 import { Settings } from "../app/settings/settings";
 
@@ -17,7 +18,7 @@ const FirstRoute = () => (
 const SecondRoute = () => (
   <View style={{ flex: 1, backgroundColor: "white", marginLeft: 10, marginTop:20 }}>
     <ScrollView>
-      <Inputs />
+      <Inputs2/>
     </ScrollView>
   </View>
 );
