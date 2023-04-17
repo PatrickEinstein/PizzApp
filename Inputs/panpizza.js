@@ -64,13 +64,13 @@ const Inputs = () => {
     setfats(newValue);
   };
   const fatplus = () => {
-    const newValue = +temp + 1;
+    const newValue = +Fats + 1;
     setfats(newValue);
   };
 
   const fatminus = () => {
-    if (temp > 0) {
-      const newValue = +temp - 1;
+    if (fats != 0) {
+      const newValue = +Fats - 1;
       setfats(newValue);
     }
     return;
@@ -801,13 +801,13 @@ const Inputs = () => {
             <View
               style={{ backgroundColor: "aqua", padding: 30, borderRadius: 25 }}
             >
-              <Text>Flour : {result.autolysisflourmass.toFixed(2)}</Text>
+              <Text>Flour : {result?.autolysisflourmass.toFixed(2)}</Text>
             </View>
             <Spacer width={30} />
             <View
               style={{ backgroundColor: "aqua", padding: 30, borderRadius: 25 }}
             >
-              <Text>Water : {result.autolysiswatermass.toFixed(2)}</Text>
+              <Text>Water : {result?.autolysiswatermass.toFixed(2)}</Text>
             </View>
           </View>
         </View>
@@ -866,7 +866,7 @@ const Inputs = () => {
           alignItems: "center",
         }}
       >
-        <Text>Main dough doses {result.maindoughdose.toFixed(2)}</Text>
+        <Text>Main dough doses {result?.maindoughdose.toFixed(2)}</Text>
         <Spacer height={20} />
         <View
           style={{
@@ -877,13 +877,13 @@ const Inputs = () => {
           <View
             style={{ backgroundColor: "aqua", padding: 30, borderRadius: 25 }}
           >
-            <Text>Flour1 : {result.flour1mass.toFixed(2)}</Text>
+            <Text>Flour1 : {result?.flour1mass.toFixed(2)}</Text>
           </View>
           <Spacer width={30} />
           <View
             style={{ backgroundColor: "aqua", padding: 30, borderRadius: 25 }}
           >
-            <Text>Flour2:{result.flour2mass.toFixed(2)}</Text>
+            <Text>Flour2:{result?.flour2mass.toFixed(2)}</Text>
           </View>
         </View>
         <Spacer height={20} />
@@ -896,13 +896,13 @@ const Inputs = () => {
           <View
             style={{ backgroundColor: "aqua", padding: 30, borderRadius: 25 }}
           >
-            <Text>Flour 3: {result.flour3mass.toFixed(2)}</Text>
+            <Text>Flour 3: {result?.flour3mass.toFixed(2)}</Text>
           </View>
           <Spacer width={30} />
           <View
             style={{ backgroundColor: "aqua", padding: 30, borderRadius: 25 }}
           >
-            <Text>Flour4: {result.flour4mass.toFixed(2)}</Text>
+            <Text>Flour4: {result?.flour4mass.toFixed(2)}</Text>
           </View>
         </View>
         <Spacer height={20} />
@@ -915,13 +915,13 @@ const Inputs = () => {
           <View
             style={{ backgroundColor: "aqua", padding: 30, borderRadius: 25 }}
           >
-            <Text>Flour5: {result.flour5mass.toFixed(2)}</Text>
+            <Text>Flour5: {result?.flour5mass.toFixed(2)}</Text>
           </View>
           <Spacer width={30} />
           <View
             style={{ backgroundColor: "aqua", padding: 30, borderRadius: 25 }}
           >
-            <Text>Flour6: {result.flour6mass.toFixed(2)}</Text>
+            <Text>Flour6: {result?.flour6mass.toFixed(2)}</Text>
           </View>
         </View>
         <Spacer height={40} />
@@ -935,14 +935,14 @@ const Inputs = () => {
           <View
             style={{ backgroundColor: "aqua", padding: 30, borderRadius: 25 }}
           >
-            <Text>Water: {result.waterWeight.toFixed(2)}</Text>
+            <Text>Water: {result?.waterWeight.toFixed(2)}</Text>
           </View>
           <Spacer width={40} />
           <Spacer height={30}/>
           <View
             style={{ backgroundColor: "aqua", padding: 30, borderRadius: 25 }}
           >
-            <Text>Salt: {result.saltWeight.toFixed(2)}</Text>
+            <Text>Salt: {result?.saltWeight.toFixed(2)}</Text>
           </View>
           </View>
           <Spacer width={40} />
@@ -951,13 +951,13 @@ const Inputs = () => {
           <View
             style={{ backgroundColor: "aqua", padding: 30, borderRadius: 25 }}
           >
-            <Text>yeast: {result.yeastWeight.toFixed(2)}</Text>
+            <Text>yeast: {result?.yeastWeight.toFixed(2)}</Text>
           </View>
           <Spacer height={30}/>
           <View
             style={{ backgroundColor: "aqua", padding: 30, borderRadius: 25 }}
           >
-            <Text>fat: {result.fats.toFixed(2)}</Text>
+            <Text>fat:  {result?.fats.toFixed(2)}</Text>
           </View>
           </View>
         </View>
