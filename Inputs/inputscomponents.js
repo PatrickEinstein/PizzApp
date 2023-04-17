@@ -13,29 +13,32 @@ const InputWithAdornments = ({
   borderColor,
   label,
   name,
+  handleIncrement,
+  handleDecrement,
+  handleChangeText,
   ...props
 }) => {
-  const { colors } = useTheme();
+  // const { colors } = useTheme();
 
-  const handleIncrement = () => {
-    let newValue = parseInt(value) + 1;
-    if (newValue > 100) {
-      newValue = 100;
-    }
-    onIncrement(newValue);
-  };
+  // const handleIncrement = () => {
+  //   let newValue = (+value) + 1;
+  //   if (newValue > 100) {
+  //     newValue = 100;
+  //   }
+  //   onIncrement(newValue);
+  // };
 
-  const handleDecrement = () => {
-    let newValue = parseInt(value) - 1;
-    if (newValue < 0) {
-      newValue = 0;
-    }
-    onDecrement(newValue);
-  };
+  // const handleDecrement = () => {
+  //   let newValue = (+value) - 1;
+  //   if (newValue < 0) {
+  //     newValue = 0;
+  //   }
+  //   onDecrement(newValue);
+  // };
 
-  const handleChangeText = (newValue) => {
-    onChange(newValue);
-  };
+  // const handleChangeText = (newValue) => {
+  //   onChange(newValue);
+  // };
 
   return (
     <View sx={{ alignItems: "center", justifyContent: "center" }}>
@@ -53,16 +56,37 @@ const InputWithAdornments = ({
         }}
       >
         <IconButton
-          icon="plus"
-          onPress={handleIncrement}
-          // color={colors.primary}
+          icon="minus"
+          onPress={onDecrement}
           iconColor="white"
+          // color={colors.secondary}
           style={{ borderRadius: 0, backgroundColor: "red" }}
         />
+        <View
+          style={{
+            flex: 1,
+            paddingHorizontal: 10,
+           
+            margin: 1,
+            width: 100,
+            // textAlign: "center",
+          }}
+        >
+          <Text
+            style={{
+              textAlign: "center",
+              width:'auto',
+              flexWrap:"nowrap"
+            }}
+            onChangeText={onChange}
+          >
+            {value}
+          </Text>
+        </View>
 
-        <TextInput
+        {/* <TextInput
           value={value}
-          onChangeText={handleChangeText}
+          onChangeText={onChange}
           style={{
             flex: 1,
             paddingHorizontal: 10,
@@ -74,13 +98,13 @@ const InputWithAdornments = ({
           keyboardType="numeric"
           maxLength={3}
           {...props}
-        />
-
+          defaultValue={value}
+        /> */}
         <IconButton
-          icon="minus"
-          onPress={handleDecrement}
+          icon="plus"
+          onPress={onIncrement}
+          // color={colors.primary}
           iconColor="white"
-          // color={colors.secondary}
           style={{ borderRadius: 0, backgroundColor: "red" }}
         />
       </View>

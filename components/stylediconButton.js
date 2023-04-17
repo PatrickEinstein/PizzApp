@@ -26,10 +26,10 @@ const StyledIconButton = ({ label, onPress, disabled, helperText, style, isVisib
   return (
     <View >
       <View >
-        <TouchableOpacity style={[{ borderRadius: 0, padding: 10, backgroundColor: 'pink' }, buttonStyle]} onPress={onPress} disabled={disabled}>
+        <TouchableOpacity style={[{ borderRadius: 0, padding: 10, backgroundColor: 'blue' }, buttonStyle]} onPress={onPress} disabled={disabled}>
           <Text style={{ color: 'white', fontWeight: 'bold', textAlign: 'center' }}>{label}</Text>
         </TouchableOpacity>
-        {isVisible && <Text style={{ color: 'gray', textAlign: 'center' }}>{helperText}</Text>}
+        {isVisible && <Text style={{ color: 'yellow', textAlign: 'center' }}>{helperText}</Text>}
       </View>
     </View>
   );

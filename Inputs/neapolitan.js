@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import { ScrollView, Text, View } from "react-native";
-import EachInput from "./inputscomponents";
+// import InputWithAdornments from "./inputscomponents";
+import InputWithAdornments from "./inputscomponents";
 import { Spacer } from "../components/spacer";
 import { Divider, IconButton, List } from "react-native-paper";
 import StyledIconButton from "../components/stylediconButton";
 import HDivider from "../components/Divider";
 import { useSelector } from "react-redux";
 import { calculateDoughIngredients } from "../config/neapolitan";
+import { Value } from "react-native-reanimated";
 
 const Inputs = () => {
   const onOff = useSelector((state) => state.recipe);
@@ -20,9 +22,9 @@ const Inputs = () => {
   const biga = onOff.biga;
   const poolish = onOff.poolish;
   const displayOn = onOff.displayon;
-  console.log(`fats ==> ${fats}`);
-  console.log(`autolysis ==> ${autolysis}`);
-  console.log(`poolosh ==> ${poolish}`);
+  // console.log(`fats ==> ${fats}`);
+  // console.log(`autolysis ==> ${autolysis}`);
+  // console.log(`poolosh ==> ${poolish}`);
 
   const [Doughball1, setDoughball1] = useState(0);
   const [Doughball2, setDoughball2] = useState(0);
@@ -36,8 +38,8 @@ const Inputs = () => {
   const [flour6, setflour6] = useState(0);
   const [water, setwater] = useState(0);
   const [salt, setsalt] = useState(0);
-  const [leaven, setleaven] = useState(0);
-  const [temp, settemp] = useState(0);
+  const [leaven, setleaven] = useState(6);
+  const [temp, settemp] = useState(40);
   const [autolysisflour, setautolysisflour] = useState(0);
   const [autolysiswater, setautolysiswater] = useState(0);
   const [OldDoughIn, setolddoughin] = useState(0);
@@ -47,32 +49,39 @@ const Inputs = () => {
   // const [timefactor, settimefactor] = useState(0);
   // const [tempfactor, settempfactor] = useState(0);
   const [NewYeastFactor, setNewYeastFactor] = useState(0);
+  // console.log(`  db1 ==>${Doughball1}`)
+  // console.log(`bw1 ==> ${BallWeight1}`)
+
   const leavenplus = () => {
     const newValue = +leaven + 1;
     setleaven(newValue);
   };
 
   const leavenminus = () => {
-    if (leaven != 0) {
+    if (leaven > 1) {
       const newValue = +leaven - 1;
       setleaven(newValue);
     }
     return;
   };
-
+  const onHandleleaven = (newValue) => {
+    setleaven(newValue);
+  };
   const tempplus = () => {
     const newValue = +temp + 1;
     settemp(newValue);
   };
 
   const tempminus = () => {
-    if (temp != 0) {
+    if (temp > 10) {
       const newValue = +temp - 1;
       settemp(newValue);
     }
     return;
   };
-
+  const onHandletemp = (newValue) => {
+    settemp(newValue);
+  };
   const massofyeast =
     (+leaven / 24 / (+temp / 26)) *
     (+water / 100) *
@@ -82,68 +91,81 @@ const Inputs = () => {
     (+Doughball1 * +BallWeight1 + +Doughball2 * +BallWeight2);
 
   const YeastNeeded1 = () => {
-    setleaven;
+    onHandleleaven
     setNewYeastFactor(newYeastFactor);
   };
 
   const YeastNeeded2 = () => {
-    settemp;
+    onHandletemp
     setNewYeastFactor(NewYeastFactor);
     // setyeastfactor(NewYeastFactor);
   };
 
   const Doughball1plus = () => {
-    const newValue = +Doughball1 + 1;
+    const newValue = +Doughball1 + 5;
     setDoughball1(newValue);
   };
 
   const Doughball1minus = () => {
     if (Doughball1 != 0) {
-      const newValue = +Doughball1 - 1;
+      const newValue = +Doughball1 - 5;
       setDoughball1(newValue);
     }
     return;
   };
 
+  const onHandleDoughball1 = (newValue) => {
+    setDoughball1(newValue);
+  };
+
   const Doughball2plus = () => {
-    const newValue = +Doughball2 + 1;
+    const newValue = +Doughball2 + 5;
     setDoughball2(newValue);
   };
 
   const Doughball2minus = () => {
     if (Doughball2 != 0) {
-      const newValue = +Doughball2 - 1;
+      const newValue = +Doughball2 - 5;
       setDoughball2(newValue);
     }
     return;
   };
 
+  const onHandleDoughball2 = (newValue) => {
+    setDoughball2(newValue);
+  };
   const BallWeight1plus = () => {
-    const newValue = +BallWeight1 + 1;
+    const newValue = +BallWeight1 + 5;
     setBallWeight1(newValue);
   };
 
   const BallWeight1minus = () => {
     if (BallWeight1 != 0) {
-      const newValue = +BallWeight1 - 1;
+      const newValue = +BallWeight1 - 5;
       setBallWeight1(newValue);
     }
     return;
   };
 
+  const onHandleBallweight1 = (newValue) => {
+    setBallWeight1(newValue);
+  };
+
   const BallWeight2plus = () => {
-    const newValue = +BallWeight2 + 1;
+    const newValue = +BallWeight2 + 5;
     setBallWeight2(newValue);
   };
 
   const BallWeight2minus = () => {
     if (BallWeight2 != 0) {
-      const newValue = +BallWeight2 - 1;
+      const newValue = +BallWeight2 - 5;
       setBallWeight2(newValue);
     }
     return;
   };
-
+  const onHandleBallweight2 = (newValue) => {
+    setBallWeight2(newValue);
+  };
   const flour1plus = () => {
     const newValue = +flour1 + 1;
     setflour1(newValue);
@@ -156,81 +178,111 @@ const Inputs = () => {
     }
     return;
   };
+  const onHandleflour1 = (newValue) => {
+    setflour1(newValue);
+  };
 
   const flour2plus = () => {
-    const newValue = +flour2 + 1;
+    const newValue = +flour2 + 5;
     setflour2(newValue);
   };
 
   const flour2minus = () => {
     if (flour2 != 0) {
-      const newValue = +flour2 - 1;
+      const newValue = +flour2 - 5;
       setflour2(newValue);
     }
     return;
   };
+
+  const onHandleflower2 = (newValue) => {
+    setflour2(newValue);
+  };
+
   const flour3plus = () => {
-    const newValue = +flour3 + 1;
+    const newValue = +flour3 + 5;
     setflour3(newValue);
   };
 
   const flour3minus = () => {
     if (flour3 != 0) {
-      const newValue = +flour3 - 1;
+      const newValue = +flour3 - 5;
       setflour3(newValue);
     }
     return;
   };
 
+  const onHandleflour3 = (newValue) => {
+    setflour3(newValue);
+  };
+
   const flour4plus = () => {
-    const newValue = +flour4 + 1;
+    const newValue = +flour4 + 5;
     setflour4(newValue);
   };
 
   const flour4minus = () => {
     if (flour4 != 0) {
-      const newValue = +flour4 - 1;
+      const newValue = +flour4 - 5;
       setflour4(newValue);
     }
     return;
   };
+
+  const onHandleflour4 = (newValue) => {
+    setflour4(newValue);
+  };
+
   const flour5plus = () => {
-    const newValue = +flour5 + 1;
+    const newValue = +flour5 + 5;
     setflour5(newValue);
   };
 
   const flour5minus = () => {
     if (flour5 != 0) {
-      const newValue = +flour5 - 1;
+      const newValue = +flour5 - 5;
       setflour5(newValue);
     }
     return;
   };
 
+  const onHandleflour5 = (newValue) => {
+    setflour5(newValue);
+  };
+
   const flour6plus = () => {
-    const newValue = +flour6 + 1;
+    const newValue = +flour6 + 5;
     setflour6(newValue);
   };
 
   const flour6minus = () => {
     if (flour6 != 0) {
-      const newValue = +flour6 - 1;
+      const newValue = +flour6 - 5;
       setflour6(newValue);
     }
     return;
   };
+
+  const onHandleflour6 = (newValue) => {
+    setflour6(newValue);
+  };
   const waterplus = () => {
-    const newValue = +water + 1;
+    const newValue = +water + 5;
     setwater(newValue);
   };
 
   const waterminus = () => {
     if (water != 0) {
-      const newValue = +water - 1;
+      const newValue = +water - 5;
       setwater(newValue);
     }
     return;
   };
+
+  const onHandlewater = (newValue) => {
+    setwater(newValue);
+  };
+
   const saltplus = () => {
     const newValue = +salt + 1;
     setsalt(newValue);
@@ -244,59 +296,77 @@ const Inputs = () => {
     return;
   };
 
+  const onHandlesalt = (newValue) => {
+    setsalt(newValue);
+  };
+
   const autolysisflourplus = () => {
-    const newValue = +autolysisflour + 1;
+    const newValue = +autolysisflour + 5;
     setautolysisflour(newValue);
   };
 
   const autolysisflourminus = () => {
     if (autolysisflour != 0) {
-      const newValue = +autolysisflour - 1;
+      const newValue = +autolysisflour - 5;
       setautolysisflour(newValue);
     }
     return;
   };
+  const onHandleautolysisflour = (newValue) => {
+    setautolysisflour(newValue);
+  };
 
   const autolysiswaterplus = () => {
-    const newValue = +autolysiswater + 1;
+    const newValue = +autolysiswater + 5;
     setautolysiswater(newValue);
   };
 
   const autolysiswaterminus = () => {
     if (autolysiswater != 0) {
-      const newValue = +autolysiswater - 1;
+      const newValue = +autolysiswater - 5;
       setautolysiswater(newValue);
     }
     return;
   };
 
+  const onHandleautolysiswater = (newValue) => {
+    setautolysiswater(newValue);
+  };
+
   const olddoughinplus = () => {
-    const newValue = +OldDoughIn + 1;
+    const newValue = +OldDoughIn + 5;
     setolddoughin(newValue);
   };
 
   const olddoughinminus = () => {
     if (OldDoughIn != 0) {
-      const newValue = +OldDoughIn - 1;
+      const newValue = +OldDoughIn - 5;
       setolddoughin(newValue);
     }
     return;
   };
-
+  const onHandleolddoughin = (newValue) => {
+    setolddoughin(newValue);
+  };
   const olddoughoutplus = () => {
-    const newValue = +OlddoughOut + 1;
+    const newValue = +OlddoughOut + 5;
     setolddoughout(newValue);
   };
 
   const olddoughoutminus = () => {
     if (OlddoughOut != 0) {
-      const newValue = +OlddoughOut - 1;
+      const newValue = +OlddoughOut - 5;
       setolddoughout(newValue);
     }
     return;
   };
+  const onHandleolddoughout = (newValue) => {
+    setolddoughout(newValue);
+  };
+
   const CYplus = () => {
     setyeastfactor(+0.003);
+    // setNewYeastFactor(+0.003)
     // setyeastfactor(+0.005);
     // sethydrationfactor(+0.5);
     // settimefactor(+2);
@@ -304,6 +374,7 @@ const Inputs = () => {
   };
   const ADYplus = () => {
     setyeastfactor(+0.002);
+    // setNewYeastFactor(+0.002)
     // setyeastfactor(+0.003);
     // sethydrationfactor(+0.4);
     // settimefactor(+1.5);
@@ -311,6 +382,7 @@ const Inputs = () => {
   };
   const IDYplus = () => {
     setyeastfactor(+0.0015);
+    // setNewYeastFactor(+0.0015)
     // setyeastfactor(+0.002);
     // sethydrationfactor(+0.4);
     // settimefactor(+1);
@@ -318,12 +390,14 @@ const Inputs = () => {
   };
   const FSDplus = () => {
     setyeastfactor(+0.15);
+    // setNewYeastFactor(+0.15)
     // setyeastfactor(+0.15);
 
     // settimefactor(+3);
   };
   const LSDplus = () => {
     setyeastfactor(+0.4);
+    // setNewYeastFactor(+0.14)
     // setyeastfactor(+0.2);
 
     // settimefactor(+3);
@@ -377,18 +451,18 @@ const Inputs = () => {
           alignItems: "center",
         }}
       >
-        <EachInput
+        <InputWithAdornments
           value={Doughball1}
-          onChange={setDoughball1}
+          onChange={onHandleDoughball1}
           onIncrement={Doughball1plus}
           onDecrement={Doughball1minus}
           borderColor={"aqua"}
           label="Dough Balls "
           viewWidth={150}
         />
-        <EachInput
+        <InputWithAdornments
           value={BallWeight1}
-          onChange={setBallWeight1}
+          onChange={onHandleBallweight1}
           onIncrement={BallWeight1plus}
           onDecrement={BallWeight1minus}
           borderColor={"aqua"}
@@ -405,18 +479,18 @@ const Inputs = () => {
           alignItems: "center",
         }}
       >
-        <EachInput
+        <InputWithAdornments
           value={Doughball2}
-          onChange={setDoughball2}
+          onChange={onHandleDoughball2}
           onIncrement={Doughball2plus}
           onDecrement={Doughball2minus}
           borderColor={"aqua"}
           label="Dough Balls"
           viewWidth={150}
         />
-        <EachInput
+        <InputWithAdornments
           value={BallWeight2}
-          onChange={setBallWeight2}
+          onChange={onHandleDoughball2}
           onIncrement={BallWeight2plus}
           onDecrement={BallWeight2minus}
           borderColor={"aqua"}
@@ -435,9 +509,9 @@ const Inputs = () => {
           alignItems: "center",
         }}
       >
-        <EachInput
+        <InputWithAdornments
           value={flour1}
-          onChange={setflour1}
+          onChange={onHandleflour1}
           onIncrement={flour1plus}
           onDecrement={flour1minus}
           borderColor={"aqua"}
@@ -446,7 +520,7 @@ const Inputs = () => {
           name="pencil"
         />
 
-        <EachInput
+        <InputWithAdornments
           value={flour2}
           onChange={setflour2}
           onIncrement={flour2plus}
@@ -467,9 +541,9 @@ const Inputs = () => {
           alignItems: "center",
         }}
       >
-        <EachInput
+        <InputWithAdornments
           value={flour3}
-          onChange={setflour3}
+          onChange={onHandleflour3}
           onIncrement={flour3plus}
           onDecrement={flour3minus}
           borderColor={"aqua"}
@@ -477,9 +551,9 @@ const Inputs = () => {
           viewWidth={150}
           name="pencil"
         />
-        <EachInput
+        <InputWithAdornments
           value={flour4}
-          onChange={setflour4}
+          onChange={onHandleflour4}
           onIncrement={flour4plus}
           onDecrement={flour4minus}
           borderColor={"aqua"}
@@ -498,9 +572,9 @@ const Inputs = () => {
           alignItems: "center",
         }}
       >
-        <EachInput
+        <InputWithAdornments
           value={flour5}
-          onChange={setflour5}
+          onChange={onHandleflour5}
           onIncrement={flour5plus}
           onDecrement={flour5minus}
           borderColor={"aqua"}
@@ -508,9 +582,9 @@ const Inputs = () => {
           viewWidth={150}
           name="pencil"
         />
-        <EachInput
+        <InputWithAdornments
           value={flour6}
-          onChange={setflour6}
+          onChange={onHandleflour6}
           onIncrement={flour6plus}
           onDecrement={flour6minus}
           borderColor={"aqua"}
@@ -520,17 +594,17 @@ const Inputs = () => {
         />
       </View>
       <View>
-        <EachInput
+        <InputWithAdornments
           value={water}
-          onChange={setwater}
+          onChange={onHandlewater}
           onIncrement={waterplus}
           onDecrement={waterminus}
           borderColor={"aqua"}
           label="Water"
         />
-        <EachInput
+        <InputWithAdornments
           value={salt}
-          onChange={setsalt}
+          onChange={onHandlesalt}
           onIncrement={saltplus}
           onDecrement={saltminus}
           borderColor={"aqua"}
@@ -547,7 +621,7 @@ const Inputs = () => {
           alignItems: "center",
         }}
       >
-        <EachInput
+        <InputWithAdornments
           value={leaven}
           onChange={YeastNeeded1}
           onIncrement={leavenplus}
@@ -557,7 +631,7 @@ const Inputs = () => {
           viewWidth={150}
           name="pencil"
         />
-        <EachInput
+        <InputWithAdornments
           value={temp}
           onChange={YeastNeeded2}
           onIncrement={tempplus}
@@ -579,9 +653,9 @@ const Inputs = () => {
             alignItems: "center",
           }}
         >
-          <EachInput
+          <InputWithAdornments
             value={autolysisflour}
-            onChange={setautolysisflour}
+            onChange={onHandleautolysisflour}
             onIncrement={autolysisflourplus}
             onDecrement={autolysisflourminus}
             borderColor={"aqua"}
@@ -589,9 +663,9 @@ const Inputs = () => {
             viewWidth={150}
             name="pencil"
           />
-          <EachInput
+          <InputWithAdornments
             value={autolysiswater}
-            onChange={setautolysiswater}
+            onChange={onHandleautolysiswater}
             onIncrement={autolysiswaterplus}
             onDecrement={autolysiswaterminus}
             borderColor={"aqua"}
@@ -614,9 +688,9 @@ const Inputs = () => {
           alignItems: "center",
         }}
       >
-        <EachInput
+        <InputWithAdornments
           value={OldDoughIn}
-          onChange={setolddoughin}
+          onChange={onHandleolddoughin}
           onIncrement={olddoughinplus}
           onDecrement={olddoughinminus}
           borderColor={"aqua"}
@@ -624,7 +698,7 @@ const Inputs = () => {
           viewWidth={150}
           name="pencil"
         />
-        {/* <EachInput
+        {/* <InputWithAdornments
           value={}
           // onChange={handleChange}
           onIncrement={handleIncrement}
@@ -635,9 +709,9 @@ const Inputs = () => {
           name="pencil"
         /> */}
       </View>
-      <EachInput
+      <InputWithAdornments
         value={OlddoughOut}
-        onChange={setolddoughout}
+        onChange={onHandleolddoughout}
         onIncrement={olddoughoutplus}
         onDecrement={olddoughoutminus}
         borderColor={"aqua"}
