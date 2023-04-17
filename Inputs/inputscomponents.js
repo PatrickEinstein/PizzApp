@@ -65,7 +65,7 @@ const InputWithAdornments = ({
         <View
           style={{
             flex: 1,
-            paddingHorizontal: 10,
+            paddingHorizontal: 5,
            
             margin: 1,
             width: 100,

@@ -102,13 +102,13 @@ const Inputs = () => {
   };
 
   const Doughball1plus = () => {
-    const newValue = +Doughball1 + 5;
+    const newValue = +Doughball1 + 1;
     setDoughball1(newValue);
   };
 
   const Doughball1minus = () => {
     if (Doughball1 != 0) {
-      const newValue = +Doughball1 - 5;
+      const newValue = +Doughball1 - 1;
       setDoughball1(newValue);
     }
     return;
@@ -119,13 +119,13 @@ const Inputs = () => {
   };
 
   const Doughball2plus = () => {
-    const newValue = +Doughball2 + 5;
+    const newValue = +Doughball2 + 1;
     setDoughball2(newValue);
   };
 
   const Doughball2minus = () => {
     if (Doughball2 != 0) {
-      const newValue = +Doughball2 - 5;
+      const newValue = +Doughball2 - 1;
       setDoughball2(newValue);
     }
     return;
@@ -334,13 +334,13 @@ const Inputs = () => {
   };
 
   const olddoughinplus = () => {
-    const newValue = +OldDoughIn + 5;
+    const newValue = +OldDoughIn + 1;
     setolddoughin(newValue);
   };
 
   const olddoughinminus = () => {
     if (OldDoughIn != 0) {
-      const newValue = +OldDoughIn - 5;
+      const newValue = +OldDoughIn - 1;
       setolddoughin(newValue);
     }
     return;
@@ -910,29 +910,40 @@ const Inputs = () => {
             <Text>Flour6: {result.flour6mass.toFixed(2)}</Text>
           </View>
         </View>
-        <Spacer height={40} />
+        <Spacer height={30} />
         <View
           style={{
             flexDirection: "row",
             justifyContent: "space-around",
           }}
         >
+          <View>
           <View
             style={{ backgroundColor: "aqua", padding: 30, borderRadius: 25 }}
           >
             <Text>Water: {result.waterWeight.toFixed(2)}</Text>
           </View>
-          <Spacer height={40} />
+          <Spacer width={40} />
+          <Spacer height={30}/>
           <View
             style={{ backgroundColor: "aqua", padding: 30, borderRadius: 25 }}
           >
             <Text>Salt: {result.saltWeight.toFixed(2)}</Text>
           </View>
-          <Spacer height={40} />
+          </View>
+          <Spacer width={40} />
+          <View>
+          <Spacer width={40} />
           <View
             style={{ backgroundColor: "aqua", padding: 30, borderRadius: 25 }}
           >
-            <Text>yeastWeight: {result.yeastWeight.toFixed(2)}</Text>
+            <Text>yeast: {result.yeastWeight.toFixed(2)}</Text>
+          </View>
+          {/* <View
+            style={{ backgroundColor: "aqua", padding: 30, borderRadius: 25 }}
+          >
+            <Text>fat: {result.fats.toFixed(2)}</Text>
+          </View> */}
           </View>
         </View>
       </View>

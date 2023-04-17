@@ -938,6 +938,7 @@ const Inputs = () => {
             <Text>Water: {result.waterWeight.toFixed(2)}</Text>
           </View>
           <Spacer width={40} />
+          <Spacer height={30}/>
           <View
             style={{ backgroundColor: "aqua", padding: 30, borderRadius: 25 }}
           >
@@ -952,6 +953,7 @@ const Inputs = () => {
           >
             <Text>yeast: {result.yeastWeight.toFixed(2)}</Text>
           </View>
+          <Spacer height={30}/>
           <View
             style={{ backgroundColor: "aqua", padding: 30, borderRadius: 25 }}
           >

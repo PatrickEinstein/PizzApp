@@ -13,6 +13,7 @@ import {
   toggledisplayon,
 } from "../../Redux/Reducers";
 import { useDispatch } from "react-redux";
+import { Spacer } from "../../components/spacer";
 
 export const Settings = () => {
   const dispatch = useDispatch();
@@ -74,6 +75,7 @@ export const Settings = () => {
         <Text>Two Balls Size</Text>
         <Switches value={twoBallSize} onToggleSwitch={onToggleTwoBallSize} />
       </View>
+      <Spacer height={20}/>
       <View
         style={{
           flexDirection: "row",
@@ -83,6 +85,7 @@ export const Settings = () => {
         <Text>Fats</Text>
         <Switches value={fats} onToggleSwitch={onToggleFats} />
       </View>
+      <Spacer height={20}/>
       <View
         style={{
           flexDirection: "row",
@@ -92,6 +95,7 @@ export const Settings = () => {
         <Text>CT</Text>
         <Switches value={CT} onToggleSwitch={onToggleCT} />
       </View>
+      <Spacer height={20}/>
       <View
         style={{
           flexDirection: "row",
@@ -101,6 +105,7 @@ export const Settings = () => {
         <Text>old Dough In</Text>
         <Switches value={oldDoughIn} onToggleSwitch={onToggleoldDoughIn} />
       </View>
+      <Spacer height={20}/>
       <View
         style={{
           flexDirection: "row",
@@ -110,6 +115,7 @@ export const Settings = () => {
         <Text>Old Dough out</Text>
         <Switches value={oldDoughOut} onToggleSwitch={onToggleoldDoughOut} />
       </View>
+      <Spacer height={20}/>
       <View
         style={{
           flexDirection: "row",
@@ -119,6 +125,7 @@ export const Settings = () => {
         <Text>Autolysis</Text>
         <Switches value={autolysis} onToggleSwitch={onToggleautolysis} />
       </View>
+      <Spacer height={20}/>
       <View
         style={{
           flexDirection: "row",
@@ -128,6 +135,7 @@ export const Settings = () => {
         <Text>Biga</Text>
         <Switches value={biga} onToggleSwitch={onTogglebiga} />
       </View>
+      <Spacer height={20}/>
       <View
         style={{
           flexDirection: "row",
@@ -137,6 +145,7 @@ export const Settings = () => {
         <Text>poolish</Text>
         <Switches value={poolish} onToggleSwitch={onTogglePolish} />
       </View>
+      <Spacer height={20}/>
       <View
         style={{
           flexDirection: "row",
