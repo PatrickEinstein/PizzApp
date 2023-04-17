@@ -64,13 +64,13 @@ const Inputs = () => {
     setfats(newValue);
   };
   const fatplus = () => {
-    const newValue = +temp + 0.5;
+    const newValue = +temp + 1;
     setfats(newValue);
   };
 
   const fatminus = () => {
-    if (temp > 10) {
-      const newValue = +temp - 0.5;
+    if (temp > 0) {
+      const newValue = +temp - 1;
       setfats(newValue);
     }
     return;
