@@ -1,6 +1,6 @@
 import * as React from "react";
 import { View, Text, ScrollView, SafeAreaView } from "react-native";
-import Icon from "react-native-vector-icons/FontAwesome";
+// import Icon from "react-native-vector-icons/FontAwesome";
 import TabViewExample from "../Tabs/tab";
 import { useState } from "react";
 import { Stack, useRouter } from "expo-router";
@@ -10,59 +10,76 @@ import { store } from "../Redux/store";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 import { persistStore } from "redux-persist";
-
+import Icon from "react-native-vector-icons/Feather";
+import { Feather } from "react-native-vector-icons";
+import InvisibleTab from "../HiddenTab/hidden";
 
 const Home = () => {
   const [visible, setVisible] = useState(false);
 
   return (
     <Provider store={store}>
-     <PersistGate loading={null} persistor={persistStore(store)}>
-    <SafeAreaView 
-      style={{
-        flex: 1,
-        backgroundColor: COLORS.lightWhite,
-        position: "relative",
-      }}
-    >
-   
-      <Stack.Screen
-
-        options={{
-          headerStyle: { backgroundColor: COLORS.lightWhite },
-          headerShadowVisible: true,
-          headerLeft: () => <Icon name="search" size={15} color="#000" />,
-
-          headerRight: () => (
-            <Icon
-              name="home"
-              size={30}
-              color="#000"
-              onPress={() => setVisible((prev) => !prev)}
-            />
-          ),
-          
-        }}
-      />
-    <TabViewExample/>
-    
-   
-       {visible ? (
-         <View
-           style={{
-             position: "absolute",
-             top: 5,
-             right: 0,
+      <PersistGate loading={null} persistor={persistStore(store)}>
+        <SafeAreaView
+          style={{
+            flex: 1,
+            backgroundColor: COLORS.lightWhite,
+            position: "relative",
           }}
         >
-         <MenuList />
-         </View>
-       ) : (
-        <Text>" "</Text>
-        )}
-     </SafeAreaView>
-    </PersistGate>
-     </Provider>
+          <Stack.Screen
+            options={{
+              title: "PizzApp",
+              headerTitleStyle: { color: "white" },
+              headerStyle: {
+                backgroundColor: "#ffbf00",
+                borderColor: "#ffbf00",
+                
+              },
+              headerShadowVisible: false,
+             
+              headerTitleAlign: "center",
+              //headerLeft: () => <Icon name="help" size={15} color="white" />,
+
+              headerLeft: () => (
+                <Feather
+                  name="help-circle"
+                  size={30}
+                  color="#FFF"
+                  onPress={() => console.log("Help button pressed")}
+                  style={{ marginRight: 10 }}
+                />
+              ),
+              headerRight: () => (
+                <Icon
+                  name="menu"
+                  // name="help-circle"
+                  size={30}
+                  color="white"
+                  onPress={() => setVisible((prev) => !prev)}
+                />
+              ),
+            }}
+          />
+          <TabViewExample />
+          
+
+          {visible ? (
+            <View
+              style={{
+                position: "absolute",
+                top: 5,
+                right: 0,
+              }}
+            >
+              <MenuList />
+            </View>
+          ) : (
+            <Text>" "</Text>
+          )}
+        </SafeAreaView>
+      </PersistGate>
+    </Provider>
   );
 };
 

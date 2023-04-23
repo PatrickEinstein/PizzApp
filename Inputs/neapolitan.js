@@ -11,6 +11,16 @@ import { calculateDoughIngredients } from "../config/neapolitan";
 import { Value } from "react-native-reanimated";
 
 const Inputs = () => {
+  const [clickedLabel, setClickedLabel] = useState("");
+
+  const handleButtonClick = (label) => {
+    if (label === clickedLabel) {
+      setClickedLabel("");
+    } else {
+      setClickedLabel(label);
+    }
+  };
+
   const onOff = useSelector((state) => state.recipe);
 
   const twoballsize = onOff.twoballsize;
@@ -22,15 +32,19 @@ const Inputs = () => {
   const biga = onOff.biga;
   const poolish = onOff.poolish;
   const displayOn = onOff.displayon;
-  // console.log(`fats ==> ${fats}`);
-  // console.log(`autolysis ==> ${autolysis}`);
-  // console.log(`poolosh ==> ${poolish}`);
+  const doughball2 = onOff.doughball02;
+  const ballWeight02 = onOff.ballweight2;
+  const flour02 = onOff.flour02;
+  const flour03 = onOff.flour03;
+  const flour04 = onOff.flour04;
+  const flour05 = onOff.flour05;
+  const flour06 = onOff.flour06;
 
-  const [Doughball1, setDoughball1] = useState(0);
+  const [Doughball1, setDoughball1] = useState(+0);
   const [Doughball2, setDoughball2] = useState(0);
   const [BallWeight1, setBallWeight1] = useState(0);
   const [BallWeight2, setBallWeight2] = useState(0);
-  const [flour1, setflour1] = useState(0);
+  const [flour1, setflour1] = useState(100);
   const [flour2, setflour2] = useState(0);
   const [flour3, setflour3] = useState(0);
   const [flour4, setflour4] = useState(0);
@@ -45,12 +59,9 @@ const Inputs = () => {
   const [OldDoughIn, setolddoughin] = useState(0);
   const [OlddoughOut, setolddoughout] = useState(0);
   const [yeastfactor, setyeastfactor] = useState(0);
-  // const [hydrationfactor, sethydrationfactor] = useState(0);
-  // const [timefactor, settimefactor] = useState(0);
-  // const [tempfactor, settempfactor] = useState(0);
+
   const [NewYeastFactor, setNewYeastFactor] = useState(0);
-  // console.log(`  db1 ==>${Doughball1}`)
-  // console.log(`bw1 ==> ${BallWeight1}`)
+  console.log(yeastfactor);
 
   const leavenplus = () => {
     const newValue = +leaven + 1;
@@ -91,12 +102,12 @@ const Inputs = () => {
     (+Doughball1 * +BallWeight1 + +Doughball2 * +BallWeight2);
 
   const YeastNeeded1 = () => {
-    onHandleleaven
+    onHandleleaven;
     setNewYeastFactor(newYeastFactor);
   };
 
   const YeastNeeded2 = () => {
-    onHandletemp
+    onHandletemp;
     setNewYeastFactor(NewYeastFactor);
     // setyeastfactor(NewYeastFactor);
   };
@@ -436,18 +447,12 @@ const Inputs = () => {
   );
 
   return (
-    <View
-      style={{
-        justifyContent: "space-between",
-        marginBottom: 20,
-      }}
-    >
+    <View>
       <View
         style={{
           flexDirection: "row",
           justifyContent: "space-between",
-          marginBottom: 20,
-          justifyContent: "space-between",
+          margin:0,
           alignItems: "center",
         }}
       >
@@ -456,7 +461,7 @@ const Inputs = () => {
           onChange={onHandleDoughball1}
           onIncrement={Doughball1plus}
           onDecrement={Doughball1minus}
-          borderColor={"aqua"}
+          borderColor={"#ffbf00"}
           label="Dough Balls "
           viewWidth={150}
         />
@@ -465,141 +470,182 @@ const Inputs = () => {
           onChange={onHandleBallweight1}
           onIncrement={BallWeight1plus}
           onDecrement={BallWeight1minus}
-          borderColor={"aqua"}
+          borderColor={"#ffbf00"}
           label="Ball Weight (g)"
           viewWidth={150}
         />
       </View>
-      <View
-        style={{
-          flexDirection: "row",
-          justifyContent: "space-between",
-          marginBottom: 20,
-          justifyContent: "space-between",
-          alignItems: "center",
-        }}
-      >
-        <InputWithAdornments
-          value={Doughball2}
-          onChange={onHandleDoughball2}
-          onIncrement={Doughball2plus}
-          onDecrement={Doughball2minus}
-          borderColor={"aqua"}
-          label="Dough Balls"
-          viewWidth={150}
-        />
-        <InputWithAdornments
-          value={BallWeight2}
-          onChange={onHandleDoughball2}
-          onIncrement={BallWeight2plus}
-          onDecrement={BallWeight2minus}
-          borderColor={"aqua"}
-          label="Ball Weight"
-          viewWidth={150}
-        />
-      </View>
-      <Spacer height={20} />
-      <Text>Flours : % sum is not 100% </Text>
-      <View
-        style={{
-          flexDirection: "row",
-          justifyContent: "space-between",
-          marginBottom: 20,
-          justifyContent: "space-between",
-          alignItems: "center",
-        }}
-      >
-        <InputWithAdornments
-          value={flour1}
-          onChange={onHandleflour1}
-          onIncrement={flour1plus}
-          onDecrement={flour1minus}
-          borderColor={"aqua"}
-          label="Flour 1"
-          viewWidth={150}
-          name="pencil"
-        />
+      {doughball2 ? (
+        <>
+          <View
+            style={{
+              flexDirection: "row",
+              justifyContent: "space-between",
+              marginBottom: 0,
+              justifyContent: "space-between",
+              alignItems: "center",
+              width: "auto",
+            }}
+          >
+            <InputWithAdornments
+              value={Doughball2}
+              onChange={onHandleDoughball2}
+              onIncrement={Doughball2plus}
+              onDecrement={Doughball2minus}
+              borderColor={"#ffbf00"}
+              label="Dough Balls"
+              viewWidth={150}
+            />
+            <InputWithAdornments
+              value={BallWeight2}
+              onChange={onHandleDoughball2}
+              onIncrement={BallWeight2plus}
+              onDecrement={BallWeight2minus}
+              borderColor={"#ffbf00"}
+              label="Ball Weight"
+              viewWidth={150}
+            />
+          </View>
+          <Spacer height={20} />
+        </>
+      ) : null}
 
-        <InputWithAdornments
-          value={flour2}
-          onChange={setflour2}
-          onIncrement={flour2plus}
-          onDecrement={flour2minus}
-          borderColor={"aqua"}
-          label="Flour 2"
-          viewWidth={150}
-          name="pencil"
-        />
-      </View>
+      {flour1 + flour2 + flour3 + flour4 + flour5 + flour6 == 100 ? null : (
+        <Text>Flours : % sum is not 100% </Text>
+      )}
+      {flour2 ? (
+        <View
+          style={{
+            flexDirection: "row",
+            justifyContent: "space-between",
+            marginBottom: 20,
+            justifyContent: "space-between",
+            alignItems: "center",
+            margin: "auto",
+          }}
+        >
+          <InputWithAdornments
+            value={flour1}
+            onChange={onHandleflour1}
+            onIncrement={flour1plus}
+            onDecrement={flour1minus}
+            borderColor={"#ffbf00"}
+            label="Flour 1"
+            viewWidth={"auto"}
+            name="pencil"
+          />
+
+          {flour2 ? (
+            <InputWithAdornments
+              value={flour2}
+              onChange={setflour2}
+              onIncrement={flour2plus}
+              onDecrement={flour2minus}
+              borderColor={"#ffbf00"}
+              label="Flour 2"
+              viewWidth={150}
+              name="pencil"
+            />
+          ) : null}
+        </View>
+      ) : null}
+
+      {flour3 ? (
+        <>
+          <Spacer height={30} />
+          <View
+            style={{
+              flexDirection: "row",
+              justifyContent: "space-between",
+              marginBottom: 20,
+              justifyContent: "space-between",
+              alignItems: "center",
+            }}
+          >
+            {flour3 ? (
+              <InputWithAdornments
+                value={flour3}
+                onChange={onHandleflour3}
+                onIncrement={flour3plus}
+                onDecrement={flour3minus}
+                borderColor={"#ffbf00"}
+                label="Flour 3"
+                viewWidth={150}
+                name="pencil"
+              />
+            ) : (
+              <Text></Text>
+            )}
+
+            {flour4 ? (
+              <InputWithAdornments
+                value={flour4}
+                onChange={onHandleflour4}
+                onIncrement={flour4plus}
+                onDecrement={flour4minus}
+                borderColor={"#ffbf00"}
+                label="Flour 4"
+                viewWidth={150}
+                name="pencil"
+              />
+            ) : (
+              <Text></Text>
+            )}
+          </View>
+        </>
+      ) : (
+        <Text></Text>
+      )}
       <Spacer height={30} />
-      <View
-        style={{
-          flexDirection: "row",
-          justifyContent: "space-between",
-          marginBottom: 20,
-          justifyContent: "space-between",
-          alignItems: "center",
-        }}
-      >
-        <InputWithAdornments
-          value={flour3}
-          onChange={onHandleflour3}
-          onIncrement={flour3plus}
-          onDecrement={flour3minus}
-          borderColor={"aqua"}
-          label="Flour 3"
-          viewWidth={150}
-          name="pencil"
-        />
-        <InputWithAdornments
-          value={flour4}
-          onChange={onHandleflour4}
-          onIncrement={flour4plus}
-          onDecrement={flour4minus}
-          borderColor={"aqua"}
-          label="Flour 4"
-          viewWidth={150}
-          name="pencil"
-        />
-      </View>
-      <Spacer height={30} />
-      <View
-        style={{
-          flexDirection: "row",
-          justifyContent: "space-between",
-          marginBottom: 20,
-          justifyContent: "space-between",
-          alignItems: "center",
-        }}
-      >
-        <InputWithAdornments
-          value={flour5}
-          onChange={onHandleflour5}
-          onIncrement={flour5plus}
-          onDecrement={flour5minus}
-          borderColor={"aqua"}
-          label="Flour 5"
-          viewWidth={150}
-          name="pencil"
-        />
-        <InputWithAdornments
-          value={flour6}
-          onChange={onHandleflour6}
-          onIncrement={flour6plus}
-          onDecrement={flour6minus}
-          borderColor={"aqua"}
-          label="Flour 6"
-          viewWidth={150}
-          name="pencil"
-        />
-      </View>
+      {flour5 ? (
+        <View
+          style={{
+            flexDirection: "row",
+            justifyContent: "space-between",
+            marginBottom: 20,
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+        >
+          {flour5 ? (
+            <InputWithAdornments
+              value={flour5}
+              onChange={onHandleflour5}
+              onIncrement={flour5plus}
+              onDecrement={flour5minus}
+              borderColor={"#ffbf00"}
+              label="Flour 5"
+              viewWidth={150}
+              name="pencil"
+            />
+          ) : (
+            <Text></Text>
+          )}
+          {flour6 ? (
+            <InputWithAdornments
+              value={flour6}
+              onChange={onHandleflour6}
+              onIncrement={flour6plus}
+              onDecrement={flour6minus}
+              borderColor={"#ffbf00"}
+              label="Flour 6"
+              viewWidth={150}
+              name="pencil"
+            />
+          ) : (
+            <Text></Text>
+          )}
+        </View>
+      ) : (
+        <Text></Text>
+      )}
       <View>
         <InputWithAdornments
           value={water}
           onChange={onHandlewater}
           onIncrement={waterplus}
           onDecrement={waterminus}
-          borderColor={"aqua"}
+          borderColor={"#ffbf00"}
           label="Water"
         />
         <InputWithAdornments
@@ -607,7 +653,7 @@ const Inputs = () => {
           onChange={onHandlesalt}
           onIncrement={saltplus}
           onDecrement={saltminus}
-          borderColor={"aqua"}
+          borderColor={"#ffbf00"}
           label="Salt"
         />
       </View>
@@ -617,7 +663,6 @@ const Inputs = () => {
           flexDirection: "row",
           justifyContent: "space-between",
           marginBottom: 20,
-          justifyContent: "space-between",
           alignItems: "center",
         }}
       >
@@ -626,7 +671,7 @@ const Inputs = () => {
           onChange={YeastNeeded1}
           onIncrement={leavenplus}
           onDecrement={leavenminus}
-          borderColor={"aqua"}
+          borderColor={"#ffbf00"}
           label="RT leavening"
           viewWidth={150}
           name="pencil"
@@ -636,7 +681,7 @@ const Inputs = () => {
           onChange={YeastNeeded2}
           onIncrement={tempplus}
           onDecrement={tempminus}
-          borderColor={"aqua"}
+          borderColor={"#ffbf00"}
           label="RT C"
           viewWidth={150}
           name="pencil"
@@ -658,7 +703,7 @@ const Inputs = () => {
             onChange={onHandleautolysisflour}
             onIncrement={autolysisflourplus}
             onDecrement={autolysisflourminus}
-            borderColor={"aqua"}
+            borderColor={"#ffbf00"}
             label="Autolysis flour"
             viewWidth={150}
             name="pencil"
@@ -668,58 +713,51 @@ const Inputs = () => {
             onChange={onHandleautolysiswater}
             onIncrement={autolysiswaterplus}
             onDecrement={autolysiswaterminus}
-            borderColor={"aqua"}
+            borderColor={"#ffbf00"}
             label="Autolysis water "
             viewWidth={150}
             name="pencil"
           />
         </View>
-      ) : (
-        <Text>...</Text>
-      )}
+      ) : null}
 
-      <Spacer height={20} />
-      <View
-        style={{
-          flexDirection: "row",
-          justifyContent: "space-between",
-          marginBottom: 20,
-          justifyContent: "space-between",
-          alignItems: "center",
-        }}
-      >
-        <InputWithAdornments
-          value={OldDoughIn}
-          onChange={onHandleolddoughin}
-          onIncrement={olddoughinplus}
-          onDecrement={olddoughinminus}
-          borderColor={"aqua"}
-          label="Old Dough in"
-          viewWidth={150}
-          name="pencil"
-        />
-        {/* <InputWithAdornments
-          value={}
-          // onChange={handleChange}
-          onIncrement={handleIncrement}
-          onDecrement={handleDecrement}
-          borderColor={"aqua"}
-          label="Will replace"
-          viewWidth={150}
-          name="pencil"
-        /> */}
-      </View>
-      <InputWithAdornments
-        value={OlddoughOut}
-        onChange={onHandleolddoughout}
-        onIncrement={olddoughoutplus}
-        onDecrement={olddoughoutminus}
-        borderColor={"aqua"}
-        label="Old Dough out"
-        viewWidth={150}
-        name="pencil"
-      />
-      <Spacer height={40} />
+      {OldDoughIn ? (
+        <>
+          <Spacer height={20} />
+          <View
+            style={{
+              flexDirection: "row",
+              justifyContent: "space-between",
+              marginBottom: 20,
+              justifyContent: "space-between",
+              alignItems: "center",
+            }}
+          >
+            <InputWithAdornments
+              value={OldDoughIn}
+              onChange={onHandleolddoughin}
+              onIncrement={olddoughinplus}
+              onDecrement={olddoughinminus}
+              borderColor={"#ffbf00"}
+              label="Old Dough in"
+              viewWidth={150}
+              name="pencil"
+            />
+            <InputWithAdornments
+              value={OlddoughOut}
+              onChange={onHandleolddoughout}
+              onIncrement={olddoughoutplus}
+              onDecrement={olddoughoutminus}
+              borderColor={"#ffbf00"}
+              label="Old Dough out"
+              viewWidth={150}
+              name="pencil"
+            />
+          </View>
+
+          <Spacer height={40} />
+        </>
+      ) : null}
 
       <View
         style={{
@@ -736,33 +774,58 @@ const Inputs = () => {
         >
           <StyledIconButton
             label="CY"
-            onPress={CYplus}
+            // onPress={CYplus}
             helperText="Max value reached"
             style={{ marginBottom: 20 }}
+            onPress={() => {
+              CYplus();
+              handleButtonClick("CY");
+            }}
+            clickedLabel={clickedLabel}
           />
           <StyledIconButton
             label="ADY"
-            onPress={ADYplus}
+            // onPress={ADYplus}
             helperText="Max value reached"
             style={{ marginBottom: 20 }}
+            onPress={() => {
+              handleButtonClick("ADY");
+              ADYplus();
+            }}
+            clickedLabel={clickedLabel}
           />
           <StyledIconButton
             label="IDY"
-            onPress={IDYplus}
+            // onPress={IDYplus}
             helperText="Max value reached"
             style={{ marginBottom: 20 }}
+            onPress={() => {
+              handleButtonClick("IDY");
+              IDYplus();
+            }}
+            clickedLabel={clickedLabel}
           />
           <StyledIconButton
             label="FSD"
-            onPress={FSDplus}
+            // onPress={FSDplus}
             helperText="Max value reached"
             style={{ marginBottom: 20 }}
+            onPress={() => {
+              handleButtonClick("FSD");
+              FSDplus();
+            }}
+            clickedLabel={clickedLabel}
           />
           <StyledIconButton
             label="LSD"
-            onPress={LSDplus}
+            // onPress={LSDplus}
             helperText="Max value reached"
             style={{ marginBottom: 20 }}
+            onPress={() => {
+              handleButtonClick("LSD");
+              LSDplus();
+            }}
+            clickedLabel={clickedLabel}
           />
         </View>
       </View>
@@ -784,21 +847,27 @@ const Inputs = () => {
             }}
           >
             <View
-              style={{ backgroundColor: "aqua", padding: 30, borderRadius: 25 }}
+              style={{
+                backgroundColor: "#ffbf00",
+                padding: 30,
+                borderRadius: 25,
+              }}
             >
               <Text>Flour : {result.autolysisflourmass.toFixed(2)}</Text>
             </View>
             <Spacer width={30} />
             <View
-              style={{ backgroundColor: "aqua", padding: 30, borderRadius: 25 }}
+              style={{
+                backgroundColor: "#ffbf00",
+                padding: 30,
+                borderRadius: 25,
+              }}
             >
               <Text>Water : {result.autolysiswatermass.toFixed(2)}</Text>
             </View>
           </View>
         </View>
-      ) : (
-        <Text>...</Text>
-      )}
+      ) : null}
       <Spacer height={20} />
       {poolish ? (
         <View
@@ -817,7 +886,11 @@ const Inputs = () => {
             }}
           >
             <View
-              style={{ backgroundColor: "aqua", padding: 30, borderRadius: 25 }}
+              style={{
+                backgroundColor: "#ffbf00",
+                padding: 30,
+                borderRadius: 25,
+              }}
             >
               <View>
                 <Text>Flour</Text>
@@ -826,23 +899,29 @@ const Inputs = () => {
             </View>
             <Spacer width={30} />
             <View
-              style={{ backgroundColor: "aqua", padding: 30, borderRadius: 25 }}
+              style={{
+                backgroundColor: "#ffbf00",
+                padding: 30,
+                borderRadius: 25,
+              }}
             >
               <Text>Water</Text>
               <Text>Value</Text>
             </View>
             <Spacer width={30} />
             <View
-              style={{ backgroundColor: "aqua", padding: 30, borderRadius: 25 }}
+              style={{
+                backgroundColor: "#ffbf00",
+                padding: 30,
+                borderRadius: 25,
+              }}
             >
               <Text>Water</Text>
               <Text>Value</Text>
             </View>
           </View>
         </View>
-      ) : (
-        <Text>...</Text>
-      )}
+      ) : null}
 
       <Spacer height={20} />
       <HDivider />
@@ -852,7 +931,12 @@ const Inputs = () => {
           alignItems: "center",
         }}
       >
-        <Text>Main dough doses {result.maindoughdose.toFixed(0)}</Text>
+        <Text style={{ fontWeight: "bold" }}>
+          Main dough doses{" "}
+          <Text style={{ color: "#ffbf00" }}>
+            {result.maindoughdose.toFixed(0)}
+          </Text>
+        </Text>
         <Spacer height={20} />
         <View
           style={{
@@ -861,89 +945,82 @@ const Inputs = () => {
           }}
         >
           <View
-            style={{ backgroundColor: "aqua", padding: 30, borderRadius: 25 }}
+            style={{
+              backgroundColor: "#ffbf00",
+              borderRadius: 10,
+              height: "auto",
+              width: 150,
+              alignItems: "center",
+              justifyContent: "center",
+            }}
           >
             <Text>Flour1 : {result.flour1mass.toFixed(2)}</Text>
+
+            {flour2 ? (
+              <Text>Flour2 : {result.flour2mass.toFixed(2)}</Text>
+            ) : null}
+            {flour3 ? (
+              <Text>Flour3 : {result.flour3mass.toFixed(2)}</Text>
+            ) : null}
+            {flour3 ? (
+              <Text>Flour3 : {result.flour3mass.toFixed(2)}</Text>
+            ) : null}
+            {flour4 ? (
+              <Text>Flour4 : {result.flour4mass.toFixed(2)}</Text>
+            ) : null}
+            {flour5 ? (
+              <Text>Flour5 : {result.flour5mass.toFixed(2)}</Text>
+            ) : null}
+            {flour6 ? (
+              <Text>Flour6 : {result.flour6mass.toFixed(2)}</Text>
+            ) : null}
           </View>
-          <Spacer width={30} />
+
+          <Spacer width={20} />
           <View
-            style={{ backgroundColor: "aqua", padding: 30, borderRadius: 25 }}
-          >
-            <Text>Flour2:{result.flour2mass.toFixed(2)}</Text>
-          </View>
-        </View>
-        <Spacer height={20} />
-        <View
-          style={{
-            flexDirection: "row",
-            justifyContent: "space-between",
-          }}
-        >
-          <View
-            style={{ backgroundColor: "aqua", padding: 30, borderRadius: 25 }}
-          >
-            <Text>Flour 3: {result.flour3mass.toFixed(2)}</Text>
-          </View>
-          <Spacer width={30} />
-          <View
-            style={{ backgroundColor: "aqua", padding: 30, borderRadius: 25 }}
-          >
-            <Text>Flour4: {result.flour4mass.toFixed(2)}</Text>
-          </View>
-        </View>
-        <Spacer height={20} />
-        <View
-          style={{
-            flexDirection: "row",
-            justifyContent: "space-between",
-          }}
-        >
-          <View
-            style={{ backgroundColor: "aqua", padding: 30, borderRadius: 25 }}
-          >
-            <Text>Flour5: {result.flour5mass.toFixed(2)}</Text>
-          </View>
-          <Spacer width={30} />
-          <View
-            style={{ backgroundColor: "aqua", padding: 30, borderRadius: 25 }}
-          >
-            <Text>Flour6: {result.flour6mass.toFixed(2)}</Text>
-          </View>
-        </View>
-        <Spacer height={30} />
-        <View
-          style={{
-            flexDirection: "row",
-            justifyContent: "space-around",
-          }}
-        >
-          <View>
-          <View
-            style={{ backgroundColor: "aqua", padding: 30, borderRadius: 25 }}
+            style={{
+              backgroundColor: "#ffbf00",
+              borderRadius: 10,
+              height: 50,
+              width: 150,
+              alignItems: "center",
+              justifyContent: "center",
+            }}
           >
             <Text>Water: {result.waterWeight.toFixed(2)}</Text>
           </View>
-          <Spacer width={40} />
-          <Spacer height={30}/>
+        </View>
+        <Spacer height={20} />
+        <View
+          style={{
+            flexDirection: "row",
+            justifyContent: "space-between",
+          }}
+        >
           <View
-            style={{ backgroundColor: "aqua", padding: 30, borderRadius: 25 }}
+            style={{
+              backgroundColor: "#ffbf00",
+              borderRadius: 10,
+              height: 50,
+              width: 150,
+              alignItems: "center",
+              justifyContent: "center",
+            }}
           >
             <Text>Salt: {result.saltWeight.toFixed(2)}</Text>
           </View>
-          </View>
-          <Spacer width={40} />
-          <View>
-          <Spacer width={40} />
+          <Spacer width={20} />
           <View
-            style={{ backgroundColor: "aqua", padding: 30, borderRadius: 25 }}
+            style={{
+              backgroundColor: "#ffbf00",
+              borderRadius: 10,
+              height: 50,
+              width: 150,
+              alignItems: "center",
+              justifyContent: "center",
+            }}
           >
             <Text>yeast: {result.yeastWeight.toFixed(2)}</Text>
-          </View>
-          {/* <View
-            style={{ backgroundColor: "aqua", padding: 30, borderRadius: 25 }}
-          >
-            <Text>fat: {result.fats.toFixed(2)}</Text>
-          </View> */}
           </View>
         </View>
       </View>

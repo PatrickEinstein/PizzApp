@@ -1,8 +1,8 @@
-import React from "react";
-import { Text, TextInput, View } from "react-native";
+import React, { useRef } from "react";
+import { Text, TextInput, View, TouchableWithoutFeedback } from "react-native";
 import { IconButton, useTheme } from "react-native-paper";
 import Icon from "react-native-vector-icons/FontAwesome";
-
+import { ScrollView } from "react-native";
 const InputWithAdornments = ({
   value,
   onChange,
@@ -13,99 +13,88 @@ const InputWithAdornments = ({
   borderColor,
   label,
   name,
-  handleIncrement,
-  handleDecrement,
-  handleChangeText,
+
   ...props
 }) => {
-  // const { colors } = useTheme();
+  const inputRef = React.useRef(null);
 
-  // const handleIncrement = () => {
-  //   let newValue = (+value) + 1;
-  //   if (newValue > 100) {
-  //     newValue = 100;
-  //   }
-  //   onIncrement(newValue);
-  // };
-
-  // const handleDecrement = () => {
-  //   let newValue = (+value) - 1;
-  //   if (newValue < 0) {
-  //     newValue = 0;
-  //   }
-  //   onDecrement(newValue);
-  // };
-
-  // const handleChangeText = (newValue) => {
-  //   onChange(newValue);
-  // };
+  const handlePress = () => {
+    inputRef.current.blur();
+  };
 
   return (
     <View sx={{ alignItems: "center", justifyContent: "center" }}>
-      <Text marginLeft="30%">
+      <Text style={{
+        textAlign:"center"
+      }}>
         {label}
         <Icon name={name} size={15} color="grey" />
       </Text>
+
       <View
         style={{
           flexDirection: "row",
           alignItems: "center",
-          borderWidth: 1,
           borderColor: borderColor,
+          margin: 0,
+          marginRight: 0,
+          padding: 0,
           width: viewWidth,
+          borderRadius: 20,
         }}
       >
         <IconButton
           icon="minus"
-          onPress={onDecrement}
-          iconColor="white"
-          // color={colors.secondary}
-          style={{ borderRadius: 0, backgroundColor: "red" }}
-        />
-        <View
           style={{
-            flex: 1,
-            paddingHorizontal: 5,
-           
-            margin: 1,
-            width: 100,
-            // textAlign: "center",
+            marginHorizontal: 0,
+            borderRadius: 0,
+            backgroundColor: "#ffbf00",
+            borderTopLeftRadius: 10,
+            borderBottomLeftRadius: 10,
           }}
-        >
-          <Text
-            style={{
-              textAlign: "center",
-              width:'auto',
-              flexWrap:"nowrap"
-            }}
-            onChangeText={onChange}
-          >
-            {value}
-          </Text>
-        </View>
+          iconColor="white"
+          onPress={() => {
+            onDecrement();
+            handlePress();
+          }}
+         
+        />
 
-        {/* <TextInput
-          value={value}
+        <TextInput
+          value={value.toString()}
           onChangeText={onChange}
           style={{
             flex: 1,
-            paddingHorizontal: 10,
-            width: "auto",
-            margin: 1,
-            width: 100,
+
             textAlign: "center",
+            paddingTop: 4,
+            paddingBottom: 4,
+            borderColor: "#ffbf00",
+            borderWidth: 1,
+            marginHorizontal: 0,
+            borderLeftWidth: 0,
           }}
-          keyboardType="numeric"
+          keyboardType="phone-pad"
           maxLength={3}
+          defaultValue={value.toString()}
+          ref={inputRef}
           {...props}
-          defaultValue={value}
-        /> */}
+        />
+
         <IconButton
           icon="plus"
-          onPress={onIncrement}
-          // color={colors.primary}
+          onPress={() => {
+            onIncrement();
+            handlePress();
+          }}
           iconColor="white"
-          style={{ borderRadius: 0, backgroundColor: "red" }}
+          style={{
+            borderRadius: 0,
+            backgroundColor: "#ffbf00",
+            borderTopRightRadius: 10,
+            borderBottomRightRadius: 10,
+            marginLeft: 0,
+          }}
         />
       </View>
     </View>
@@ -113,3 +102,6 @@ const InputWithAdornments = ({
 };
 
 export default InputWithAdornments;
+
+
+
