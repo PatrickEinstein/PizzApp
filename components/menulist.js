@@ -2,9 +2,12 @@ import * as React from "react";
 import { Text, View } from "react-native";
 import { Menu } from "react-native-paper";
 import { useRouter } from "expo-router";
+import { useNavigation, useRootNavigation } from "expo-router";
+
+
 const MenuList = ({ navigation }) => {
   const router = useRouter();
-
+  const navigate = useNavigation();
 
   return (
     <View
@@ -22,7 +25,7 @@ const MenuList = ({ navigation }) => {
         <Menu.Item
           leadingIcon="cog-outline"
           title="settings"
-          onPress={() => router.push('/settings/Settings')}
+          onPress={() =>{}}
         />
         <Menu.Item leadingIcon="pipe-wrench" onPress={() => {}} title="Tools" />
         <Menu.Item
