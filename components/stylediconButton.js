@@ -10,10 +10,11 @@ const StyledIconButton = ({
   style,
   isVisible,
   clickedLabel,
+  color
 }) => {
   const buttonStyle = [
     { borderRadius: 0, padding: 10 },
-    clickedLabel === label ? { backgroundColor: "#ffbf00" } : {},
+    clickedLabel === label ? { backgroundColor: "#990000" , color:"white"} : {},
     style,
   ];
 
@@ -26,7 +27,7 @@ const StyledIconButton = ({
           disabled={disabled}
         >
           <Text
-            style={{ color: "black", fontWeight: "bold", textAlign: "center" }}
+            style={{ color: color, fontWeight: "bold", textAlign: "center" }}
           >
             {label}
           </Text>

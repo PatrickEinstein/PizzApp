@@ -452,7 +452,7 @@ const Inputs = () => {
         style={{
           flexDirection: "row",
           justifyContent: "space-between",
-          margin:0,
+          margin: 0,
           alignItems: "center",
         }}
       >
@@ -1027,7 +1027,11 @@ const Inputs = () => {
               justifyContent: "center",
             }}
           >
-            <Text>
+            <Text
+              style={{
+                color: "white",
+              }}
+            >
               Water:{" "}
               {isNaN(result.waterWeight) ? "" : result.waterWeight.toFixed(2)}
             </Text>
@@ -1050,7 +1054,11 @@ const Inputs = () => {
               justifyContent: "center",
             }}
           >
-            <Text>
+            <Text
+              style={{
+                color: "white",
+              }}
+            >
               Salt:{" "}
               {isNaN(result.saltWeight) ? "" : result.saltWeight.toFixed(2)}
             </Text>
@@ -1066,7 +1074,11 @@ const Inputs = () => {
               justifyContent: "center",
             }}
           >
-            <Text>
+            <Text
+              style={{
+                color: "white",
+              }}
+            >
               yeast:{" "}
               {isNaN(result.yeastWeight) ? "" : result.yeastWeight.toFixed(2)}
             </Text>
