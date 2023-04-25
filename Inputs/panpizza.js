@@ -60,6 +60,40 @@ const Inputs = () => {
   const [OlddoughOut, setolddoughout] = useState(0);
   const [yeastfactor, setyeastfactor] = useState(0);
   const [Fats, setfats] = useState(0);
+  const [CTleaven, setCTleaven] = useState(0);
+  const [CTC, setCTC] = useState(0);
+
+  const onhandleCTleaven = (newValue) => {
+    setCTleaven(newValue);
+  };
+  const CTleavenplus = () => {
+    const newValue = +CTleaven + 1;
+    setCTleaven(newValue);
+  };
+
+  const CTleavenminus = () => {
+    if (temp > 10) {
+      const newValue = +CTleaven - 1;
+      setCTleaven(newValue);
+    }
+    return;
+  };
+
+  const onhandleCTC = (newValue) => {
+    setCTC(newValue);
+  };
+  const CTCplus = () => {
+    const newValue = +CTC+ 1;
+    setCTC(newValue);
+  };
+
+  const CTCminus = () => {
+    if (temp > 10) {
+      const newValue = +CTC - 1;
+      setCTC(newValue);
+    }
+    return;
+  };
 
   const [NewYeastFactor, setNewYeastFactor] = useState(0);
   console.log(yeastfactor);
@@ -734,20 +768,20 @@ const Inputs = () => {
         }}
       >
         <InputWithAdornments
-          value={leaven}
-          onChange={YeastNeeded1}
-          onIncrement={leavenplus}
-          onDecrement={leavenminus}
+          value={CTleaven}
+          onChange={onhandleCTleaven}
+          onIncrement={CTleavenplus}
+          onDecrement={CTleavenminus}
           borderColor={"#990000"}
           label="CT leavening"
           viewWidth={150}
           name="pencil"
         />
         <InputWithAdornments
-          value={temp}
-          onChange={YeastNeeded2}
-          onIncrement={tempplus}
-          onDecrement={tempminus}
+          value={CTC}
+          onChange={onhandleCTC}
+          onIncrement={CTCplus}
+          onDecrement={CTCminus}
           borderColor={"#990000"}
           label="CT"
           viewWidth={150}
@@ -1107,11 +1141,11 @@ const Inputs = () => {
               justifyContent: "center",
             }}
           >
-             <Text
-                style={{
-                  color: "white",
-                }}
-              >
+            <Text
+              style={{
+                color: "white",
+              }}
+            >
               Water:{" "}
               {isNaN(result.waterWeight) ? "" : result.waterWeight.toFixed(2)}
             </Text>
@@ -1135,10 +1169,10 @@ const Inputs = () => {
             }}
           >
             <Text
-                style={{
-                  color: "white",
-                }}
-              >
+              style={{
+                color: "white",
+              }}
+            >
               Salt:{" "}
               {isNaN(result.saltWeight) ? "" : result.saltWeight.toFixed(2)}
             </Text>
@@ -1155,10 +1189,10 @@ const Inputs = () => {
             }}
           >
             <Text
-                style={{
-                  color: "white",
-                }}
-              >
+              style={{
+                color: "white",
+              }}
+            >
               yeast:{" "}
               {isNaN(result.yeastWeight) ? "" : result.yeastWeight.toFixed(2)}
             </Text>
@@ -1177,11 +1211,13 @@ const Inputs = () => {
           marginLeft: 12,
         }}
       >
-         <Text
-                style={{
-                  color: "white",
-                }}
-              >Fats: {isNaN(result.fats) ? "" : result.fats.toFixed(2)}</Text>
+        <Text
+          style={{
+            color: "white",
+          }}
+        >
+          Fats: {isNaN(result.fats) ? "" : result.fats.toFixed(2)}
+        </Text>
       </View>
     </View>
   );
