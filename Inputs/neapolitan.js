@@ -40,9 +40,9 @@ const Inputs = () => {
   const flour05 = onOff.flour05;
   const flour06 = onOff.flour06;
 
-  const [Doughball1, setDoughball1] = useState(+0);
+  const [Doughball1, setDoughball1] = useState(+1);
   const [Doughball2, setDoughball2] = useState(0);
-  const [BallWeight1, setBallWeight1] = useState(0);
+  const [BallWeight1, setBallWeight1] = useState(250);
   const [BallWeight2, setBallWeight2] = useState(0);
   const [flour1, setflour1] = useState(100);
   const [flour2, setflour2] = useState(0);
@@ -50,15 +50,15 @@ const Inputs = () => {
   const [flour4, setflour4] = useState(0);
   const [flour5, setflour5] = useState(0);
   const [flour6, setflour6] = useState(0);
-  const [water, setwater] = useState(0);
-  const [salt, setsalt] = useState(0);
-  const [leaven, setleaven] = useState(6);
-  const [temp, settemp] = useState(40);
+  const [water, setwater] = useState(60);
+  const [salt, setsalt] = useState(3);
+  const [leaven, setleaven] = useState(8);
+  const [temp, settemp] = useState(20);
   const [autolysisflour, setautolysisflour] = useState(0);
   const [autolysiswater, setautolysiswater] = useState(0);
   const [OldDoughIn, setolddoughin] = useState(0);
   const [OlddoughOut, setolddoughout] = useState(0);
-  const [yeastfactor, setyeastfactor] = useState(0);
+  const [yeastfactor, setyeastfactor] = useState(2.5);
 
   const [NewYeastFactor, setNewYeastFactor] = useState(0);
   console.log(yeastfactor);
@@ -466,7 +466,7 @@ const Inputs = () => {
           viewWidth={150}
         />
         <InputWithAdornments
-          value={BallWeight1}
+          value={BallWeight1+"g"}
           onChange={onHandleBallweight1}
           onIncrement={BallWeight1plus}
           onDecrement={BallWeight1minus}
@@ -641,7 +641,7 @@ const Inputs = () => {
       )}
       <View>
         <InputWithAdornments
-          value={water}
+          value={water+"%"}
           onChange={onHandlewater}
           onIncrement={waterplus}
           onDecrement={waterminus}
@@ -649,7 +649,7 @@ const Inputs = () => {
           label="Water"
         />
         <InputWithAdornments
-          value={salt}
+          value={salt+"%"}
           onChange={onHandlesalt}
           onIncrement={saltplus}
           onDecrement={saltminus}
@@ -667,7 +667,7 @@ const Inputs = () => {
         }}
       >
         <InputWithAdornments
-          value={leaven}
+          value={leaven+"h"}
           onChange={YeastNeeded1}
           onIncrement={leavenplus}
           onDecrement={leavenminus}
@@ -838,7 +838,7 @@ const Inputs = () => {
           }}
         >
           <HDivider />
-          <Text>Autolysis doses {result.autolysisdose.toFixed(2)}</Text>
+          <Text>Autolysis doses {result.autolysisdose.toFixed(2)}g</Text>
           <Spacer height={20} />
           <View
             style={{
@@ -853,7 +853,7 @@ const Inputs = () => {
                 borderRadius: 25,
               }}
             >
-              <Text>Flour : {result.autolysisflourmass.toFixed(2)}</Text>
+              <Text>Flour : {result.autolysisflourmass.toFixed(2)}g</Text>
             </View>
             <Spacer width={30} />
             <View
@@ -863,7 +863,7 @@ const Inputs = () => {
                 borderRadius: 25,
               }}
             >
-              <Text>Water : {result.autolysiswatermass.toFixed(2)}</Text>
+              <Text>Water : {result.autolysiswatermass.toFixed(2)}g</Text>
             </View>
           </View>
         </View>
@@ -934,7 +934,7 @@ const Inputs = () => {
         <Text style={{ fontWeight: "bold" }}>
           Main dough doses{" "}
           <Text style={{ color: "#990000" }}>
-            {isNaN(result.maindoughdose) ? "" : result.maindoughdose.toFixed(0)}
+            {isNaN(result.maindoughdose) ? "" : result.maindoughdose.toFixed(0)}g
           </Text>
         </Text>
         <Spacer height={20} />
@@ -960,7 +960,7 @@ const Inputs = () => {
               }}
             >
               Flour1 :{" "}
-              {isNaN(result.flour1mass) ? "" : result.flour1mass.toFixed(2)}
+              {isNaN(result.flour1mass) ? "" : result.flour1mass.toFixed(2)}g
             </Text>
 
             {flour2 ? (
@@ -970,7 +970,7 @@ const Inputs = () => {
                 }}
               >
                 Flour2 :{" "}
-                {isNaN(result.flour2mass) ? "" : result.flour2mass.toFixed(2)}
+                {isNaN(result.flour2mass) ? "" : result.flour2mass.toFixed(2)}g
               </Text>
             ) : null}
             {flour3 ? (
@@ -980,7 +980,7 @@ const Inputs = () => {
                 }}
               >
                 Flour3 :{" "}
-                {isNaN(result.flour3mass) ? "" : result.flour3mass.toFixed(2)}
+                {isNaN(result.flour3mass) ? "" : result.flour3mass.toFixed(2)}g
               </Text>
             ) : null}
 
@@ -991,7 +991,7 @@ const Inputs = () => {
                 }}
               >
                 Flour4 :{" "}
-                {isNaN(result.flour4mass) ? "" : result.flour4mass.toFixed(2)}
+                {isNaN(result.flour4mass) ? "" : result.flour4mass.toFixed(2)}g
               </Text>
             ) : null}
             {flour5 ? (
@@ -1001,7 +1001,7 @@ const Inputs = () => {
                 }}
               >
                 Flour5 :{" "}
-                {isNaN(result.flour5mass) ? "" : result.flour5mass.toFixed(2)}
+                {isNaN(result.flour5mass) ? "" : result.flour5mass.toFixed(2)}g
               </Text>
             ) : null}
             {flour6 ? (
@@ -1011,7 +1011,7 @@ const Inputs = () => {
                 }}
               >
                 Flour6 :{" "}
-                {isNaN(result.flour6mass) ? "" : result.flour6mass.toFixed(2)}
+                {isNaN(result.flour6mass) ? "" : result.flour6mass.toFixed(2)}g
               </Text>
             ) : null}
           </View>
@@ -1033,7 +1033,7 @@ const Inputs = () => {
               }}
             >
               Water:{" "}
-              {isNaN(result.waterWeight) ? "" : result.waterWeight.toFixed(2)}
+              {isNaN(result.waterWeight) ? "" : result.waterWeight.toFixed(2)}g
             </Text>
           </View>
         </View>
@@ -1060,7 +1060,7 @@ const Inputs = () => {
               }}
             >
               Salt:{" "}
-              {isNaN(result.saltWeight) ? "" : result.saltWeight.toFixed(2)}
+              {isNaN(result.saltWeight) ? "" : result.saltWeight.toFixed(2)}g
             </Text>
           </View>
           <Spacer width={20} />
@@ -1080,7 +1080,7 @@ const Inputs = () => {
               }}
             >
               yeast:{" "}
-              {isNaN(result.yeastWeight) ? "" : result.yeastWeight.toFixed(2)}
+              {isNaN(result.yeastWeight) ? "" : result.yeastWeight.toFixed(2)}g
             </Text>
           </View>
         </View>

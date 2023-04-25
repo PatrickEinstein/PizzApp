@@ -57,7 +57,7 @@ export function calculateDoughIngredients(
   const waterWeight = flourWeight * waterRatio - autolysiswatermass;
   const remains = flourWeight - +autolysisflourmass;
 
-  const flour1mass = (+flour1 / 100) * +remains;
+  const flour1mass = (+flour1 / 100) * +remains ;
   const flour2mass = (+flour2 / 100) * +remains;
   const flour3mass = (+flour3 / 100) * +remains;
   const flour4mass = (+flour4 / 100) * +remains;

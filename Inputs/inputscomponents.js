@@ -75,7 +75,7 @@ const InputWithAdornments = ({
             borderLeftWidth: 0,
           }}
           keyboardType="phone-pad"
-          maxLength={3}
+          maxLength={4}
           defaultValue={value.toString()}
           ref={inputRef}
           {...props}
