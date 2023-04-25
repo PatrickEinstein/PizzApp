@@ -48,7 +48,7 @@ const InputWithAdornments = ({
           style={{
             marginHorizontal: 0,
             borderRadius: 0,
-            backgroundColor: "#ffbf00",
+            backgroundColor: "#990000",
             borderTopLeftRadius: 10,
             borderBottomLeftRadius: 10,
           }}
@@ -67,9 +67,9 @@ const InputWithAdornments = ({
             flex: 1,
 
             textAlign: "center",
-            paddingTop: 4,
-            paddingBottom: 4,
-            borderColor: "#ffbf00",
+            paddingTop: 5,
+            paddingBottom: 5,
+            borderColor: "#990000",
             borderWidth: 1,
             marginHorizontal: 0,
             borderLeftWidth: 0,
@@ -90,7 +90,7 @@ const InputWithAdornments = ({
           iconColor="white"
           style={{
             borderRadius: 0,
-            backgroundColor: "#ffbf00",
+            backgroundColor: "#990000",
             borderTopRightRadius: 10,
             borderBottomRightRadius: 10,
             marginLeft: 0,

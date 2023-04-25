@@ -32,8 +32,8 @@ const Home = () => {
               title: "PizzApp",
               headerTitleStyle: { color: "white" },
               headerStyle: {
-                backgroundColor: "#ffbf00",
-                borderColor: "#ffbf00",
+                backgroundColor: "#990000",
+                borderColor: "#990000",
                 
               },
               headerShadowVisible: false,

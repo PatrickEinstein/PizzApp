@@ -470,7 +470,7 @@ const Inputs = () => {
         style={{
           flexDirection: "row",
           justifyContent: "space-between",
-          margin:0,
+          margin: 0,
           alignItems: "center",
         }}
       >
@@ -479,7 +479,7 @@ const Inputs = () => {
           onChange={onHandleDoughball1}
           onIncrement={Doughball1plus}
           onDecrement={Doughball1minus}
-          borderColor={"#ffbf00"}
+          borderColor={"#990000"}
           label="Dough Balls "
           viewWidth={150}
         />
@@ -488,7 +488,7 @@ const Inputs = () => {
           onChange={onHandleBallweight1}
           onIncrement={BallWeight1plus}
           onDecrement={BallWeight1minus}
-          borderColor={"#ffbf00"}
+          borderColor={"#990000"}
           label="Ball Weight (g)"
           viewWidth={150}
         />
@@ -510,7 +510,7 @@ const Inputs = () => {
               onChange={onHandleDoughball2}
               onIncrement={Doughball2plus}
               onDecrement={Doughball2minus}
-              borderColor={"#ffbf00"}
+              borderColor={"#990000"}
               label="Dough Balls"
               viewWidth={150}
             />
@@ -519,7 +519,7 @@ const Inputs = () => {
               onChange={onHandleDoughball2}
               onIncrement={BallWeight2plus}
               onDecrement={BallWeight2minus}
-              borderColor={"#ffbf00"}
+              borderColor={"#990000"}
               label="Ball Weight"
               viewWidth={150}
             />
@@ -547,7 +547,7 @@ const Inputs = () => {
             onChange={onHandleflour1}
             onIncrement={flour1plus}
             onDecrement={flour1minus}
-            borderColor={"#ffbf00"}
+            borderColor={"#990000"}
             label="Flour 1"
             viewWidth={"auto"}
             name="pencil"
@@ -559,7 +559,7 @@ const Inputs = () => {
               onChange={setflour2}
               onIncrement={flour2plus}
               onDecrement={flour2minus}
-              borderColor={"#ffbf00"}
+              borderColor={"#990000"}
               label="Flour 2"
               viewWidth={150}
               name="pencil"
@@ -586,7 +586,7 @@ const Inputs = () => {
                 onChange={onHandleflour3}
                 onIncrement={flour3plus}
                 onDecrement={flour3minus}
-                borderColor={"#ffbf00"}
+                borderColor={"#990000"}
                 label="Flour 3"
                 viewWidth={150}
                 name="pencil"
@@ -601,7 +601,7 @@ const Inputs = () => {
                 onChange={onHandleflour4}
                 onIncrement={flour4plus}
                 onDecrement={flour4minus}
-                borderColor={"#ffbf00"}
+                borderColor={"#990000"}
                 label="Flour 4"
                 viewWidth={150}
                 name="pencil"
@@ -631,7 +631,7 @@ const Inputs = () => {
               onChange={onHandleflour5}
               onIncrement={flour5plus}
               onDecrement={flour5minus}
-              borderColor={"#ffbf00"}
+              borderColor={"#990000"}
               label="Flour 5"
               viewWidth={150}
               name="pencil"
@@ -645,7 +645,7 @@ const Inputs = () => {
               onChange={onHandleflour6}
               onIncrement={flour6plus}
               onDecrement={flour6minus}
-              borderColor={"#ffbf00"}
+              borderColor={"#990000"}
               label="Flour 6"
               viewWidth={150}
               name="pencil"
@@ -663,10 +663,9 @@ const Inputs = () => {
           onChange={onHandlewater}
           onIncrement={waterplus}
           onDecrement={waterminus}
-          borderColor={"#ffbf00"}
+          borderColor={"#990000"}
           label="Water"
         />
-       
       </View>
       <Spacer height={20} />
       <View
@@ -677,25 +676,25 @@ const Inputs = () => {
           alignItems: "center",
         }}
       >
-          <InputWithAdornments
+        <InputWithAdornments
           value={Fats}
           onChange={onHandleFats}
           onIncrement={fatplus}
           onDecrement={fatminus}
-          borderColor={"#ffbf00"}
+          borderColor={"#990000"}
           viewWidth={150}
           label="fats"
         />
-      <InputWithAdornments
+        <InputWithAdornments
           value={salt}
           onChange={onHandlesalt}
           onIncrement={saltplus}
           onDecrement={saltminus}
-          borderColor={"#ffbf00"}
+          borderColor={"#990000"}
           viewWidth={150}
           label="Salt"
         />
-        </View>
+      </View>
       <View
         style={{
           flexDirection: "row",
@@ -709,7 +708,7 @@ const Inputs = () => {
           onChange={YeastNeeded1}
           onIncrement={leavenplus}
           onDecrement={leavenminus}
-          borderColor={"#ffbf00"}
+          borderColor={"#990000"}
           label="RT leavening"
           viewWidth={150}
           name="pencil"
@@ -719,7 +718,7 @@ const Inputs = () => {
           onChange={YeastNeeded2}
           onIncrement={tempplus}
           onDecrement={tempminus}
-          borderColor={"#ffbf00"}
+          borderColor={"#990000"}
           label="RT C"
           viewWidth={150}
           name="pencil"
@@ -739,7 +738,7 @@ const Inputs = () => {
           onChange={YeastNeeded1}
           onIncrement={leavenplus}
           onDecrement={leavenminus}
-          borderColor={"#ffbf00"}
+          borderColor={"#990000"}
           label="CT leavening"
           viewWidth={150}
           name="pencil"
@@ -749,7 +748,7 @@ const Inputs = () => {
           onChange={YeastNeeded2}
           onIncrement={tempplus}
           onDecrement={tempminus}
-          borderColor={"#ffbf00"}
+          borderColor={"#990000"}
           label="CT"
           viewWidth={150}
           name="pencil"
@@ -771,7 +770,7 @@ const Inputs = () => {
             onChange={onHandleautolysisflour}
             onIncrement={autolysisflourplus}
             onDecrement={autolysisflourminus}
-            borderColor={"#ffbf00"}
+            borderColor={"#990000"}
             label="Autolysis flour"
             viewWidth={150}
             name="pencil"
@@ -781,7 +780,7 @@ const Inputs = () => {
             onChange={onHandleautolysiswater}
             onIncrement={autolysiswaterplus}
             onDecrement={autolysiswaterminus}
-            borderColor={"#ffbf00"}
+            borderColor={"#990000"}
             label="Autolysis water "
             viewWidth={150}
             name="pencil"
@@ -806,7 +805,7 @@ const Inputs = () => {
               onChange={onHandleolddoughin}
               onIncrement={olddoughinplus}
               onDecrement={olddoughinminus}
-              borderColor={"#ffbf00"}
+              borderColor={"#990000"}
               label="Old Dough in"
               viewWidth={150}
               name="pencil"
@@ -816,7 +815,7 @@ const Inputs = () => {
               onChange={onHandleolddoughout}
               onIncrement={olddoughoutplus}
               onDecrement={olddoughoutminus}
-              borderColor={"#ffbf00"}
+              borderColor={"#990000"}
               label="Old Dough out"
               viewWidth={150}
               name="pencil"
@@ -906,7 +905,10 @@ const Inputs = () => {
           }}
         >
           <HDivider />
-          <Text>Autolysis doses {result.autolysisdose.toFixed(2)}</Text>
+          <Text>
+            Autolysis doses{" "}
+            {isNaN(result.autolysisdose) ? "" : result.autolysisdose.toFixed(2)}
+          </Text>
           <Spacer height={20} />
           <View
             style={{
@@ -916,22 +918,32 @@ const Inputs = () => {
           >
             <View
               style={{
-                backgroundColor: "#ffbf00",
+                backgroundColor: "#990000",
                 padding: 30,
                 borderRadius: 25,
               }}
             >
-              <Text>Flour : {result.autolysisflourmass.toFixed(2)}</Text>
+              <Text>
+                Flour :{" "}
+                {isNaN(result.autolysisflourmass)
+                  ? ""
+                  : result.autolysisflourmass.toFixed(2)}
+              </Text>
             </View>
             <Spacer width={30} />
             <View
               style={{
-                backgroundColor: "#ffbf00",
+                backgroundColor: "#990000",
                 padding: 30,
                 borderRadius: 25,
               }}
             >
-              <Text>Water : {result.autolysiswatermass.toFixed(2)}</Text>
+              <Text>
+                Water :{" "}
+                {isNaN(result.autolysiswatermass)
+                  ? ""
+                  : result.autolysiswatermass.toFixed(2)}
+              </Text>
             </View>
           </View>
         </View>
@@ -955,7 +967,7 @@ const Inputs = () => {
           >
             <View
               style={{
-                backgroundColor: "#ffbf00",
+                backgroundColor: "#990000",
                 padding: 30,
                 borderRadius: 25,
               }}
@@ -968,7 +980,7 @@ const Inputs = () => {
             <Spacer width={30} />
             <View
               style={{
-                backgroundColor: "#ffbf00",
+                backgroundColor: "#990000",
                 padding: 30,
                 borderRadius: 25,
               }}
@@ -979,7 +991,7 @@ const Inputs = () => {
             <Spacer width={30} />
             <View
               style={{
-                backgroundColor: "#ffbf00",
+                backgroundColor: "#990000",
                 padding: 30,
                 borderRadius: 25,
               }}
@@ -1001,8 +1013,8 @@ const Inputs = () => {
       >
         <Text style={{ fontWeight: "bold" }}>
           Main dough doses{" "}
-          <Text style={{ color: "#ffbf00" }}>
-            {result.maindoughdose.toFixed(0)}
+          <Text style={{ color: "#990000" }}>
+            {isNaN(result.maindoughdose) ? "" : result.maindoughdose.toFixed(0)}
           </Text>
         </Text>
         <Spacer height={20} />
@@ -1014,7 +1026,7 @@ const Inputs = () => {
         >
           <View
             style={{
-              backgroundColor: "#ffbf00",
+              backgroundColor: "#990000",
               borderRadius: 10,
               height: "auto",
               width: 150,
@@ -1022,32 +1034,72 @@ const Inputs = () => {
               justifyContent: "center",
             }}
           >
-            <Text>Flour1 : {result.flour1mass.toFixed(2)}</Text>
+            <Text
+              style={{
+                color: "white",
+              }}
+            >
+              Flour1 :{" "}
+              {isNaN(result.flour1mass) ? "" : result.flour1mass.toFixed(2)}
+            </Text>
 
             {flour2 ? (
-              <Text>Flour2 : {result.flour2mass.toFixed(2)}</Text>
+              <Text
+                style={{
+                  color: "white",
+                }}
+              >
+                Flour2 :{" "}
+                {isNaN(result.flour2mass) ? "" : result.flour2mass.toFixed(2)}
+              </Text>
             ) : null}
             {flour3 ? (
-              <Text>Flour3 : {result.flour3mass.toFixed(2)}</Text>
+              <Text
+                style={{
+                  color: "white",
+                }}
+              >
+                Flour3 :{" "}
+                {isNaN(result.flour3mass) ? "" : result.flour3mass.toFixed(2)}
+              </Text>
             ) : null}
-            {flour3 ? (
-              <Text>Flour3 : {result.flour3mass.toFixed(2)}</Text>
-            ) : null}
+
             {flour4 ? (
-              <Text>Flour4 : {result.flour4mass.toFixed(2)}</Text>
+              <Text
+                style={{
+                  color: "white",
+                }}
+              >
+                Flour4 :{" "}
+                {isNaN(result.flour4mass) ? "" : result.flour4mass.toFixed(2)}
+              </Text>
             ) : null}
             {flour5 ? (
-              <Text>Flour5 : {result.flour5mass.toFixed(2)}</Text>
+              <Text
+                style={{
+                  color: "white",
+                }}
+              >
+                Flour5 :{" "}
+                {isNaN(result.flour5mass) ? "" : result.flour5mass.toFixed(2)}
+              </Text>
             ) : null}
             {flour6 ? (
-              <Text>Flour6 : {result.flour6mass.toFixed(2)}</Text>
+              <Text
+                style={{
+                  color: "white",
+                }}
+              >
+                Flour6 :{" "}
+                {isNaN(result.flour6mass) ? "" : result.flour6mass.toFixed(2)}
+              </Text>
             ) : null}
           </View>
 
           <Spacer width={20} />
           <View
             style={{
-              backgroundColor: "#ffbf00",
+              backgroundColor: "#990000",
               borderRadius: 10,
               height: 50,
               width: 150,
@@ -1055,7 +1107,14 @@ const Inputs = () => {
               justifyContent: "center",
             }}
           >
-            <Text>Water: {result.waterWeight.toFixed(2)}</Text>
+             <Text
+                style={{
+                  color: "white",
+                }}
+              >
+              Water:{" "}
+              {isNaN(result.waterWeight) ? "" : result.waterWeight.toFixed(2)}
+            </Text>
           </View>
         </View>
         <Spacer height={20} />
@@ -1067,7 +1126,7 @@ const Inputs = () => {
         >
           <View
             style={{
-              backgroundColor: "#ffbf00",
+              backgroundColor: "#990000",
               borderRadius: 10,
               height: 50,
               width: 150,
@@ -1075,12 +1134,19 @@ const Inputs = () => {
               justifyContent: "center",
             }}
           >
-            <Text>Salt: {result.saltWeight.toFixed(2)}</Text>
+            <Text
+                style={{
+                  color: "white",
+                }}
+              >
+              Salt:{" "}
+              {isNaN(result.saltWeight) ? "" : result.saltWeight.toFixed(2)}
+            </Text>
           </View>
           <Spacer width={20} />
           <View
             style={{
-              backgroundColor: "#ffbf00",
+              backgroundColor: "#990000",
               borderRadius: 10,
               height: 50,
               width: 150,
@@ -1088,25 +1154,35 @@ const Inputs = () => {
               justifyContent: "center",
             }}
           >
-            <Text>yeast: {result.yeastWeight.toFixed(2)}</Text>
+            <Text
+                style={{
+                  color: "white",
+                }}
+              >
+              yeast:{" "}
+              {isNaN(result.yeastWeight) ? "" : result.yeastWeight.toFixed(2)}
+            </Text>
           </View>
         </View>
-        
       </View>
       <Spacer height={20} />
       <View
-            style={{
-              backgroundColor: "#ffbf00",
-              borderRadius: 10,
-              height: 50,
-              width: 150,
-              alignItems: "center",
-              justifyContent: "center",
-              marginLeft: 12,
-            }}
-          >
-            <Text>Fats: {result.fats.toFixed(2)}</Text>
-          </View>
+        style={{
+          backgroundColor: "#990000",
+          borderRadius: 10,
+          height: 50,
+          width: 150,
+          alignItems: "center",
+          justifyContent: "center",
+          marginLeft: 12,
+        }}
+      >
+         <Text
+                style={{
+                  color: "white",
+                }}
+              >Fats: {isNaN(result.fats) ? "" : result.fats.toFixed(2)}</Text>
+      </View>
     </View>
   );
 };
