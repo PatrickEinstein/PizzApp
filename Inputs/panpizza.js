@@ -26,7 +26,7 @@ const Inputs = () => {
   const twoballsize = onOff.twoballsize;
   const fats = onOff.fats;
   const ct = onOff.ct;
-  const oldDoughIn = onOff.olddougnin;
+  const oldDoughIn = onOff.olddoughin;
   const olddoughout = onOff.olddoughout;
   const autolysis = onOff.autolysis;
   const biga = onOff.biga;
@@ -83,7 +83,7 @@ const Inputs = () => {
     setCTC(newValue);
   };
   const CTCplus = () => {
-    const newValue = +CTC+ 1;
+    const newValue = +CTC + 1;
     setCTC(newValue);
   };
 
@@ -518,7 +518,7 @@ const Inputs = () => {
           viewWidth={150}
         />
         <InputWithAdornments
-          value={BallWeight1 +"g"}
+          value={BallWeight1 + "g"}
           onChange={onHandleBallweight1}
           onIncrement={BallWeight1plus}
           onDecrement={BallWeight1minus}
@@ -693,7 +693,7 @@ const Inputs = () => {
       )}
       <View>
         <InputWithAdornments
-          value={water +"%"}
+          value={water + "%"}
           onChange={onHandlewater}
           onIncrement={waterplus}
           onDecrement={waterminus}
@@ -711,7 +711,7 @@ const Inputs = () => {
         }}
       >
         <InputWithAdornments
-          value={Fats +"%"}
+          value={Fats + "%"}
           onChange={onHandleFats}
           onIncrement={fatplus}
           onDecrement={fatminus}
@@ -720,7 +720,7 @@ const Inputs = () => {
           label="fats"
         />
         <InputWithAdornments
-          value={salt +"%"}
+          value={salt + "%"}
           onChange={onHandlesalt}
           onIncrement={saltplus}
           onDecrement={saltminus}
@@ -768,7 +768,7 @@ const Inputs = () => {
         }}
       >
         <InputWithAdornments
-          value={CTleaven+"h"}
+          value={CTleaven + "h"}
           onChange={onhandleCTleaven}
           onIncrement={CTleavenplus}
           onDecrement={CTleavenminus}
@@ -822,7 +822,7 @@ const Inputs = () => {
         </View>
       ) : null}
 
-      {OldDoughIn ? (
+      {oldDoughIn ? (
         <>
           <Spacer height={20} />
           <View
@@ -844,6 +844,51 @@ const Inputs = () => {
               viewWidth={150}
               name="pencil"
             />
+            <View
+              style={{
+                flexDirection: "row",
+                justifyContent: "space-around",
+                marginBottom: 20,
+                justifyContent: "space-around",
+                alignItems: "center",
+                marginRight: 10,
+              }}
+            >
+              <StyledIconButton
+                label="ON"
+                // onPress={LSDplus}
+                helperText="Max value reached"
+                // style={{ marginBottom: 20 }}
+                onPress={() => {
+                  handleButtonClick("ON");
+                  // LSDplus();
+                }}
+                clickedLabel={clickedLabel}
+              />
+              <StyledIconButton
+                label="OFF"
+                // onPress={LSDplus}
+                helperText="Max value reached"
+                // style={{ marginBottom: 20 }}
+                onPress={() => {
+                  handleButtonClick("OFF");
+                  // LSDplus();
+                }}
+                clickedLabel={clickedLabel}
+              />
+            </View>
+          </View>
+
+          <Spacer height={10} />
+          <View
+            style={{
+              flexDirection: "row",
+              justifyContent: "space-between",
+              marginBottom: 20,
+              justifyContent: "space-between",
+              alignItems: "center",
+            }}
+          >
             <InputWithAdornments
               value={OlddoughOut}
               onChange={onHandleolddoughout}
@@ -855,8 +900,6 @@ const Inputs = () => {
               name="pencil"
             />
           </View>
-
-          <Spacer height={40} />
         </>
       ) : null}
 
@@ -941,7 +984,8 @@ const Inputs = () => {
           <HDivider />
           <Text>
             Autolysis doses{" "}
-            {isNaN(result.autolysisdose) ? "" : result.autolysisdose.toFixed(2)}g
+            {isNaN(result.autolysisdose) ? "" : result.autolysisdose.toFixed(2)}
+            g
           </Text>
           <Spacer height={20} />
           <View
@@ -961,7 +1005,8 @@ const Inputs = () => {
                 Flour :{" "}
                 {isNaN(result.autolysisflourmass)
                   ? ""
-                  : result.autolysisflourmass.toFixed(2)}g
+                  : result.autolysisflourmass.toFixed(2)}
+                g
               </Text>
             </View>
             <Spacer width={30} />
@@ -976,7 +1021,8 @@ const Inputs = () => {
                 Water :{" "}
                 {isNaN(result.autolysiswatermass)
                   ? ""
-                  : result.autolysiswatermass.toFixed(2)}g
+                  : result.autolysiswatermass.toFixed(2)}
+                g
               </Text>
             </View>
           </View>
@@ -1048,7 +1094,8 @@ const Inputs = () => {
         <Text style={{ fontWeight: "bold" }}>
           Main dough doses{" "}
           <Text style={{ color: "#990000" }}>
-            {isNaN(result.maindoughdose) ? "" : result.maindoughdose.toFixed(0)}g
+            {isNaN(result.maindoughdose) ? "" : result.maindoughdose.toFixed(0)}
+            g
           </Text>
         </Text>
         <Spacer height={20} />

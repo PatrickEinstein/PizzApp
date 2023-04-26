@@ -12,7 +12,7 @@ import { PersistGate } from "redux-persist/integration/react";
 import { persistStore } from "redux-persist";
 import Icon from "react-native-vector-icons/Feather";
 import { Feather } from "react-native-vector-icons";
-import InvisibleTab from "../HiddenTab/hidden";
+import SwipeableTabs from "../HiddenTab/hidden";
 
 const Home = () => {
   const [visible, setVisible] = useState(false);
@@ -62,7 +62,7 @@ const Home = () => {
             }}
           />
           <TabViewExample />
-          
+          {/* <SwipeableTabs/> */}
 
           {visible ? (
             <View
@@ -74,9 +74,9 @@ const Home = () => {
             >
               <MenuList />
             </View>
-          ) : (
-            <Text>" "</Text>
-          )}
+          ) : 
+            null
+          }
         </SafeAreaView>
       </PersistGate>
     </Provider>
