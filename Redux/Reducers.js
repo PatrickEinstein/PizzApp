@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-export const recipeReducer = createSlice({
+export  const recipeReducer = createSlice({
   name: "recipe",
   initialState: {
     twoballsize: 0,
@@ -93,4 +93,4 @@ export const {
 
 export default recipeReducer.reducer;
 
-// Component code
+

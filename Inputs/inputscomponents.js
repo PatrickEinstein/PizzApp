@@ -13,7 +13,7 @@ const InputWithAdornments = ({
   borderColor,
   label,
   name,
-
+  g,
   ...props
 }) => {
   const inputRef = React.useRef(null);
@@ -24,9 +24,11 @@ const InputWithAdornments = ({
 
   return (
     <View sx={{ alignItems: "center", justifyContent: "center" }}>
-      <Text style={{
-        textAlign:"center"
-      }}>
+      <Text
+        style={{
+          textAlign: "center",
+        }}
+      >
         {label}
         <Icon name={name} size={15} color="grey" />
       </Text>
@@ -57,7 +59,6 @@ const InputWithAdornments = ({
             onDecrement();
             handlePress();
           }}
-         
         />
 
         <TextInput
@@ -74,8 +75,10 @@ const InputWithAdornments = ({
             marginHorizontal: 0,
             borderLeftWidth: 0,
           }}
-          keyboardType="phone-pad"
+          keyboardType="numeric"
+          
           maxLength={4}
+          minLength={1}
           defaultValue={value.toString()}
           ref={inputRef}
           {...props}
@@ -102,6 +105,3 @@ const InputWithAdornments = ({
 };
 
 export default InputWithAdornments;
-
-
-

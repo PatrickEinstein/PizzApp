@@ -4,7 +4,7 @@ import { TabView, SceneMap } from "react-native-tab-view";
 import Inputs from "../Inputs/neapolitan";
 import Inputs2 from "../Inputs/panpizza";
 import { ScrollView } from "react-native";
-import { Settings } from "../app/settings/settings";
+import { Settings } from "../app/settings";
 import { TabBar } from "react-native-tab-view";
 
 // yellow: {

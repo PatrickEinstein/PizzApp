@@ -518,13 +518,14 @@ const Inputs = () => {
           viewWidth={150}
         />
         <InputWithAdornments
-          value={BallWeight1 + "g"}
+          value={BallWeight1}
           onChange={onHandleBallweight1}
           onIncrement={BallWeight1plus}
           onDecrement={BallWeight1minus}
           borderColor={"#990000"}
           label="Ball Weight (g)"
           viewWidth={150}
+         
         />
       </View>
       {doughball2 ? (
@@ -554,7 +555,7 @@ const Inputs = () => {
               onIncrement={BallWeight2plus}
               onDecrement={BallWeight2minus}
               borderColor={"#990000"}
-              label="Ball Weight"
+              label="Ball Weight(g)"
               viewWidth={150}
             />
           </View>
@@ -582,7 +583,7 @@ const Inputs = () => {
             onIncrement={flour1plus}
             onDecrement={flour1minus}
             borderColor={"#990000"}
-            label="Flour 1"
+            label="Flour 1 (%)"
             viewWidth={"auto"}
             name="pencil"
           />
@@ -594,7 +595,7 @@ const Inputs = () => {
               onIncrement={flour2plus}
               onDecrement={flour2minus}
               borderColor={"#990000"}
-              label="Flour 2"
+              label="Flour 2 (%)"
               viewWidth={150}
               name="pencil"
             />
@@ -621,7 +622,7 @@ const Inputs = () => {
                 onIncrement={flour3plus}
                 onDecrement={flour3minus}
                 borderColor={"#990000"}
-                label="Flour 3"
+                label="Flour 3 (%)"
                 viewWidth={150}
                 name="pencil"
               />
@@ -636,7 +637,7 @@ const Inputs = () => {
                 onIncrement={flour4plus}
                 onDecrement={flour4minus}
                 borderColor={"#990000"}
-                label="Flour 4"
+                label="Flour 4 (%)"
                 viewWidth={150}
                 name="pencil"
               />
@@ -666,7 +667,7 @@ const Inputs = () => {
               onIncrement={flour5plus}
               onDecrement={flour5minus}
               borderColor={"#990000"}
-              label="Flour 5"
+              label="Flour 5 (%)"
               viewWidth={150}
               name="pencil"
             />
@@ -680,7 +681,7 @@ const Inputs = () => {
               onIncrement={flour6plus}
               onDecrement={flour6minus}
               borderColor={"#990000"}
-              label="Flour 6"
+              label="Flour 6 (%)"
               viewWidth={150}
               name="pencil"
             />
@@ -693,12 +694,12 @@ const Inputs = () => {
       )}
       <View>
         <InputWithAdornments
-          value={water + "%"}
+          value={water}
           onChange={onHandlewater}
           onIncrement={waterplus}
           onDecrement={waterminus}
           borderColor={"#990000"}
-          label="Water"
+          label="Water (%)"
         />
       </View>
       <Spacer height={20} />
@@ -711,22 +712,22 @@ const Inputs = () => {
         }}
       >
         <InputWithAdornments
-          value={Fats + "%"}
+          value={Fats}
           onChange={onHandleFats}
           onIncrement={fatplus}
           onDecrement={fatminus}
           borderColor={"#990000"}
           viewWidth={150}
-          label="fats"
+          label="fats (%)"
         />
         <InputWithAdornments
-          value={salt + "%"}
+          value={salt}
           onChange={onHandlesalt}
           onIncrement={saltplus}
           onDecrement={saltminus}
           borderColor={"#990000"}
           viewWidth={150}
-          label="Salt"
+          label="Salt (%)"
         />
       </View>
       <View
@@ -743,7 +744,7 @@ const Inputs = () => {
           onIncrement={leavenplus}
           onDecrement={leavenminus}
           borderColor={"#990000"}
-          label="RT leavening"
+          label="RT leavening (h)"
           viewWidth={150}
           name="pencil"
         />
@@ -768,12 +769,12 @@ const Inputs = () => {
         }}
       >
         <InputWithAdornments
-          value={CTleaven + "h"}
+          value={CTleaven}
           onChange={onhandleCTleaven}
           onIncrement={CTleavenplus}
           onDecrement={CTleavenminus}
           borderColor={"#990000"}
-          label="CT leavening"
+          label="CT leavening (h)"
           viewWidth={150}
           name="pencil"
         />
@@ -783,7 +784,7 @@ const Inputs = () => {
           onIncrement={CTCplus}
           onDecrement={CTCminus}
           borderColor={"#990000"}
-          label="CT"
+          label="CT "
           viewWidth={150}
           name="pencil"
         />
@@ -805,7 +806,7 @@ const Inputs = () => {
             onIncrement={autolysisflourplus}
             onDecrement={autolysisflourminus}
             borderColor={"#990000"}
-            label="Autolysis flour"
+            label="Autolysis flour (%)"
             viewWidth={150}
             name="pencil"
           />
@@ -815,7 +816,7 @@ const Inputs = () => {
             onIncrement={autolysiswaterplus}
             onDecrement={autolysiswaterminus}
             borderColor={"#990000"}
-            label="Autolysis water "
+            label="Autolysis water (%)"
             viewWidth={150}
             name="pencil"
           />

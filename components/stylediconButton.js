@@ -1,4 +1,3 @@
-
 import React from "react";
 import { TouchableOpacity, Text, View } from "react-native";
 
@@ -10,34 +9,48 @@ const StyledIconButton = ({
   style,
   isVisible,
   clickedLabel,
-  color
+  color,
 }) => {
   const buttonStyle = [
     { borderRadius: 0, padding: 10 },
-    clickedLabel === label ? { backgroundColor: "#990000" , color:"white"} : {},
+    clickedLabel === label
+      ? { backgroundColor: "#990000", color:"black"}
+      : {},
     style,
   ];
 
   return (
-    <View>
-      <View>
-        <TouchableOpacity
-          style={buttonStyle}
-          onPress={onPress}
-          disabled={disabled}
+    <View
+      style={{
+        borderColor: "black",
+        borderWidth: 1,
+       height:"20"
+       
+      }}
+    >
+      <TouchableOpacity
+        style={buttonStyle}
+        onPress={onPress}
+        disabled={disabled}
+      >
+        <Text
+          style={{
+            color: color,
+            fontWeight: "bold",
+            textAlign: "center",
+            marginBottom:0,
+            marginTop:0,
+            
+          }}
         >
-          <Text
-            style={{ color: color, fontWeight: "bold", textAlign: "center" }}
-          >
-            {label}
-          </Text>
-        </TouchableOpacity>
-        {isVisible && (
-          <Text style={{ color: "yellow", textAlign: "center" }}>
-            {helperText}
-          </Text>
-        )}
-      </View>
+          {label}
+        </Text>
+      </TouchableOpacity>
+      {/* {isVisible && (
+        <Text style={{ color: "yellow", textAlign: "center" }}>
+          {helperText}
+        </Text>
+      )} */}
     </View>
   );
 };

@@ -466,7 +466,7 @@ const Inputs = () => {
           viewWidth={150}
         />
         <InputWithAdornments
-          value={BallWeight1+"g"}
+          value={BallWeight1}
           onChange={onHandleBallweight1}
           onIncrement={BallWeight1plus}
           onDecrement={BallWeight1minus}
@@ -641,7 +641,7 @@ const Inputs = () => {
       )}
       <View>
         <InputWithAdornments
-          value={water+"%"}
+          value={water}
           onChange={onHandlewater}
           onIncrement={waterplus}
           onDecrement={waterminus}
@@ -649,7 +649,7 @@ const Inputs = () => {
           label="Water"
         />
         <InputWithAdornments
-          value={salt+"%"}
+          value={salt}
           onChange={onHandlesalt}
           onIncrement={saltplus}
           onDecrement={saltminus}
@@ -667,7 +667,7 @@ const Inputs = () => {
         }}
       >
         <InputWithAdornments
-          value={leaven+"h"}
+          value={leaven}
           onChange={YeastNeeded1}
           onIncrement={leavenplus}
           onDecrement={leavenminus}
@@ -934,7 +934,8 @@ const Inputs = () => {
         <Text style={{ fontWeight: "bold" }}>
           Main dough doses{" "}
           <Text style={{ color: "#990000" }}>
-            {isNaN(result.maindoughdose) ? "" : result.maindoughdose.toFixed(0)}g
+            {isNaN(result.maindoughdose) ? "" : result.maindoughdose.toFixed(0)}
+            g
           </Text>
         </Text>
         <Spacer height={20} />

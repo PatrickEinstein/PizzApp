@@ -1,18 +1,17 @@
 import * as React from "react";
 import { View, Text, ScrollView, SafeAreaView } from "react-native";
-// import Icon from "react-native-vector-icons/FontAwesome";
-import TabViewExample from "../Tabs/tab";
-import { useState } from "react";
-import { Stack, useRouter } from "expo-router";
-import { COLORS } from "../constants/index";
-import MenuList from "../components/menulist";
-import { store } from "../Redux/store";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
+import store from "../Redux/store";
+import TabViewExample from "../Tabs/tab";
+import { useState } from "react";
+import { Stack } from "expo-router";
+import { COLORS } from "../constants/index";
+import MenuList from "../components/menulist";
 import { persistStore } from "redux-persist";
+
 import Icon from "react-native-vector-icons/Feather";
 import { Feather } from "react-native-vector-icons";
-import SwipeableTabs from "../HiddenTab/hidden";
 
 const Home = () => {
   const [visible, setVisible] = useState(false);
@@ -34,10 +33,9 @@ const Home = () => {
               headerStyle: {
                 backgroundColor: "#990000",
                 borderColor: "#990000",
-                
               },
               headerShadowVisible: false,
-             
+
               headerTitleAlign: "center",
               //headerLeft: () => <Icon name="help" size={15} color="white" />,
 
@@ -62,7 +60,6 @@ const Home = () => {
             }}
           />
           <TabViewExample />
-          {/* <SwipeableTabs/> */}
 
           {visible ? (
             <View
@@ -74,9 +71,7 @@ const Home = () => {
             >
               <MenuList />
             </View>
-          ) : 
-            null
-          }
+          ) : null}
         </SafeAreaView>
       </PersistGate>
     </Provider>
