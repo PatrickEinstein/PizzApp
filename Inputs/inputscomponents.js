@@ -14,6 +14,8 @@ const InputWithAdornments = ({
   label,
   name,
   g,
+  display,
+
   ...props
 }) => {
   const inputRef = React.useRef(null);
@@ -27,6 +29,7 @@ const InputWithAdornments = ({
       <Text
         style={{
           textAlign: "center",
+          display: display,
         }}
       >
         {label}
@@ -53,6 +56,7 @@ const InputWithAdornments = ({
             backgroundColor: "#990000",
             borderTopLeftRadius: 10,
             borderBottomLeftRadius: 10,
+            display: display,
           }}
           iconColor="white"
           onPress={() => {
@@ -76,7 +80,6 @@ const InputWithAdornments = ({
             borderLeftWidth: 0,
           }}
           keyboardType="numeric"
-          
           maxLength={4}
           minLength={1}
           defaultValue={value.toString()}
@@ -92,6 +95,7 @@ const InputWithAdornments = ({
           }}
           iconColor="white"
           style={{
+            display: display,
             borderRadius: 0,
             backgroundColor: "#990000",
             borderTopRightRadius: 10,

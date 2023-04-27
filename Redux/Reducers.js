@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-export  const recipeReducer = createSlice({
+export const recipeReducer = createSlice({
   name: "recipe",
   initialState: {
     twoballsize: 0,
@@ -19,8 +19,12 @@ export  const recipeReducer = createSlice({
     flour4: 0,
     flour5: 0,
     flour6: 0,
+    saved: [],
   },
   reducers: {
+    toggleSaved: (state, action) => {
+      [...state, (state.saved = action.payload)];
+    },
     toggleTwoballsize: (state, action) => {
       state.twoballsize = action.payload;
     },
@@ -73,6 +77,7 @@ export  const recipeReducer = createSlice({
 });
 
 export const {
+  toggleSaved,
   toggleTwoballsize,
   toggleFats,
   toggleautolysis,
@@ -92,5 +97,3 @@ export const {
 } = recipeReducer.actions;
 
 export default recipeReducer.reducer;
-
-

@@ -19,12 +19,19 @@ const MenuList = ({ navigation }) => {
       }}
     >
       <View style={{ flex: 1 }}>
-        <Menu.Item leadingIcon="folder" onPress={() => {}} title="open" />
-
-        <Menu.Item leadingIcon="content-save" onPress={() => {}} title="save" />
-
-        <Menu.Item leadingIcon="link" onPress={() => {}} title="share" />
-
+        <TouchableOpacity>
+          <Menu.Item leadingIcon="folder" onPress={() => {}} title="open" />
+        </TouchableOpacity>{" "}
+        <TouchableOpacity>
+          <Menu.Item
+            leadingIcon="content-save"
+            onPress={() => {}}
+            title="save"
+          />
+        </TouchableOpacity>
+        <TouchableOpacity>
+          <Menu.Item leadingIcon="link" onPress={() => {}} title="share" />
+        </TouchableOpacity>
         <TouchableOpacity
           onPress={() => {
             router.push("/settings");
@@ -32,13 +39,14 @@ const MenuList = ({ navigation }) => {
         >
           <Menu.Item leadingIcon="cog-outline" title="settings" />
         </TouchableOpacity>
-
         <Menu.Item leadingIcon="pipe-wrench" onPress={() => {}} title="Tools" />
-        <Menu.Item
-          leadingIcon="briefcase-search"
-          onPress={() => {}}
-          title="About"
-        />
+        <TouchableOpacity>
+          <Menu.Item
+            leadingIcon="briefcase-search"
+            onPress={() => {}}
+            title="About"
+          />
+        </TouchableOpacity>
         <TouchableOpacity>
           <Menu.Item
             leadingIcon="book-open-blank-variant"
@@ -48,7 +56,10 @@ const MenuList = ({ navigation }) => {
             title="Glossary"
           />
         </TouchableOpacity>
-        <Menu.Item leadingIcon="star" onPress={() => {}} title="Rate" />
+        <TouchableOpacity>
+          {" "}
+          <Menu.Item leadingIcon="star" onPress={() => {}} title="Rate" />
+        </TouchableOpacity>
       </View>
     </View>
   );
