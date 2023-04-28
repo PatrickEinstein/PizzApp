@@ -14,20 +14,13 @@ const StyledIconButton = ({
   const buttonStyle = [
     { borderRadius: 0, padding: 10 },
     clickedLabel === label
-      ? { backgroundColor: "#990000", color:"black"}
+      ? { backgroundColor: "#990000", color: "black" }
       : {},
     style,
   ];
 
   return (
-    <View
-      style={{
-        borderColor: "black",
-        // borderWidth: 1,
-       height:"20"
-       
-      }}
-    >
+    <View>
       <TouchableOpacity
         style={buttonStyle}
         onPress={onPress}
@@ -38,9 +31,8 @@ const StyledIconButton = ({
             color: color,
             fontWeight: "bold",
             textAlign: "center",
-            marginBottom:0,
-            marginTop:0,
-            
+            marginBottom: 0,
+            marginTop: 0,
           }}
         >
           {label}

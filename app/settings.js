@@ -19,17 +19,15 @@ import {
 } from "../Redux/Reducers";
 import { useDispatch } from "react-redux";
 import { Spacer } from "../components/spacer";
-import MySelect from "../components/picker";
-import { set } from "react-native-reanimated";
+import { Pickers } from "../components/picker";
 import Stackscreen from "../components/stackscreen";
 import MenuList from "../components/menulist";
 import { useRouter } from "expo-router";
 const Settings = () => {
-  const router= useRouter()
+  const router = useRouter();
   const [visible, setVisible] = useState(false);
-  const onPress = () => setVisible((prev) => !prev);
   const dispatch = useDispatch();
-  const [myValue, setMyValue] = useState(1);
+  const [selectedValue, setSelectedValue] = useState(1);
   const [twoBallSize, setTwoBallSize] = useState(0);
   const [fats, setFats] = useState(0);
   const [CT, setCT] = useState(0);
@@ -50,9 +48,10 @@ const Settings = () => {
   console.log(`5 ==> ${flour5}`);
   console.log(`6 ==> ${flour6}`);
 
-  console.log(`values ==> ${myValue}`);
-  const onHandlechange = (newValue) => {
-    setMyValue(newValue);
+  console.log(`values ==> ${selectedValue}`);
+
+  const onValueChange = (selectedValue, index) => {
+    setSelectedValue(selectedValue);
   };
   const onToggleTwoBallSize = () => {
     setTwoBallSize((prev) => !prev);
@@ -68,7 +67,11 @@ const Settings = () => {
     setCT((prev) => !prev);
     dispatch(togglect(!CT));
   };
-  // console.log(`fats ==> ${fats}`)
+  const onToggleDisplayon = () => {
+    setCT((prev) => !prev);
+    dispatch(toggledisplayon(!displayOn));
+  };
+
   const onToggleoldDoughIn = () => {
     setOldDoughIn((prev) => !prev);
     dispatch(toggleoldoughin(!oldDoughIn));
@@ -88,11 +91,7 @@ const Settings = () => {
   };
   const onTogglePolish = () => {
     setPoolish((prev) => !prev);
-    dispatch(togglepoolish(!poolish));
-  };
-  const onToggleDisplayon = () => {
-    setDisplayOn((prev) => !prev);
-    dispatch(toggledisplayon(!displayOn));
+    dispatch(togglepoolish(!displayOn));
   };
 
   const onToggleFlours = async () => {
@@ -111,7 +110,7 @@ const Settings = () => {
   ];
 
   const Dispatchers = async () => {
-    switch (+myValue) {
+    switch (selectedValue) {
       case 2:
         setFlour2(true);
         setFlour3(false);
@@ -160,25 +159,37 @@ const Settings = () => {
   };
 
   useEffect(() => {
+    
     Dispatchers();
-  }, [myValue]);
+  }, [selectedValue]);
 
   return (
     <View>
-      <Stackscreen onPress={() =>router.push('/')} title="Settings"  icon ="home"/>
+    <Stackscreen
+    onPress={() => router.push("/")}
+    title="Settings"
+    icon="home"
+  />
+    <View
+    style={{
+      paddingLeft:20
+    }}
+    >
+     
       <View
         style={{
           flexDirection: "row",
           justifyContent: "space-between",
           marginBottom: 20,
           marginTop: 20,
+        
         }}
       >
         <Text>Flour No</Text>
-        <MySelect
+        <Pickers
           options={options}
-          selectedValue={myValue}
-          onValueChange={onHandlechange}
+          selectedValue={selectedValue}
+          onValueChange={onValueChange}
           width={50}
           color="maroon"
         />
@@ -190,6 +201,7 @@ const Settings = () => {
           justifyContent: "space-between",
           marginBottom: 20,
           marginTop: 20,
+        
         }}
       >
         <Text>Two Balls Size</Text>
@@ -304,6 +316,7 @@ const Settings = () => {
           <MenuList />
         </View>
       ) : null}
+    </View>
     </View>
   );
 };

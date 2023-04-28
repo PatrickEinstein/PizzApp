@@ -34,11 +34,11 @@ const Inputs = () => {
   const displayOn = onOff.displayon;
   const doughball2 = onOff.doughball02;
   const ballWeight02 = onOff.ballweight2;
-  const flour02 = onOff.flour02;
-  const flour03 = onOff.flour03;
-  const flour04 = onOff.flour04;
-  const flour05 = onOff.flour05;
-  const flour06 = onOff.flour06;
+  const flour02 = onOff.flour2;
+  const flour03 = onOff.flour3;
+  const flour04 = onOff.flour4;
+  const flour05 = onOff.flour5;
+  const flour06 = onOff.flour6;
 
   const [Doughball1, setDoughball1] = useState(+1);
   const [Doughball2, setDoughball2] = useState(0);
@@ -513,7 +513,7 @@ const Inputs = () => {
       {flour1 + flour2 + flour3 + flour4 + flour5 + flour6 == 100 ? null : (
         <Text>Flours : % sum is not 100% </Text>
       )}
-      {flour2 ? (
+      {flour02 ? (
         <View
           style={{
             flexDirection: "row",
@@ -531,11 +531,11 @@ const Inputs = () => {
             onDecrement={flour1minus}
             borderColor={"#990000"}
             label="Flour 1"
-            viewWidth={"auto"}
+            viewWidth={150}
             name="pencil"
           />
 
-          {flour2 ? (
+          {flour02 ? (
             <InputWithAdornments
               value={flour2}
               onChange={setflour2}
@@ -550,7 +550,7 @@ const Inputs = () => {
         </View>
       ) : null}
 
-      {flour3 ? (
+      {flour03 ? (
         <>
           <Spacer height={30} />
           <View
@@ -562,7 +562,7 @@ const Inputs = () => {
               alignItems: "center",
             }}
           >
-            {flour3 ? (
+            {flour03 ? (
               <InputWithAdornments
                 value={flour3}
                 onChange={onHandleflour3}
@@ -573,11 +573,9 @@ const Inputs = () => {
                 viewWidth={150}
                 name="pencil"
               />
-            ) : (
-              <Text></Text>
-            )}
+            ) : null}
 
-            {flour4 ? (
+            {flour04 ? (
               <InputWithAdornments
                 value={flour4}
                 onChange={onHandleflour4}
@@ -588,16 +586,13 @@ const Inputs = () => {
                 viewWidth={150}
                 name="pencil"
               />
-            ) : (
-              <Text></Text>
-            )}
+            ) : 
+              null}
           </View>
         </>
-      ) : (
-        <Text></Text>
-      )}
+      ) : null}
       <Spacer height={30} />
-      {flour5 ? (
+      {flour05 ? (
         <View
           style={{
             flexDirection: "row",
@@ -607,7 +602,7 @@ const Inputs = () => {
             alignItems: "center",
           }}
         >
-          {flour5 ? (
+          {flour05 ? (
             <InputWithAdornments
               value={flour5}
               onChange={onHandleflour5}
@@ -618,10 +613,9 @@ const Inputs = () => {
               viewWidth={150}
               name="pencil"
             />
-          ) : (
-            <Text></Text>
-          )}
-          {flour6 ? (
+          ) : 
+            null}
+          {flour06 ? (
             <InputWithAdornments
               value={flour6}
               onChange={onHandleflour6}
@@ -636,9 +630,7 @@ const Inputs = () => {
             <Text></Text>
           )}
         </View>
-      ) : (
-        <Text></Text>
-      )}
+      ) :null}
       <View>
         <InputWithAdornments
           value={water}

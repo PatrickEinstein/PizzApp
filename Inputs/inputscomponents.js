@@ -81,9 +81,7 @@ const InputWithAdornments = ({
             borderWidth: 1,
             marginHorizontal: 0,
             borderLeftWidth: 1,
-            // marginLeft: marginLeft,
-            // marginRight:marginRight,
-            // marginTop:marginTop,
+            
           }}
           keyboardType="numeric"
           maxLength={4}

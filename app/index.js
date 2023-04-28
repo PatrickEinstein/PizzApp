@@ -9,17 +9,16 @@ import { Stack } from "expo-router";
 import { COLORS } from "../constants/index";
 import MenuList from "../components/menulist";
 import { persistStore } from "redux-persist";
-
-import Icon from "react-native-vector-icons/Feather";
-import { Feather } from "react-native-vector-icons";
 import Stackscreen from "../components/stackscreen";
+
+const persistor = persistStore(store);
 
 const Home = () => {
   const [visible, setVisible] = useState(false);
-  const onPress= () => setVisible((prev) => !prev)
+  const onPress = () => setVisible((prev) => !prev);
   return (
-    <Provider store={store}>
-     {/* // <PersistGate loading={null} persistor={persistStore(store)}> */}
+    <Provider context={null} store={store}>
+      <PersistGate loading={null} persistor={persistor}>
         <SafeAreaView
           style={{
             flex: 1,
@@ -27,7 +26,7 @@ const Home = () => {
             position: "relative",
           }}
         >
-         <Stackscreen onPress={onPress} icon="menu"/>
+          <Stackscreen onPress={onPress} icon="menu"  title="PizzApp"/>
           <TabViewExample />
 
           {visible ? (
@@ -42,9 +41,9 @@ const Home = () => {
             </View>
           ) : null}
         </SafeAreaView>
-      {/* </PersistGate> */}
-    </Provider>
-  );
+    </PersistGate>
+    </Provider> 
+  )
 };
 
 export default Home;

@@ -2,11 +2,12 @@ import { Stack } from "expo-router";
 import { useCallback } from "react";
 import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
-import { Provider } from "react-redux";
-import { PersistGate } from "redux-persist/integration/react";
 import store from "../Redux/store";
 import { persistStore } from "redux-persist";
+import { Provider } from "react-redux";
+import { PersistGate } from "redux-persist/integration/react";
 
+const persistor = persistStore(store);
 SplashScreen.preventAutoHideAsync();
 
 const Layout = () => {
@@ -25,10 +26,10 @@ const Layout = () => {
   if (!fontsLoaded) return null;
 
   return (
-    <Provider store={store}>
-      {/* <PersistGate loading={null} persistor={persistStore(store)}> */}
-      <Stack onLayout={onLayoutRootView} />
-      {/* </PersistGate> */}
+    <Provider context={null} store={store}>
+      <PersistGate loading={null} persistor={persistor}>
+        <Stack onLayout={onLayoutRootView} />
+      </PersistGate>
     </Provider>
   );
 };

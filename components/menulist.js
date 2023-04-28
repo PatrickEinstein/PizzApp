@@ -7,100 +7,92 @@ import { TouchableOpacity } from "react-native";
 
 const MenuList = () => {
   const router = useRouter();
- 
 
   return (
-   
-      <View style={{ flex: 1, backgroundColor: "aqua" }}>
-        <TouchableOpacity
-          style={{
-            backgroundColor: "white",
-          }}
-        >
-          <Menu.Item
-            leadingIcon="folder"
-            onPress={() => router.push("/open")}
-            title="open"
-          />
-        </TouchableOpacity>{" "}
-        <TouchableOpacity
-          style={{
-            backgroundColor: "white",
-            marginBottom:20
-          }}
-        >
-          <Menu.Item
-            leadingIcon="content-save"
-            onPress={() => {
-              router.push("/save");
-            }}
-            title="save"
-          />
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={{
-            backgroundColor: "white",
-            marginBottom:20
-          }}
-        >
-          <Menu.Item leadingIcon="link" onPress={() => {}} title="share" />
-        </TouchableOpacity>
-        <TouchableOpacity
-         style={{
+    <View style={{ flex: 1, backgroundColor: "aqua" }}>
+      <TouchableOpacity
+        style={{
           backgroundColor: "white",
-          
         }}
+      >
+        <Menu.Item
+          leadingIcon="folder"
+          onPress={() => router.push("/open")}
+          title="open"
+        />
+      </TouchableOpacity>
+      <TouchableOpacity
+        style={{
+          backgroundColor: "white",
+          marginBottom: 20,
+        }}
+      >
+        <Menu.Item
+          leadingIcon="content-save"
           onPress={() => {
-            router.push("/settings");
+            router.push("/save");
           }}
-        >
-          <Menu.Item leadingIcon="cog-outline" title="settings" />
-        </TouchableOpacity>
-        <TouchableOpacity
-         style={{
+          title="save"
+        />
+      </TouchableOpacity>
+      <TouchableOpacity
+        style={{
           backgroundColor: "white",
-          marginBottom:20
+          marginBottom: 20,
         }}
-          // onPress={() => {
-          //   router.push("/settings");
-          // }}
-        >
+      >
+        <Menu.Item leadingIcon="link" onPress={() => {}} title="share" />
+      </TouchableOpacity>
+      <TouchableOpacity
+        style={{
+          backgroundColor: "white",
+        }}
+        onPress={() => {
+          router.push("/settings");
+        }}
+      >
+        <Menu.Item leadingIcon="cog-outline" title="settings" />
+      </TouchableOpacity>
+      <TouchableOpacity
+        style={{
+          backgroundColor: "white",
+          marginBottom: 20,
+        }}
+      >
         <Menu.Item leadingIcon="pipe-wrench" onPress={() => {}} title="Tools" />
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={{
-            backgroundColor: "white",
+      </TouchableOpacity>
+      <TouchableOpacity
+        style={{
+          backgroundColor: "white",
+        }}
+      >
+        <Menu.Item
+          leadingIcon="briefcase-search"
+          onPress={() => {}}
+          title="About"
+        />
+      </TouchableOpacity>
+      <TouchableOpacity
+        style={{
+          backgroundColor: "white",
+        }}
+      >
+        <Menu.Item
+          leadingIcon="book-open-blank-variant"
+          onPress={() => {
+            router.push("/glossary");
           }}
-        >
-          <Menu.Item
-            leadingIcon="briefcase-search"
-            onPress={() => {}}
-            title="About"
-          />
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={{
-            backgroundColor: "white",
-          }}
-        >
-          <Menu.Item
-            leadingIcon="book-open-blank-variant"
-            onPress={() => {
-              router.push("/glossary");
-            }}
-            title="Glossary"
-          />
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={{
-            backgroundColor: "white",
-          }}
-        >
-          {" "}
-          <Menu.Item leadingIcon="star" onPress={() => {}} title="Rate" />
-        </TouchableOpacity>
-      </View>
-   
+          title="Glossary"
+        />
+      </TouchableOpacity>
+      <TouchableOpacity
+        style={{
+          backgroundColor: "white",
+        }}
+      >
+        <Menu.Item leadingIcon="star" onPress={() => {}} title="Rate" />
+      </TouchableOpacity>
+    </View>
   );
 };
 

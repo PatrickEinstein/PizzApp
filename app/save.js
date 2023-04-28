@@ -63,8 +63,10 @@ const Save = () => {
         style={{
           marginTop: 30,
           marginBottom: 5,
-          height: 50,
-          paddingBottom: 5,
+          height: 60,
+          width:"70%",
+          paddingTop:2,
+          paddingBottom: 2,
         }}
         placeholder="recipe name"
         mode="outlined"
@@ -77,6 +79,7 @@ const Save = () => {
           marginTop: 20,
           marginBottom: 30,
           height: 100,
+          width:"70%"
         }}
         placeholder="note"
         mode="outlined"

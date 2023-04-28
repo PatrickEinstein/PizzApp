@@ -7,7 +7,7 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 
 function Stackscreen({ onPress, title , icon}) {
   return (
-    <div>
+    
       <Stack.Screen
         options={{
           title: title,
@@ -43,7 +43,7 @@ function Stackscreen({ onPress, title , icon}) {
           ),
         }}
       />
-    </div>
+    
   );
 }
 
