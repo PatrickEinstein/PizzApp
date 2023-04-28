@@ -525,7 +525,6 @@ const Inputs = () => {
           borderColor={"#990000"}
           label="Ball Weight (g)"
           viewWidth={150}
-         
         />
       </View>
       {twoballsize ? (
@@ -566,7 +565,7 @@ const Inputs = () => {
       {flour1 + flour2 + flour3 + flour4 + flour5 + flour6 == 100 ? null : (
         <Text>Flours : % sum is not 100% </Text>
       )}
-      {flour2 ? (
+      {flour02 ? (
         <View
           style={{
             flexDirection: "row",
@@ -588,7 +587,7 @@ const Inputs = () => {
             name="pencil"
           />
 
-          {flour2 ? (
+          {flour02 ? (
             <InputWithAdornments
               value={flour2}
               onChange={setflour2}
@@ -603,7 +602,7 @@ const Inputs = () => {
         </View>
       ) : null}
 
-      {flour3 ? (
+      {flour03 ? (
         <>
           <Spacer height={30} />
           <View
@@ -615,7 +614,7 @@ const Inputs = () => {
               alignItems: "center",
             }}
           >
-            {flour3 ? (
+            {flour03 ? (
               <InputWithAdornments
                 value={flour3}
                 onChange={onHandleflour3}
@@ -626,11 +625,9 @@ const Inputs = () => {
                 viewWidth={150}
                 name="pencil"
               />
-            ) : (
-              <Text></Text>
-            )}
+            ) : null}
 
-            {flour4 ? (
+            {flour04 ? (
               <InputWithAdornments
                 value={flour4}
                 onChange={onHandleflour4}
@@ -641,16 +638,12 @@ const Inputs = () => {
                 viewWidth={150}
                 name="pencil"
               />
-            ) : (
-              <Text></Text>
-            )}
+            ) : null}
           </View>
         </>
-      ) : (
-        <Text></Text>
-      )}
+      ) : null}
       <Spacer height={30} />
-      {flour5 ? (
+      {flour05 ? (
         <View
           style={{
             flexDirection: "row",
@@ -660,7 +653,7 @@ const Inputs = () => {
             alignItems: "center",
           }}
         >
-          {flour5 ? (
+          {flour05 ? (
             <InputWithAdornments
               value={flour5}
               onChange={onHandleflour5}
@@ -671,10 +664,8 @@ const Inputs = () => {
               viewWidth={150}
               name="pencil"
             />
-          ) : (
-            <Text></Text>
-          )}
-          {flour6 ? (
+          ) : null}
+          {flour06 ? (
             <InputWithAdornments
               value={flour6}
               onChange={onHandleflour6}
@@ -685,13 +676,9 @@ const Inputs = () => {
               viewWidth={150}
               name="pencil"
             />
-          ) : (
-            <Text></Text>
-          )}
+          ) : null}
         </View>
-      ) : (
-        <Text></Text>
-      )}
+      ) : null}
       <View>
         <InputWithAdornments
           value={water}
@@ -720,6 +707,7 @@ const Inputs = () => {
           viewWidth={150}
           label="fats (%)"
         />
+
         <InputWithAdornments
           value={salt}
           onChange={onHandlesalt}
@@ -728,6 +716,7 @@ const Inputs = () => {
           borderColor={"#990000"}
           viewWidth={150}
           label="Salt (%)"
+          
         />
       </View>
       <View
@@ -1256,7 +1245,7 @@ const Inputs = () => {
           width: 150,
           alignItems: "center",
           justifyContent: "center",
-          marginLeft: 12,
+          marginLeft: 30,
         }}
       >
         <Text
