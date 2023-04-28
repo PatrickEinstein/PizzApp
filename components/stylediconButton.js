@@ -23,7 +23,7 @@ const StyledIconButton = ({
     <View
       style={{
         borderColor: "black",
-        borderWidth: 1,
+        // borderWidth: 1,
        height:"20"
        
       }}

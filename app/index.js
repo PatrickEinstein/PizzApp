@@ -12,13 +12,14 @@ import { persistStore } from "redux-persist";
 
 import Icon from "react-native-vector-icons/Feather";
 import { Feather } from "react-native-vector-icons";
+import Stackscreen from "../components/stackscreen";
 
 const Home = () => {
   const [visible, setVisible] = useState(false);
-
+  const onPress= () => setVisible((prev) => !prev)
   return (
     <Provider store={store}>
-      <PersistGate loading={null} persistor={persistStore(store)}>
+     {/* // <PersistGate loading={null} persistor={persistStore(store)}> */}
         <SafeAreaView
           style={{
             flex: 1,
@@ -26,39 +27,7 @@ const Home = () => {
             position: "relative",
           }}
         >
-          <Stack.Screen
-            options={{
-              title: "PizzApp",
-              headerTitleStyle: { color: "white" },
-              headerStyle: {
-                backgroundColor: "#990000",
-                borderColor: "#990000",
-              },
-              headerShadowVisible: false,
-
-              headerTitleAlign: "center",
-              //headerLeft: () => <Icon name="help" size={15} color="white" />,
-
-              headerLeft: () => (
-                <Feather
-                  name="help-circle"
-                  size={30}
-                  color="#FFF"
-                  onPress={() => console.log("Help button pressed")}
-                  style={{ marginRight: 10 }}
-                />
-              ),
-              headerRight: () => (
-                <Icon
-                  name="menu"
-                  // name="help-circle"
-                  size={30}
-                  color="white"
-                  onPress={() => setVisible((prev) => !prev)}
-                />
-              ),
-            }}
-          />
+         <Stackscreen onPress={onPress} icon="menu"/>
           <TabViewExample />
 
           {visible ? (
@@ -73,7 +42,7 @@ const Home = () => {
             </View>
           ) : null}
         </SafeAreaView>
-      </PersistGate>
+      {/* </PersistGate> */}
     </Provider>
   );
 };

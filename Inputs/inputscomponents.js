@@ -15,7 +15,10 @@ const InputWithAdornments = ({
   name,
   g,
   display,
-
+  height,
+  marginLeft,
+  marginRight,
+  marginTop,
   ...props
 }) => {
   const inputRef = React.useRef(null);
@@ -70,14 +73,17 @@ const InputWithAdornments = ({
           onChangeText={onChange}
           style={{
             flex: 1,
-
+            height: height,
             textAlign: "center",
             paddingTop: 5,
             paddingBottom: 5,
             borderColor: "#990000",
             borderWidth: 1,
             marginHorizontal: 0,
-            borderLeftWidth: 0,
+            borderLeftWidth: 1,
+            // marginLeft: marginLeft,
+            // marginRight:marginRight,
+            // marginTop:marginTop,
           }}
           keyboardType="numeric"
           maxLength={4}

@@ -23,7 +23,7 @@ export const recipeReducer = createSlice({
   },
   reducers: {
     toggleSaved: (state, action) => {
-      [...state, (state.saved = action.payload)];
+      state.saved.push(action.payload);
     },
     toggleTwoballsize: (state, action) => {
       state.twoballsize = action.payload;

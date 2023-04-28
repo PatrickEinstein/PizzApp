@@ -1,6 +1,6 @@
 import { View, Text } from "react-native";
 import Switches from "../components/switch";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   toggleFats,
   toggleTwoballsize,
@@ -21,8 +21,13 @@ import { useDispatch } from "react-redux";
 import { Spacer } from "../components/spacer";
 import MySelect from "../components/picker";
 import { set } from "react-native-reanimated";
-
+import Stackscreen from "../components/stackscreen";
+import MenuList from "../components/menulist";
+import { useRouter } from "expo-router";
 const Settings = () => {
+  const router= useRouter()
+  const [visible, setVisible] = useState(false);
+  const onPress = () => setVisible((prev) => !prev);
   const dispatch = useDispatch();
   const [myValue, setMyValue] = useState(1);
   const [twoBallSize, setTwoBallSize] = useState(0);
@@ -39,68 +44,64 @@ const Settings = () => {
   const [flour4, setFlour4] = useState(0);
   const [flour5, setFlour5] = useState(0);
   const [flour6, setFlour6] = useState(0);
-  console.log(myValue);
+  console.log(`2 ==> ${flour2}`);
+  console.log(`3 ==> ${flour3}`);
+  console.log(`4 ==> ${flour4}`);
+  console.log(`5 ==> ${flour5}`);
+  console.log(`6 ==> ${flour6}`);
+
+  console.log(`values ==> ${myValue}`);
+  const onHandlechange = (newValue) => {
+    setMyValue(newValue);
+  };
   const onToggleTwoBallSize = () => {
     setTwoBallSize((prev) => !prev);
-    dispatch(toggleTwoballsize(twoBallSize));
+    dispatch(toggleTwoballsize(!twoBallSize));
   };
 
   const onToggleFats = () => {
     setFats((prev) => !prev);
-    dispatch(toggleFats(fats));
+    dispatch(toggleFats(!fats));
   };
 
   const onToggleCT = () => {
     setCT((prev) => !prev);
-    dispatch(togglect(CT));
+    dispatch(togglect(!CT));
   };
   // console.log(`fats ==> ${fats}`)
   const onToggleoldDoughIn = () => {
     setOldDoughIn((prev) => !prev);
-    dispatch(toggleoldoughin(oldDoughIn));
+    dispatch(toggleoldoughin(!oldDoughIn));
   };
   const onToggleoldDoughOut = () => {
     setOldDoughOut((prev) => !prev);
-    dispatch(toggleoldoughout(oldDoughOut));
+    dispatch(toggleoldoughout(!oldDoughOut));
   };
   const onToggleautolysis = () => {
     setAutolysis((prev) => !prev);
-    dispatch(toggleautolysis(autolysis));
+    dispatch(toggleautolysis(!autolysis));
   };
 
   const onTogglebiga = () => {
     setBiga((prev) => !prev);
-    dispatch(togglebiga(biga));
+    dispatch(togglebiga(!biga));
   };
   const onTogglePolish = () => {
     setPoolish((prev) => !prev);
-    dispatch(togglepoolish(poolish));
+    dispatch(togglepoolish(!poolish));
   };
   const onToggleDisplayon = () => {
     setDisplayOn((prev) => !prev);
-    dispatch(toggledisplayon(displayOn));
-  };
-  const onToggleFlour2 = () => {
-    setFlour2((prev) => !prev);
-    dispatch(toggleflour2(flour2));
-  };
-  const onToggleFlour3 = () => {
-    setFlour3((prev) => !prev);
-    dispatch(toggleflour3(flour3));
-  };
-  const onToggleFlour4 = () => {
-    setFlour4((prev) => !prev);
-    dispatch(toggleflour4(flour4));
-  };
-  const onToggleFlour5 = () => {
-    setFlour5((prev) => !prev);
-    dispatch(toggleflour5(flour5));
-  };
-  const onToggleFlour6 = () => {
-    setFlour6((prev) => !prev);
-    dispatch(toggleflour6(flour6));
+    dispatch(toggledisplayon(!displayOn));
   };
 
+  const onToggleFlours = async () => {
+    dispatch(toggleflour2(flour2));
+    dispatch(toggleflour3(flour3));
+    dispatch(toggleflour4(flour4));
+    dispatch(toggleflour5(flour5));
+    dispatch(toggleflour6(flour6));
+  };
   const options = [
     { label: 1, value: 1 },
     { label: 2, value: 2 },
@@ -109,71 +110,62 @@ const Settings = () => {
     { label: 5, value: 5 },
   ];
 
-  const onValueChange = (itemValue) => {
-    setSelectedValue(itemValue);
-    try {
-      switch (selectedValue) {
-        case 2:
-          setFlour2(true);
-          dispatch(toggleflour2(flour2));
+  const Dispatchers = async () => {
+    switch (+myValue) {
+      case 2:
+        setFlour2(true);
+        setFlour3(false);
+        setFlour3(false);
+        setFlour4(false);
+        setFlour5(false);
+        setFlour6(false);
+        await onToggleFlours();
 
-        case 3:
-          setFlour2(true);
-          setFlour3(true);
-          setFlour4(false);
-          setFlour5(false);
-          setFlour6(false);
-          dispatch(toggleflour2(flour2));
-          dispatch(toggleflour2(flour2));
-          dispatch(toggleflour3(flour3));
-          dispatch(toggleflour4(flour4));
-          dispatch(toggleflour5(flour5));
-          dispatch(toggleflour6(flour6));
-        case 4:
-          setFlour2(true);
-          setFlour3(true);
-          setFlour4(true);
-          setFlour5(false);
-          setFlour6(false);
-          dispatch(toggleflour2(flour2));
-          dispatch(toggleflour2(flour2));
-          dispatch(toggleflour3(flour3));
-          dispatch(toggleflour4(flour4));
-          dispatch(toggleflour5(flour5));
-          dispatch(toggleflour6(flour6));
+        break;
+      case 3:
+        setFlour2(true);
+        setFlour3(true);
+        setFlour4(false);
+        setFlour5(false);
+        setFlour6(false);
+        await onToggleFlours();
 
-        case 5:
-          setFlour2(true);
-          setFlour3(true);
-          setFlour4(true);
-          setFlour5(true);
-          setFlour6(false);
-          dispatch(toggleflour2(flour2));
-          dispatch(toggleflour2(flour2));
-          dispatch(toggleflour3(flour3));
-          dispatch(toggleflour4(flour4));
-          dispatch(toggleflour5(flour5));
-          dispatch(toggleflour6(flour6));
-        case 6:
-          setFlour2(true);
-          setFlour3(true);
-          setFlour4(true);
-          setFlour5(true);
-          setFlour6(true);
-          dispatch(toggleflour2(flour2));
-          dispatch(toggleflour2(flour2));
-          dispatch(toggleflour3(flour3));
-          dispatch(toggleflour4(flour4));
-          dispatch(toggleflour5(flour5));
-          dispatch(toggleflour6(flour6));
-      }
-    } catch (err) {
-      console.log(err);
+        break;
+      case 4:
+        setFlour2(true);
+        setFlour3(true);
+        setFlour4(true);
+        setFlour5(false);
+        setFlour6(false);
+        await onToggleFlours();
+
+        break;
+      case 5:
+        setFlour2(true);
+        setFlour3(true);
+        setFlour4(true);
+        setFlour5(true);
+        setFlour6(false);
+        await onToggleFlours();
+
+        break;
+      case 6:
+        setFlour2(1);
+        setFlour3(1);
+        setFlour4(1);
+        setFlour5(1);
+        setFlour6(1);
+        await onToggleFlours();
     }
   };
 
+  useEffect(() => {
+    Dispatchers();
+  }, [myValue]);
+
   return (
     <View>
+      <Stackscreen onPress={() =>router.push('/')} title="Settings"  icon ="home"/>
       <View
         style={{
           flexDirection: "row",
@@ -186,7 +178,7 @@ const Settings = () => {
         <MySelect
           options={options}
           selectedValue={myValue}
-          onValueChange={setMyValue}
+          onValueChange={onHandlechange}
           width={50}
           color="maroon"
         />
@@ -301,6 +293,17 @@ const Settings = () => {
       </View>
 
       <Spacer borderwidth={1} width="100%" borderColor="black" />
+      {visible ? (
+        <View
+          style={{
+            position: "absolute",
+            top: 5,
+            right: 0,
+          }}
+        >
+          <MenuList />
+        </View>
+      ) : null}
     </View>
   );
 };

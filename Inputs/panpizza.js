@@ -528,7 +528,7 @@ const Inputs = () => {
          
         />
       </View>
-      {doughball2 ? (
+      {twoballsize ? (
         <>
           <View
             style={{

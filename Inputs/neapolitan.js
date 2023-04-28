@@ -22,7 +22,7 @@ const Inputs = () => {
   };
 
   const onOff = useSelector((state) => state.recipe);
-
+ 
   const twoballsize = onOff.twoballsize;
   const fats = onOff.fats;
   const ct = onOff.ct;
@@ -475,7 +475,7 @@ const Inputs = () => {
           viewWidth={150}
         />
       </View>
-      {doughball2 ? (
+      {twoballsize? (
         <>
           <View
             style={{
@@ -721,7 +721,7 @@ const Inputs = () => {
         </View>
       ) : null}
 
-      {OldDoughIn ? (
+      {oldDoughIn ? (
         <>
           <Spacer height={20} />
           <View

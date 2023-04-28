@@ -5,49 +5,84 @@ import { useRouter } from "expo-router";
 import { useNavigation, useRootNavigation } from "expo-router";
 import { TouchableOpacity } from "react-native";
 
-const MenuList = ({ navigation }) => {
+const MenuList = () => {
   const router = useRouter();
-  const navigate = useNavigation();
+ 
 
   return (
-    <View
-      style={{
-        paddingTop: 10,
-        backgroundColor: "white",
-        height: 400,
-        width: 150,
-      }}
-    >
-      <View style={{ flex: 1 }}>
-        <TouchableOpacity>
-          <Menu.Item leadingIcon="folder" onPress={() => {}} title="open" />
+   
+      <View style={{ flex: 1, backgroundColor: "aqua" }}>
+        <TouchableOpacity
+          style={{
+            backgroundColor: "white",
+          }}
+        >
+          <Menu.Item
+            leadingIcon="folder"
+            onPress={() => router.push("/open")}
+            title="open"
+          />
         </TouchableOpacity>{" "}
-        <TouchableOpacity>
+        <TouchableOpacity
+          style={{
+            backgroundColor: "white",
+            marginBottom:20
+          }}
+        >
           <Menu.Item
             leadingIcon="content-save"
-            onPress={() => {}}
+            onPress={() => {
+              router.push("/save");
+            }}
             title="save"
           />
         </TouchableOpacity>
-        <TouchableOpacity>
+        <TouchableOpacity
+          style={{
+            backgroundColor: "white",
+            marginBottom:20
+          }}
+        >
           <Menu.Item leadingIcon="link" onPress={() => {}} title="share" />
         </TouchableOpacity>
         <TouchableOpacity
+         style={{
+          backgroundColor: "white",
+          
+        }}
           onPress={() => {
             router.push("/settings");
           }}
         >
           <Menu.Item leadingIcon="cog-outline" title="settings" />
         </TouchableOpacity>
+        <TouchableOpacity
+         style={{
+          backgroundColor: "white",
+          marginBottom:20
+        }}
+          // onPress={() => {
+          //   router.push("/settings");
+          // }}
+        >
         <Menu.Item leadingIcon="pipe-wrench" onPress={() => {}} title="Tools" />
-        <TouchableOpacity>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={{
+            backgroundColor: "white",
+          }}
+        >
           <Menu.Item
             leadingIcon="briefcase-search"
             onPress={() => {}}
             title="About"
           />
         </TouchableOpacity>
-        <TouchableOpacity>
+        <TouchableOpacity
+          style={{
+            backgroundColor: "white",
+          }}
+        >
           <Menu.Item
             leadingIcon="book-open-blank-variant"
             onPress={() => {
@@ -56,12 +91,16 @@ const MenuList = ({ navigation }) => {
             title="Glossary"
           />
         </TouchableOpacity>
-        <TouchableOpacity>
+        <TouchableOpacity
+          style={{
+            backgroundColor: "white",
+          }}
+        >
           {" "}
           <Menu.Item leadingIcon="star" onPress={() => {}} title="Rate" />
         </TouchableOpacity>
       </View>
-    </View>
+   
   );
 };
 
