@@ -19,6 +19,7 @@ function Open() {
       {savedstuffs?.map(({ setvalues, recipe }) => (
        
           <View
+          key={recipe}
             style={{
               height: 100,
               width: "100%",

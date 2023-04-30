@@ -18,7 +18,7 @@ const Home = () => {
   const onPress = () => setVisible((prev) => !prev);
   return (
     <Provider context={null} store={store}>
-      <PersistGate loading={null} persistor={persistor}>
+      <PersistGate loading={<Text>Loading ...</Text>} persistor={persistor}>
         <SafeAreaView
           style={{
             flex: 1,

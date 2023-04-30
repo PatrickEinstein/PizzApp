@@ -12,7 +12,7 @@ import { Value } from "react-native-reanimated";
 
 const Inputs = () => {
   const [clickedLabel, setClickedLabel] = useState("");
-
+  console.log(clickedLabel);
   const handleButtonClick = (label) => {
     if (label === clickedLabel) {
       setClickedLabel("");
@@ -27,6 +27,7 @@ const Inputs = () => {
   const fats = onOff.fats;
   const ct = onOff.ct;
   const oldDoughIn = onOff.olddoughin;
+
   const olddoughout = onOff.olddoughout;
   const autolysis = onOff.autolysis;
   const biga = onOff.biga;
@@ -34,15 +35,15 @@ const Inputs = () => {
   const displayOn = onOff.displayon;
   const doughball2 = onOff.doughball02;
   const ballWeight02 = onOff.ballweight2;
-  const flour02 = onOff.flour02;
-  const flour03 = onOff.flour03;
-  const flour04 = onOff.flour04;
-  const flour05 = onOff.flour05;
-  const flour06 = onOff.flour06;
+  const flour02 = onOff.flour2;
+  const flour03 = onOff.flour3;
+  const flour04 = onOff.flour4;
+  const flour05 = onOff.flour5;
+  const flour06 = onOff.flour6;
 
-  const [Doughball1, setDoughball1] = useState(1);
+  const [Doughball1, setDoughball1] = useState(+1);
   const [Doughball2, setDoughball2] = useState(0);
-  const [BallWeight1, setBallWeight1] = useState(600);
+  const [BallWeight1, setBallWeight1] = useState(250);
   const [BallWeight2, setBallWeight2] = useState(0);
   const [flour1, setflour1] = useState(100);
   const [flour2, setflour2] = useState(0);
@@ -50,53 +51,17 @@ const Inputs = () => {
   const [flour4, setflour4] = useState(0);
   const [flour5, setflour5] = useState(0);
   const [flour6, setflour6] = useState(0);
-  const [water, setwater] = useState(80);
+  const [water, setwater] = useState(60);
   const [salt, setsalt] = useState(3);
-  const [leaven, setleaven] = useState(5);
+  const [leaven, setleaven] = useState(8);
   const [temp, settemp] = useState(20);
   const [autolysisflour, setautolysisflour] = useState(0);
   const [autolysiswater, setautolysiswater] = useState(0);
-  const [OldDoughIn, setolddoughin] = useState(1);
-  const [OlddoughOut, setolddoughout] = useState(10);
+  const [OldDoughIn, setolddoughin] = useState(0);
+  const [OlddoughOut, setolddoughout] = useState(0);
   const [yeastfactor, setyeastfactor] = useState(2.5);
-  const [Fats, setfats] = useState(2.5);
-  const [CTleaven, setCTleaven] = useState(43);
-  const [CTC, setCTC] = useState(4);
-
-  const onhandleCTleaven = (newValue) => {
-    setCTleaven(newValue);
-  };
-  const CTleavenplus = () => {
-    const newValue = +CTleaven + 1;
-    setCTleaven(newValue);
-  };
-
-  const CTleavenminus = () => {
-    if (temp > 10) {
-      const newValue = +CTleaven - 1;
-      setCTleaven(newValue);
-    }
-    return;
-  };
-
-  const onhandleCTC = (newValue) => {
-    setCTC(newValue);
-  };
-  const CTCplus = () => {
-    const newValue = +CTC + 1;
-    setCTC(newValue);
-  };
-
-  const CTCminus = () => {
-    if (temp > 10) {
-      const newValue = +CTC - 1;
-      setCTC(newValue);
-    }
-    return;
-  };
-
   const [NewYeastFactor, setNewYeastFactor] = useState(0);
-  console.log(yeastfactor);
+  console.log(NewYeastFactor);
 
   const leavenplus = () => {
     const newValue = +leaven + 1;
@@ -274,22 +239,6 @@ const Inputs = () => {
     }
     return;
   };
-  const onHandleFats = (newValue) => {
-    setfats(newValue);
-  };
-
-  const fatplus = () => {
-    const newValue = +flour4 + 1;
-    setfats(newValue);
-  };
-
-  const fatminus = () => {
-    if (flour4 != 0) {
-      const newValue = +flour4 - 1;
-      setfats(newValue);
-    }
-    return;
-  };
 
   const onHandleflour4 = (newValue) => {
     setflour4(newValue);
@@ -427,42 +376,20 @@ const Inputs = () => {
   };
 
   const CYplus = () => {
-    setyeastfactor(+0.2);
-    // setNewYeastFactor(+0.003)
-    // setyeastfactor(+0.005);
-    // sethydrationfactor(+0.5);
-    // settimefactor(+2);
-    // settemp(+2);
+    setyeastfactor(+0.003);
   };
   const ADYplus = () => {
-    setyeastfactor(+0.14);
-    // setNewYeastFactor(+0.002)
-    // setyeastfactor(+0.003);
-    // sethydrationfactor(+0.4);
-    // settimefactor(+1.5);
-    // settemp(+1);
+    setyeastfactor(+0.002);
   };
   const IDYplus = () => {
-    setyeastfactor(+0.1);
-    // setNewYeastFactor(+0.0015)
-    // setyeastfactor(+0.002);
-    // sethydrationfactor(+0.4);
-    // settimefactor(+1);
-    // settemp(+0.5);
+    setyeastfactor(+0.0015);
   };
   const FSDplus = () => {
-    setyeastfactor(+0.8);
-    // setNewYeastFactor(+0.15)
-    // setyeastfactor(+0.15);
-
-    // settimefactor(+3);
+    setyeastfactor(+0.15);
   };
+  console.log(oldDoughIn);
   const LSDplus = () => {
-    setyeastfactor(+0.9);
-    // setNewYeastFactor(+0.14)
-    // setyeastfactor(+0.2);
-
-    // settimefactor(+3);
+    setyeastfactor(+0.4);
   };
 
   const doughBalls1 = +Doughball1;
@@ -494,8 +421,7 @@ const Inputs = () => {
     flour5,
     flour6,
     autolysisflour,
-    autolysiswater,
-    Fats
+    autolysiswater
   );
 
   return (
@@ -554,7 +480,7 @@ const Inputs = () => {
               onIncrement={BallWeight2plus}
               onDecrement={BallWeight2minus}
               borderColor={"#990000"}
-              label="Ball Weight(g)"
+              label="Ball Weight"
               viewWidth={150}
             />
           </View>
@@ -570,7 +496,7 @@ const Inputs = () => {
           style={{
             flexDirection: "row",
             justifyContent: "space-between",
-            marginBottom: 20,
+            marginBottom: 1,
             justifyContent: "space-between",
             alignItems: "center",
             margin: "auto",
@@ -582,8 +508,8 @@ const Inputs = () => {
             onIncrement={flour1plus}
             onDecrement={flour1minus}
             borderColor={"#990000"}
-            label="Flour 1 (%)"
-            viewWidth={"auto"}
+            label="Flour 1"
+            viewWidth={150}
             name="pencil"
           />
 
@@ -594,7 +520,7 @@ const Inputs = () => {
               onIncrement={flour2plus}
               onDecrement={flour2minus}
               borderColor={"#990000"}
-              label="Flour 2 (%)"
+              label="Flour 2"
               viewWidth={150}
               name="pencil"
             />
@@ -604,12 +530,12 @@ const Inputs = () => {
 
       {flour03 ? (
         <>
-          <Spacer height={30} />
+          <Spacer height={1} />
           <View
             style={{
               flexDirection: "row",
               justifyContent: "space-between",
-              marginBottom: 20,
+              marginBottom: 1,
               justifyContent: "space-between",
               alignItems: "center",
             }}
@@ -621,7 +547,7 @@ const Inputs = () => {
                 onIncrement={flour3plus}
                 onDecrement={flour3minus}
                 borderColor={"#990000"}
-                label="Flour 3 (%)"
+                label="Flour 3"
                 viewWidth={150}
                 name="pencil"
               />
@@ -634,7 +560,7 @@ const Inputs = () => {
                 onIncrement={flour4plus}
                 onDecrement={flour4minus}
                 borderColor={"#990000"}
-                label="Flour 4 (%)"
+                label="Flour 4"
                 viewWidth={150}
                 name="pencil"
               />
@@ -642,7 +568,7 @@ const Inputs = () => {
           </View>
         </>
       ) : null}
-      <Spacer height={30} />
+      <Spacer height={1} />
       {flour05 ? (
         <View
           style={{
@@ -660,7 +586,7 @@ const Inputs = () => {
               onIncrement={flour5plus}
               onDecrement={flour5minus}
               borderColor={"#990000"}
-              label="Flour 5 (%)"
+              label="Flour 5"
               viewWidth={150}
               name="pencil"
             />
@@ -672,11 +598,13 @@ const Inputs = () => {
               onIncrement={flour6plus}
               onDecrement={flour6minus}
               borderColor={"#990000"}
-              label="Flour 6 (%)"
+              label="Flour 6"
               viewWidth={150}
               name="pencil"
             />
-          ) : null}
+          ) : (
+            <Text></Text>
+          )}
         </View>
       ) : null}
       <View>
@@ -686,39 +614,18 @@ const Inputs = () => {
           onIncrement={waterplus}
           onDecrement={waterminus}
           borderColor={"#990000"}
-          label="Water (%)"
+          label="Water"
         />
-      </View>
-      <Spacer height={20} />
-      <View
-        style={{
-          flexDirection: "row",
-          justifyContent: "space-between",
-          marginBottom: 20,
-          alignItems: "center",
-        }}
-      >
-        <InputWithAdornments
-          value={Fats}
-          onChange={onHandleFats}
-          onIncrement={fatplus}
-          onDecrement={fatminus}
-          borderColor={"#990000"}
-          viewWidth={150}
-          label="fats (%)"
-        />
-
         <InputWithAdornments
           value={salt}
           onChange={onHandlesalt}
           onIncrement={saltplus}
           onDecrement={saltminus}
           borderColor={"#990000"}
-          viewWidth={150}
-          label="Salt (%)"
-          
+          label="Salt"
         />
       </View>
+      <Spacer height={20} />
       <View
         style={{
           flexDirection: "row",
@@ -733,7 +640,7 @@ const Inputs = () => {
           onIncrement={leavenplus}
           onDecrement={leavenminus}
           borderColor={"#990000"}
-          label="RT leavening (h)"
+          label="RT leavening"
           viewWidth={150}
           name="pencil"
         />
@@ -744,36 +651,6 @@ const Inputs = () => {
           onDecrement={tempminus}
           borderColor={"#990000"}
           label="RT C"
-          viewWidth={150}
-          name="pencil"
-        />
-        <Spacer height={20} />
-      </View>
-      <View
-        style={{
-          flexDirection: "row",
-          justifyContent: "space-between",
-          marginBottom: 20,
-          alignItems: "center",
-        }}
-      >
-        <InputWithAdornments
-          value={CTleaven}
-          onChange={onhandleCTleaven}
-          onIncrement={CTleavenplus}
-          onDecrement={CTleavenminus}
-          borderColor={"#990000"}
-          label="CT leavening (h)"
-          viewWidth={150}
-          name="pencil"
-        />
-        <InputWithAdornments
-          value={CTC}
-          onChange={onhandleCTC}
-          onIncrement={CTCplus}
-          onDecrement={CTCminus}
-          borderColor={"#990000"}
-          label="CT "
           viewWidth={150}
           name="pencil"
         />
@@ -795,7 +672,7 @@ const Inputs = () => {
             onIncrement={autolysisflourplus}
             onDecrement={autolysisflourminus}
             borderColor={"#990000"}
-            label="Autolysis flour (%)"
+            label="Autolysis flour(%)"
             viewWidth={150}
             name="pencil"
           />
@@ -805,7 +682,7 @@ const Inputs = () => {
             onIncrement={autolysiswaterplus}
             onDecrement={autolysiswaterminus}
             borderColor={"#990000"}
-            label="Autolysis water (%)"
+            label="Autolysis water(%) "
             viewWidth={150}
             name="pencil"
           />
@@ -830,7 +707,7 @@ const Inputs = () => {
               onIncrement={olddoughinplus}
               onDecrement={olddoughinminus}
               borderColor={"#990000"}
-              label="Old Dough in"
+              label="Old Dough in (%)"
               viewWidth={150}
               name="pencil"
             />
@@ -845,23 +722,24 @@ const Inputs = () => {
               }}
             >
               <StyledIconButton
-                label="ON"
+                label="LOW"
                 // onPress={LSDplus}
                 helperText="Max value reached"
                 // style={{ marginBottom: 20 }}
                 onPress={() => {
-                  handleButtonClick("ON");
+                  handleButtonClick("LOW");
                   // LSDplus();
                 }}
                 clickedLabel={clickedLabel}
               />
+
               <StyledIconButton
-                label="OFF"
+                label="HIGH"
                 // onPress={LSDplus}
                 helperText="Max value reached"
                 // style={{ marginBottom: 20 }}
                 onPress={() => {
-                  handleButtonClick("OFF");
+                  handleButtonClick("HIGH");
                   // LSDplus();
                 }}
                 clickedLabel={clickedLabel}
@@ -885,14 +763,13 @@ const Inputs = () => {
               onIncrement={olddoughoutplus}
               onDecrement={olddoughoutminus}
               borderColor={"#990000"}
-              label="Old Dough out"
+              label="Old Dough out(%)"
               viewWidth={150}
               name="pencil"
             />
           </View>
         </>
       ) : null}
-
       <View
         style={{
           flexDirection: "row",
@@ -903,6 +780,7 @@ const Inputs = () => {
         <View
           style={{
             flexDirection: "row",
+            position: "relative",
             // justifyContent: "space-between",
           }}
         >
@@ -917,6 +795,16 @@ const Inputs = () => {
             }}
             clickedLabel={clickedLabel}
           />
+          {clickedLabel === "CY" ? (
+            <Text
+              style={{
+                position: "absolute",
+                bottom: -10,
+              }}
+            >
+              Compressed Yeast
+            </Text>
+          ) : null}
           <StyledIconButton
             label="ADY"
             // onPress={ADYplus}
@@ -928,6 +816,16 @@ const Inputs = () => {
             }}
             clickedLabel={clickedLabel}
           />
+           {clickedLabel === "ADY" ? (
+            <Text
+              style={{
+                position: "absolute",
+                bottom: -10,
+              }}
+            >
+              Active Dry Yeast
+            </Text>
+          ) : null}
           <StyledIconButton
             label="IDY"
             // onPress={IDYplus}
@@ -939,6 +837,16 @@ const Inputs = () => {
             }}
             clickedLabel={clickedLabel}
           />
+           {clickedLabel === "IDY" ? (
+            <Text
+              style={{
+                position: "absolute",
+                bottom: -10,
+              }}
+            >
+             Instant Dry Yeast
+            </Text>
+          ) : null}
           <StyledIconButton
             label="FSD"
             // onPress={FSDplus}
@@ -950,6 +858,16 @@ const Inputs = () => {
             }}
             clickedLabel={clickedLabel}
           />
+           {clickedLabel === "FSD" ? (
+            <Text
+              style={{
+                position: "absolute",
+                bottom: -10,
+              }}
+            >
+              Firm Sour Dough
+            </Text>
+          ) : null}
           <StyledIconButton
             label="LSD"
             // onPress={LSDplus}
@@ -961,6 +879,16 @@ const Inputs = () => {
             }}
             clickedLabel={clickedLabel}
           />
+           {clickedLabel === "LSD" ? (
+            <Text
+              style={{
+                position: "absolute",
+                bottom: -10,
+              }}
+            >
+              Liquid Sour Dough
+            </Text>
+          ) : null}
         </View>
       </View>
 
@@ -972,11 +900,7 @@ const Inputs = () => {
           }}
         >
           <HDivider />
-          <Text>
-            Autolysis doses{" "}
-            {isNaN(result.autolysisdose) ? "" : result.autolysisdose.toFixed(2)}
-            g
-          </Text>
+          <Text>Autolysis doses {result.autolysisdose.toFixed(2)}g</Text>
           <Spacer height={20} />
           <View
             style={{
@@ -991,13 +915,7 @@ const Inputs = () => {
                 borderRadius: 25,
               }}
             >
-              <Text>
-                Flour :{" "}
-                {isNaN(result.autolysisflourmass)
-                  ? ""
-                  : result.autolysisflourmass.toFixed(2)}
-                g
-              </Text>
+              <Text>Flour : {result.autolysisflourmass.toFixed(2)}g</Text>
             </View>
             <Spacer width={30} />
             <View
@@ -1007,13 +925,7 @@ const Inputs = () => {
                 borderRadius: 25,
               }}
             >
-              <Text>
-                Water :{" "}
-                {isNaN(result.autolysiswatermass)
-                  ? ""
-                  : result.autolysiswatermass.toFixed(2)}
-                g
-              </Text>
+              <Text>Water : {result.autolysiswatermass.toFixed(2)}g</Text>
             </View>
           </View>
         </View>
@@ -1231,30 +1143,13 @@ const Inputs = () => {
               }}
             >
               yeast:{" "}
-              {isNaN(result.yeastWeight) ? "" : result.yeastWeight.toFixed(2)}g
+              {isNaN(result.yeastWeight)
+                ? ""
+                : +result.yeastWeight.toFixed(2) * 10}
+              g
             </Text>
           </View>
         </View>
-      </View>
-      <Spacer height={20} />
-      <View
-        style={{
-          backgroundColor: "#990000",
-          borderRadius: 10,
-          height: 50,
-          width: 150,
-          alignItems: "center",
-          justifyContent: "center",
-          marginLeft: 30,
-        }}
-      >
-        <Text
-          style={{
-            color: "white",
-          }}
-        >
-          Fats: {isNaN(result.fats) ? "" : result.fats.toFixed(2)}g
-        </Text>
       </View>
     </View>
   );

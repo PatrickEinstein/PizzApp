@@ -16,6 +16,7 @@ import {
   toggleflour4,
   toggleflour5,
   toggleflour6,
+  togglePicker,
 } from "../Redux/Reducers";
 import { useDispatch } from "react-redux";
 import { Spacer } from "../components/spacer";
@@ -50,8 +51,9 @@ const Settings = () => {
 
   console.log(`values ==> ${selectedValue}`);
 
-  const onValueChange = (selectedValue, index) => {
+  const onValueChange = (selectedValue) => {
     setSelectedValue(selectedValue);
+    dispatch(togglePicker(selectedValue));
   };
   const onToggleTwoBallSize = () => {
     setTwoBallSize((prev) => !prev);
@@ -110,7 +112,7 @@ const Settings = () => {
   ];
 
   const Dispatchers = async () => {
-    switch (selectedValue) {
+    switch (+selectedValue) {
       case 2:
         setFlour2(true);
         setFlour3(false);
@@ -159,164 +161,160 @@ const Settings = () => {
   };
 
   useEffect(() => {
-    
     Dispatchers();
   }, [selectedValue]);
 
   return (
     <View>
-    <Stackscreen
-    onPress={() => router.push("/")}
-    title="Settings"
-    icon="home"
-  />
-    <View
-    style={{
-      paddingLeft:20
-    }}
-    >
-     
+      <Stackscreen
+        onPress={() => router.push("/")}
+        title="Settings"
+        icon="home"
+      />
       <View
         style={{
-          flexDirection: "row",
-          justifyContent: "space-between",
-          marginBottom: 20,
-          marginTop: 20,
-        
+          paddingLeft: 20,
         }}
       >
-        <Text>Flour No</Text>
-        <Pickers
-          options={options}
-          selectedValue={selectedValue}
-          onValueChange={onValueChange}
-          width={50}
-          color="maroon"
-        />
-      </View>
-      <Spacer borderwidth={1} width="100%" borderColor="black" />
-      <View
-        style={{
-          flexDirection: "row",
-          justifyContent: "space-between",
-          marginBottom: 20,
-          marginTop: 20,
-        
-        }}
-      >
-        <Text>Two Balls Size</Text>
-        <Switches value={twoBallSize} onToggleSwitch={onToggleTwoBallSize} />
-      </View>
-      <Spacer borderwidth={1} width="100%" borderColor="black" />
-      <View
-        style={{
-          flexDirection: "row",
-          justifyContent: "space-between",
-          marginBottom: 20,
-          marginTop: 20,
-        }}
-      >
-        <Text>Fats</Text>
-        <Switches value={fats} onToggleSwitch={onToggleFats} />
-      </View>
-      <Spacer borderwidth={1} width="100%" borderColor="black" />
-      <View
-        style={{
-          flexDirection: "row",
-          justifyContent: "space-between",
-          marginBottom: 20,
-          marginTop: 20,
-        }}
-      >
-        <Text>CT</Text>
-        <Switches value={CT} onToggleSwitch={onToggleCT} />
-      </View>
-      <Spacer borderwidth={1} width="100%" borderColor="black" />
-      <View
-        style={{
-          flexDirection: "row",
-          justifyContent: "space-between",
-          marginBottom: 20,
-          marginTop: 20,
-        }}
-      >
-        <Text>old Dough In</Text>
-        <Switches value={oldDoughIn} onToggleSwitch={onToggleoldDoughIn} />
-      </View>
-      <Spacer borderwidth={1} width="100%" borderColor="black" />
-      <View
-        style={{
-          flexDirection: "row",
-          justifyContent: "space-between",
-          marginBottom: 20,
-          marginTop: 20,
-        }}
-      >
-        <Text>Old Dough out</Text>
-        <Switches value={oldDoughOut} onToggleSwitch={onToggleoldDoughOut} />
-      </View>
-      <Spacer borderwidth={1} width="100%" borderColor="black" />
-      <View
-        style={{
-          flexDirection: "row",
-          justifyContent: "space-between",
-          marginBottom: 20,
-          marginTop: 20,
-        }}
-      >
-        <Text>Autolysis</Text>
-        <Switches value={autolysis} onToggleSwitch={onToggleautolysis} />
-      </View>
-      <Spacer borderwidth={1} width="100%" borderColor="black" />
-      <View
-        style={{
-          flexDirection: "row",
-          justifyContent: "space-between",
-          marginBottom: 20,
-          marginTop: 20,
-        }}
-      >
-        <Text>Biga</Text>
-        <Switches value={biga} onToggleSwitch={onTogglebiga} />
-      </View>
-      <Spacer borderwidth={1} width="100%" borderColor="black" />
-      <View
-        style={{
-          flexDirection: "row",
-          justifyContent: "space-between",
-          marginBottom: 20,
-          marginTop: 20,
-        }}
-      >
-        <Text>poolish</Text>
-        <Switches value={poolish} onToggleSwitch={onTogglePolish} />
-      </View>
-      <Spacer borderwidth={1} width="100%" borderColor="black" />
-      <View
-        style={{
-          flexDirection: "row",
-          justifyContent: "space-between",
-          marginBottom: 20,
-          marginTop: 20,
-        }}
-      >
-        <Text>Display On</Text>
-        <Switches value={displayOn} onToggleSwitch={onToggleDisplayon} />
-      </View>
-
-      <Spacer borderwidth={1} width="100%" borderColor="black" />
-      {visible ? (
         <View
           style={{
-            position: "absolute",
-            top: 5,
-            right: 0,
+            flexDirection: "row",
+            justifyContent: "space-between",
+            marginBottom: 20,
+            marginTop: 20,
           }}
         >
-          <MenuList />
+          <Text>Flour No</Text>
+          <Pickers
+            options={options}
+            selectedValue={selectedValue}
+            onValueChange={onValueChange}
+            width={50}
+            color="maroon"
+          />
         </View>
-      ) : null}
-    </View>
+        <Spacer borderwidth={1} width="100%" borderColor="black" />
+        <View
+          style={{
+            flexDirection: "row",
+            justifyContent: "space-between",
+            marginBottom: 20,
+            marginTop: 20,
+          }}
+        >
+          <Text>Two Balls Size</Text>
+          <Switches value={twoBallSize} onToggleSwitch={onToggleTwoBallSize} />
+        </View>
+        <Spacer borderwidth={1} width="100%" borderColor="black" />
+        <View
+          style={{
+            flexDirection: "row",
+            justifyContent: "space-between",
+            marginBottom: 20,
+            marginTop: 20,
+          }}
+        >
+          <Text>Fats</Text>
+          <Switches value={fats} onToggleSwitch={onToggleFats} />
+        </View>
+        <Spacer borderwidth={1} width="100%" borderColor="black" />
+        <View
+          style={{
+            flexDirection: "row",
+            justifyContent: "space-between",
+            marginBottom: 20,
+            marginTop: 20,
+          }}
+        >
+          <Text>CT</Text>
+          <Switches value={CT} onToggleSwitch={onToggleCT} />
+        </View>
+        <Spacer borderwidth={1} width="100%" borderColor="black" />
+        <View
+          style={{
+            flexDirection: "row",
+            justifyContent: "space-between",
+            marginBottom: 20,
+            marginTop: 20,
+          }}
+        >
+          <Text>old Dough In</Text>
+          <Switches value={oldDoughIn} onToggleSwitch={onToggleoldDoughIn} />
+        </View>
+        <Spacer borderwidth={1} width="100%" borderColor="black" />
+        <View
+          style={{
+            flexDirection: "row",
+            justifyContent: "space-between",
+            marginBottom: 20,
+            marginTop: 20,
+          }}
+        >
+          <Text>Old Dough out</Text>
+          <Switches value={oldDoughOut} onToggleSwitch={onToggleoldDoughOut} />
+        </View>
+        <Spacer borderwidth={1} width="100%" borderColor="black" />
+        <View
+          style={{
+            flexDirection: "row",
+            justifyContent: "space-between",
+            marginBottom: 20,
+            marginTop: 20,
+          }}
+        >
+          <Text>Autolysis</Text>
+          <Switches value={autolysis} onToggleSwitch={onToggleautolysis} />
+        </View>
+        <Spacer borderwidth={1} width="100%" borderColor="black" />
+        <View
+          style={{
+            flexDirection: "row",
+            justifyContent: "space-between",
+            marginBottom: 20,
+            marginTop: 20,
+          }}
+        >
+          <Text>Biga</Text>
+          <Switches value={biga} onToggleSwitch={onTogglebiga} />
+        </View>
+        <Spacer borderwidth={1} width="100%" borderColor="black" />
+        <View
+          style={{
+            flexDirection: "row",
+            justifyContent: "space-between",
+            marginBottom: 20,
+            marginTop: 20,
+          }}
+        >
+          <Text>poolish</Text>
+          <Switches value={poolish} onToggleSwitch={onTogglePolish} />
+        </View>
+        <Spacer borderwidth={1} width="100%" borderColor="black" />
+        <View
+          style={{
+            flexDirection: "row",
+            justifyContent: "space-between",
+            marginBottom: 20,
+            marginTop: 20,
+          }}
+        >
+          <Text>Display On</Text>
+          <Switches value={displayOn} onToggleSwitch={onToggleDisplayon} />
+        </View>
+
+        <Spacer borderwidth={1} width="100%" borderColor="black" />
+        {visible ? (
+          <View
+            style={{
+              position: "absolute",
+              top: 5,
+              right: 0,
+            }}
+          >
+            <MenuList />
+          </View>
+        ) : null}
+      </View>
     </View>
   );
 };

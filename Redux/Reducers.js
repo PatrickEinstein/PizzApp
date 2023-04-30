@@ -20,6 +20,7 @@ export const recipeReducer = createSlice({
     flour5: 0,
     flour6: 0,
     saved: [],
+    picker:0,
   },
   reducers: {
     toggleSaved: (state, action) => {
@@ -73,10 +74,14 @@ export const recipeReducer = createSlice({
     toggleflour6: (state, action) => {
       state.flour6 = action.payload;
     },
+    togglePicker: (state, action) => {
+      state.picker = action.payload;
+    },
   },
 });
 
 export const {
+  togglePicker,
   toggleSaved,
   toggleTwoballsize,
   toggleFats,
