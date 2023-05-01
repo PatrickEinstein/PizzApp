@@ -9,7 +9,7 @@ import HDivider from "../components/Divider";
 import { useSelector } from "react-redux";
 import { calculateDoughIngredients } from "../config/neapolitan";
 import { Value } from "react-native-reanimated";
-
+import { Factors2 } from "../components/YeastFactors";
 const Inputs = () => {
   const [clickedLabel, setClickedLabel] = useState("");
 
@@ -20,7 +20,8 @@ const Inputs = () => {
       setClickedLabel(label);
     }
   };
-
+  const Factores = Factors2(clickedLabel);
+  console.log(`facts ===> ${Factores}`);
   const onOff = useSelector((state) => state.recipe);
 
   const twoballsize = onOff.twoballsize;
@@ -744,42 +745,46 @@ const Inputs = () => {
           onIncrement={tempplus}
           onDecrement={tempminus}
           borderColor={"#990000"}
-          label="RT C"
+          label="RT ºC"
           viewWidth={150}
           name="pencil"
         />
         <Spacer height={20} />
       </View>
-      <View
-        style={{
-          flexDirection: "row",
-          justifyContent: "space-between",
-          marginBottom: 20,
-          alignItems: "center",
-        }}
-      >
-        <InputWithAdornments
-          value={CTleaven}
-          onChange={onhandleCTleaven}
-          onIncrement={CTleavenplus}
-          onDecrement={CTleavenminus}
-          borderColor={"#990000"}
-          label="CT leavening (h)"
-          viewWidth={150}
-          name="pencil"
-        />
-        <InputWithAdornments
-          value={CTC}
-          onChange={onhandleCTC}
-          onIncrement={CTCplus}
-          onDecrement={CTCminus}
-          borderColor={"#990000"}
-          label="CT "
-          viewWidth={150}
-          name="pencil"
-        />
-        <Spacer height={20} />
-      </View>
+      {ct ? (
+        <>
+          <View
+            style={{
+              flexDirection: "row",
+              justifyContent: "space-between",
+              marginBottom: 20,
+              alignItems: "center",
+            }}
+          >
+            <InputWithAdornments
+              value={CTleaven}
+              onChange={onhandleCTleaven}
+              onIncrement={CTleavenplus}
+              onDecrement={CTleavenminus}
+              borderColor={"#990000"}
+              label="CT leavening (h)"
+              viewWidth={150}
+              name="pencil"
+            />
+            <InputWithAdornments
+              value={CTC}
+              onChange={onhandleCTC}
+              onIncrement={CTCplus}
+              onDecrement={CTCminus}
+              borderColor={"#990000"}
+              label="CT ºC"
+              viewWidth={150}
+              name="pencil"
+            />
+            <Spacer height={20} />
+          </View>
+        </>
+      ) : null}
       {autolysis ? (
         <View
           style={{
@@ -831,42 +836,45 @@ const Inputs = () => {
               onIncrement={olddoughinplus}
               onDecrement={olddoughinminus}
               borderColor={"#990000"}
-              label="Old Dough in"
+              label="Old Dough in (%)"
               viewWidth={150}
               name="pencil"
             />
-            <View
-              style={{
-                flexDirection: "row",
-                justifyContent: "space-around",
-                marginBottom: 20,
-                justifyContent: "space-around",
-                alignItems: "center",
-                marginRight: 10,
-              }}
-            >
-              <StyledIconButton
-                label="ON"
-                // onPress={LSDplus}
-                helperText="Max value reached"
-                // style={{ marginBottom: 20 }}
-                onPress={() => {
-                  handleButtonClick("ON");
-                  // LSDplus();
+            <View>
+              <Text>OD Leav. Power</Text>
+              <View
+                style={{
+                  flexDirection: "row",
+                  justifyContent: "space-around",
+                  marginBottom: 20,
+                  justifyContent: "space-around",
+                  alignItems: "center",
+                  marginRight: 10,
                 }}
-                clickedLabel={clickedLabel}
-              />
-              <StyledIconButton
-                label="OFF"
-                // onPress={LSDplus}
-                helperText="Max value reached"
-                // style={{ marginBottom: 20 }}
-                onPress={() => {
-                  handleButtonClick("OFF");
-                  // LSDplus();
-                }}
-                clickedLabel={clickedLabel}
-              />
+              >
+                <StyledIconButton
+                  label="Low"
+                  // onPress={LSDplus}
+                  helperText="Max value reached"
+                  // style={{ marginBottom: 20 }}
+                  onPress={() => {
+                    handleButtonClick("ON");
+                    // LSDplus();
+                  }}
+                  clickedLabel={clickedLabel}
+                />
+                <StyledIconButton
+                  label="High"
+                  // onPress={LSDplus}
+                  helperText="Max value reached"
+                  // style={{ marginBottom: 20 }}
+                  onPress={() => {
+                    handleButtonClick("OFF");
+                    // LSDplus();
+                  }}
+                  clickedLabel={clickedLabel}
+                />
+              </View>
             </View>
           </View>
 
@@ -886,7 +894,7 @@ const Inputs = () => {
               onIncrement={olddoughoutplus}
               onDecrement={olddoughoutminus}
               borderColor={"#990000"}
-              label="Old Dough out"
+              label="Old Dough out (g)"
               viewWidth={150}
               name="pencil"
             />
@@ -1283,7 +1291,11 @@ const Inputs = () => {
               }}
             >
               yeast:{" "}
-              {isNaN(result.yeastWeight) ? "" : result.yeastWeight.toFixed(2)}g
+              {isNaN(result.yeastWeight)
+                ? ""
+                : (Math.round(+result.yeastWeight.toFixed(5) * 100) / 100) *
+                  (clickedLabel ? Factores : null)}
+              g
             </Text>
           </View>
         </View>

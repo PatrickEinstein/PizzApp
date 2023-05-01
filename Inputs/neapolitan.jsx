@@ -9,6 +9,7 @@ import HDivider from "../components/Divider";
 import { useSelector } from "react-redux";
 import { calculateDoughIngredients } from "../config/neapolitan";
 import { Value } from "react-native-reanimated";
+import Factors from "../components/YeastFactors";
 
 const Inputs = () => {
   const [clickedLabel, setClickedLabel] = useState("");
@@ -21,6 +22,8 @@ const Inputs = () => {
     }
   };
 
+  const Factores = Factors(clickedLabel);
+  // console.log(`FACTORS ===> ${Factores}`);
   const onOff = useSelector((state) => state.recipe);
 
   const twoballsize = onOff.twoballsize;
@@ -61,7 +64,41 @@ const Inputs = () => {
   const [OlddoughOut, setolddoughout] = useState(0);
   const [yeastfactor, setyeastfactor] = useState(2.5);
   const [NewYeastFactor, setNewYeastFactor] = useState(0);
+  const [CTleaven, setCTleaven] = useState(43);
+  const [CTC, setCTC] = useState(4);
   console.log(NewYeastFactor);
+
+  const onhandleCTleaven = (newValue) => {
+    setCTleaven(newValue);
+  };
+  const CTleavenplus = () => {
+    const newValue = +CTleaven + 1;
+    setCTleaven(newValue);
+  };
+
+  const CTleavenminus = () => {
+    if (temp > 10) {
+      const newValue = +CTleaven - 1;
+      setCTleaven(newValue);
+    }
+    return;
+  };
+
+  const onhandleCTC = (newValue) => {
+    setCTC(newValue);
+  };
+  const CTCplus = () => {
+    const newValue = +CTC + 1;
+    setCTC(newValue);
+  };
+
+  const CTCminus = () => {
+    if (temp > 10) {
+      const newValue = +CTC - 1;
+      setCTC(newValue);
+    }
+    return;
+  };
 
   const leavenplus = () => {
     const newValue = +leaven + 1;
@@ -650,12 +687,46 @@ const Inputs = () => {
           onIncrement={tempplus}
           onDecrement={tempminus}
           borderColor={"#990000"}
-          label="RT C"
+          label="RT ºC"
           viewWidth={150}
           name="pencil"
         />
         <Spacer height={20} />
       </View>
+      {ct ? (
+        <>
+          <View
+            style={{
+              flexDirection: "row",
+              justifyContent: "space-between",
+              marginBottom: 20,
+              alignItems: "center",
+            }}
+          >
+            <InputWithAdornments
+              value={CTleaven}
+              onChange={onhandleCTleaven}
+              onIncrement={CTleavenplus}
+              onDecrement={CTleavenminus}
+              borderColor={"#990000"}
+              label="CT leavening (h)"
+              viewWidth={150}
+              name="pencil"
+            />
+            <InputWithAdornments
+              value={CTC}
+              onChange={onhandleCTC}
+              onIncrement={CTCplus}
+              onDecrement={CTCminus}
+              borderColor={"#990000"}
+              label="CT ºC"
+              viewWidth={150}
+              name="pencil"
+            />
+            <Spacer height={20} />
+          </View>
+        </>
+      ) : null}
       {autolysis ? (
         <View
           style={{
@@ -711,39 +782,42 @@ const Inputs = () => {
               viewWidth={150}
               name="pencil"
             />
-            <View
-              style={{
-                flexDirection: "row",
-                justifyContent: "space-around",
-                marginBottom: 20,
-                justifyContent: "space-around",
-                alignItems: "center",
-                marginRight: 10,
-              }}
-            >
-              <StyledIconButton
-                label="LOW"
-                // onPress={LSDplus}
-                helperText="Max value reached"
-                // style={{ marginBottom: 20 }}
-                onPress={() => {
-                  handleButtonClick("LOW");
-                  // LSDplus();
+            <View>
+              <Text>OD Leav. Power</Text>
+              <View
+                style={{
+                  flexDirection: "row",
+                  justifyContent: "space-around",
+                  marginBottom: 20,
+                  justifyContent: "space-around",
+                  alignItems: "center",
+                  marginRight: 10,
                 }}
-                clickedLabel={clickedLabel}
-              />
+              >
+                <StyledIconButton
+                  label="LOW"
+                  // onPress={LSDplus}
+                  helperText="Max value reached"
+                  // style={{ marginBottom: 20 }}
+                  onPress={() => {
+                    handleButtonClick("LOW");
+                    // LSDplus();
+                  }}
+                  clickedLabel={clickedLabel}
+                />
 
-              <StyledIconButton
-                label="HIGH"
-                // onPress={LSDplus}
-                helperText="Max value reached"
-                // style={{ marginBottom: 20 }}
-                onPress={() => {
-                  handleButtonClick("HIGH");
-                  // LSDplus();
-                }}
-                clickedLabel={clickedLabel}
-              />
+                <StyledIconButton
+                  label="HIGH"
+                  // onPress={LSDplus}
+                  helperText="Max value reached"
+                  // style={{ marginBottom: 20 }}
+                  onPress={() => {
+                    handleButtonClick("HIGH");
+                    // LSDplus();
+                  }}
+                  clickedLabel={clickedLabel}
+                />
+              </View>
             </View>
           </View>
 
@@ -816,7 +890,7 @@ const Inputs = () => {
             }}
             clickedLabel={clickedLabel}
           />
-           {clickedLabel === "ADY" ? (
+          {clickedLabel === "ADY" ? (
             <Text
               style={{
                 position: "absolute",
@@ -837,14 +911,14 @@ const Inputs = () => {
             }}
             clickedLabel={clickedLabel}
           />
-           {clickedLabel === "IDY" ? (
+          {clickedLabel === "IDY" ? (
             <Text
               style={{
                 position: "absolute",
                 bottom: -10,
               }}
             >
-             Instant Dry Yeast
+              Instant Dry Yeast
             </Text>
           ) : null}
           <StyledIconButton
@@ -858,7 +932,7 @@ const Inputs = () => {
             }}
             clickedLabel={clickedLabel}
           />
-           {clickedLabel === "FSD" ? (
+          {clickedLabel === "FSD" ? (
             <Text
               style={{
                 position: "absolute",
@@ -879,7 +953,7 @@ const Inputs = () => {
             }}
             clickedLabel={clickedLabel}
           />
-           {clickedLabel === "LSD" ? (
+          {clickedLabel === "LSD" ? (
             <Text
               style={{
                 position: "absolute",
@@ -1145,7 +1219,8 @@ const Inputs = () => {
               yeast:{" "}
               {isNaN(result.yeastWeight)
                 ? ""
-                : +result.yeastWeight.toFixed(2) * 10}
+                : (Math.round(+result.yeastWeight.toFixed(5) * 100) / 100) *
+                  (clickedLabel ? Factores : null)}
               g
             </Text>
           </View>
@@ -1156,3 +1231,4 @@ const Inputs = () => {
 };
 
 export default Inputs;
+// +result.yeastWeight.toFixed(2)
