@@ -1219,7 +1219,7 @@ const Inputs = () => {
               yeast:{" "}
               {isNaN(result.yeastWeight)
                 ? ""
-                : (Math.round(+result.yeastWeight.toFixed(5) * 100) / 100) *
+                : +result.yeastWeight.toFixed(5) *
                   (clickedLabel ? Factores : null)}
               g
             </Text>
