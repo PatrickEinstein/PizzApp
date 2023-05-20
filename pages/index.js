@@ -1,36 +1,29 @@
 import * as React from "react";
-import { View, useWindowDimensions } from "react-native";
+import { View, useWindowDimensions, } from "react-native";
 import { TabView, SceneMap } from "react-native-tab-view";
-import Inputs from "../Inputs/neapolitan";
-import Inputs2 from "../Inputs/panpizza";
+import SignUp from "./signup";
+import SignIn from "./signin";
 import { ScrollView } from "react-native";
 import { Settings } from "../app/settings";
 import { TabBar } from "react-native-tab-view";
 
-
 const FirstRoute = () => (
-  <View
-    style={{ flex: 1, backgroundColor: "white", marginLeft: 10, marginTop: 20 }}
-  >
+  <View style={{ flex: 1, backgroundColor: "white" , padding:20}}>
     <ScrollView>
-      <Inputs />
+      <SignIn />
     </ScrollView>
   </View>
 );
 
 const SecondRoute = () => (
-  <View
-    style={{ flex: 1, backgroundColor: "white", marginLeft: 10, marginTop: 20 }}
-  >
+  <View style={{ flex: 1, backgroundColor: "white", padding:20 }}>
     <ScrollView>
-      <Inputs2 />
+      <SignUp />
     </ScrollView>
   </View>
 );
 const ThirdRoute = () => (
-  <View
-    style={{ flex: 1, backgroundColor: "white", marginLeft: 10, marginTop: 20 }}
-  >
+  <View style={{ flex: 1, backgroundColor: "white" }}>
     <ScrollView>
       <Settings />
     </ScrollView>
@@ -46,29 +39,39 @@ const renderScene = SceneMap({
 const renderTabBar = (props) => (
   <TabBar
     {...props}
-    indicatorStyle={{ backgroundColor: "white" }}
-    style={{ backgroundColor: "#990000", borderColor: "#ffcc33" }}
+    indicatorStyle={{ backgroundColor: "grey" ,width: "40%", marginLeft: 2 }}
+    style={{
+      backgroundColor: "white",
+      borderColor: "#black",
+      height: 100,
+      color: "black",
+      paddingTop: 20,
+    }}
+    labelStyle={{ color: "black" }}
   />
 );
 
-export default function TabViewExample() {
+export default function HomePage() {
   const layout = useWindowDimensions();
 
   const [index, setIndex] = React.useState(0);
   const [routes, setRoutes] = React.useState([
-    { key: "first", title: "Neapolitan" },
-    { key: "second", title: "Pan Pizza" },
-    // { key: "third", title: "Settings" },
+    { key: "first", title: "SignIn"},
+    { key: "second", title: "SignUp" },
   ]);
 
   return (
     <TabView
-     
       renderScene={renderScene}
       onIndexChange={setIndex}
       initialLayout={{ width: layout.width }}
       renderTabBar={renderTabBar}
       navigationState={{ index, routes }}
+      style={{
+        borderRadius: 20,
+        marginTop: 40,
+      }}
     />
+    // </View>
   );
 }

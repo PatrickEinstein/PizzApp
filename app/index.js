@@ -10,6 +10,7 @@ import { COLORS } from "../constants/index";
 import MenuList from "../components/menulist";
 import { persistStore } from "redux-persist";
 import Stackscreen from "../components/stackscreen";
+import HomePage from "../pages";
 
 const persistor = persistStore(store);
 
@@ -22,12 +23,14 @@ const Home = () => {
         <SafeAreaView
           style={{
             flex: 1,
-            backgroundColor: COLORS.lightWhite,
+            backgroundColor: "#990000",
             position: "relative",
+            margin: 0,
           }}
         >
-          <Stackscreen onPress={onPress} icon="menu"  title="PizzApp"/>
-          <TabViewExample />
+          <Stackscreen onPress={onPress} icon="menu" title="Welcome" />
+
+          <HomePage />
 
           {visible ? (
             <View
@@ -41,9 +44,9 @@ const Home = () => {
             </View>
           ) : null}
         </SafeAreaView>
-    </PersistGate>
-    </Provider> 
-  )
+      </PersistGate>
+    </Provider>
+  );
 };
 
 export default Home;
