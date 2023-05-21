@@ -7,11 +7,8 @@ import { ScrollView } from "react-native";
 import { Settings } from "../app/settings";
 import { TabBar } from "react-native-tab-view";
 
-
 const FirstRoute = () => (
-  <View
-    style={{ flex: 1, backgroundColor: "white", marginLeft: 10, marginTop: 20 }}
-  >
+  <View style={{ flex: 1, backgroundColor: "white", marginLeft: 10 }}>
     <ScrollView>
       <Inputs />
     </ScrollView>
@@ -19,35 +16,36 @@ const FirstRoute = () => (
 );
 
 const SecondRoute = () => (
-  <View
-    style={{ flex: 1, backgroundColor: "white", marginLeft: 10, marginTop: 20 }}
-  >
+  <View style={{ flex: 1, backgroundColor: "white", marginLeft: 10 }}>
     <ScrollView>
       <Inputs2 />
     </ScrollView>
   </View>
 );
-const ThirdRoute = () => (
-  <View
-    style={{ flex: 1, backgroundColor: "white", marginLeft: 10, marginTop: 20 }}
-  >
-    <ScrollView>
-      <Settings />
-    </ScrollView>
-  </View>
-);
+// const ThirdRoute = () => (
+//   <View
+//     style={{ flex: 1, backgroundColor: "white", marginLeft: 10, marginTop: 20 }}
+//   >
+//     <ScrollView>
+//       <BottomNavs />
+//     </ScrollView>
+//   </View>
+// );
 
 const renderScene = SceneMap({
   first: FirstRoute,
   second: SecondRoute,
-  third: ThirdRoute,
+  // third: ThirdRoute,
 });
 
 const renderTabBar = (props) => (
   <TabBar
     {...props}
     indicatorStyle={{ backgroundColor: "white" }}
-    style={{ backgroundColor: "#990000", borderColor: "#ffcc33" }}
+    style={{ backgroundColor: "white", borderColor: "#ffcc33", height: 50 }}
+    labelStyle={{
+      color: "black",
+    }}
   />
 );
 
@@ -58,12 +56,10 @@ export default function TabViewExample() {
   const [routes, setRoutes] = React.useState([
     { key: "first", title: "Neapolitan" },
     { key: "second", title: "Pan Pizza" },
-    // { key: "third", title: "Settings" },
   ]);
 
   return (
     <TabView
-     
       renderScene={renderScene}
       onIndexChange={setIndex}
       initialLayout={{ width: layout.width }}

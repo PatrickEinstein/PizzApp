@@ -467,7 +467,7 @@ const Inputs = () => {
         style={{
           flexDirection: "row",
           justifyContent: "space-between",
-          margin: 0,
+          marginTop: 20,
           alignItems: "center",
         }}
       >

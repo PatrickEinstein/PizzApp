@@ -20,9 +20,13 @@ export const recipeReducer = createSlice({
     flour5: 0,
     flour6: 0,
     saved: [],
-    picker:0,
+    picker: 0,
+    recipee: [],
   },
   reducers: {
+    saveRecipee: (state, action) => {
+      state.recipee.push(action.payload);
+    },
     toggleSaved: (state, action) => {
       state.saved.push(action.payload);
     },
@@ -81,6 +85,7 @@ export const recipeReducer = createSlice({
 });
 
 export const {
+  saveRecipee,
   togglePicker,
   toggleSaved,
   toggleTwoballsize,

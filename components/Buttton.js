@@ -1,14 +1,8 @@
 import React, { useState } from "react";
 import { TextInput, Button } from "react-native-paper";
+import { TouchableOpacity } from "react-native-gesture-handler";
 
-const Buttons = ({
-  icon,
-  text,
-  onPress,
-  width,
-  marginTop,
-  borderRadius,
-}) => {
+const Buttons = ({ icon, text, onPress, width, marginTop, borderRadius }) => {
   const [isPressed, setIsPressed] = useState(false);
 
   const handlePressIn = () => {
@@ -20,21 +14,29 @@ const Buttons = ({
   };
 
   return (
-    <Button
-      icon={icon}
-      mode="contained"
+    <TouchableOpacity
       onPress={onPress}
-      onPressIn={handlePressIn}
-      onPressOut={handlePressOut}
       style={{
-        width: width,
-        marginTop: marginTop,
-        backgroundColor: isPressed ? "grey" : "#990000",
-        // borderRadius: borderRadius,
+        width: "100%",
+        height: "auto",
       }}
     >
-      {text}
-    </Button>
+      <Button
+        icon={icon}
+        mode="contained"
+        // onPress={onPress}
+        onPressIn={handlePressIn}
+        onPressOut={handlePressOut}
+        style={{
+          width: width,
+          marginTop: marginTop,
+          backgroundColor: isPressed ? "grey" : "#990000",
+          borderRadius: borderRadius,
+        }}
+      >
+        {text}
+      </Button>
+    </TouchableOpacity>
   );
 };
 

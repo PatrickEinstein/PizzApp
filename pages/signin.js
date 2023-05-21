@@ -3,8 +3,10 @@ import { TextInput } from "react-native-paper";
 import { View, Text } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import Buttons from "../components/Buttton";
+import { useRouter } from "expo-router";
 
 const SignIn = () => {
+  const router = useRouter();
   const [text, setText] = React.useState("");
   return (
     <View
@@ -42,6 +44,9 @@ const SignIn = () => {
         marginTop={30}
         backgroundColor="#990000"
         borderRadius={10}
+        onPress={() => {
+          router.push("/BottomNavs");
+        }}
       />
 
       <View
