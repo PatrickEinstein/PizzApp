@@ -8,11 +8,8 @@ import Carousels from "../components/Carousel";
 import { Stack, useRouter, useSearchParams } from "expo-router";
 import { useFetch } from "../constants/hook/useFetch";
 import { useSelector } from "react-redux";
-// import { useDispatch } from "react-redux";
-// import { selectedRecipe } from "../Redux/Reducers";
 
-const renderItem1 = ({ item }) => {
-  // const dispatch = useDispatch()
+const RenderItem1 = ({ item }) => {
   const desiredRange = { start: 1, end: 10 }; // Define the desired ID range
 
   if (item.id >= desiredRange.start && item.id <= desiredRange.end) {
@@ -26,7 +23,6 @@ const renderItem1 = ({ item }) => {
         method={item.method}
         description={item.description}
         time={item.time}
-        
       />
     );
   }
@@ -35,7 +31,7 @@ const renderItem1 = ({ item }) => {
   return null;
 };
 
-const renderItem2 = ({ item }) => {
+const RenderItem2 = ({ item }) => {
   const desiredRange = { start: 11, end: 20 }; // Define the desired ID range
 
   if (item.id >= desiredRange.start && item.id <= desiredRange.end) {
@@ -56,7 +52,7 @@ const renderItem2 = ({ item }) => {
   // Return null if the item's ID is not within the desired range
   return null;
 };
-const renderItem3 = ({ item }) => {
+const RenderItem3 = ({ item }) => {
   const desiredRange = { start: 21, end: 30 }; // Define the desired ID range
 
   if (item.id >= desiredRange.start && item.id <= desiredRange.end) {
@@ -78,14 +74,12 @@ const renderItem3 = ({ item }) => {
   return null;
 };
 
-function Recipee() {
+const Recipee = () => {
   const recipees = useSelector((state) => state.recipe.recipee);
-  const params = useSearchParams();
-  // const { isLoading, error, refetch } =useFetch()
-  const Fetch = useFetch();
   useEffect(() => {
-    Fetch;
-  }, []);
+    // useFetch();
+  });
+
   return (
     <ScrollView>
       <View
@@ -101,7 +95,7 @@ function Recipee() {
 
       <FlatList
         data={recipees}
-        renderItem={renderItem1}
+        renderItem={RenderItem1}
         keyExtractor={(item) => item?.id}
         contentContainerStyle={{ flexGrow: 1 }}
         horizontal
@@ -111,7 +105,7 @@ function Recipee() {
       />
       <FlatList
         data={recipees}
-        renderItem={renderItem2}
+        renderItem={RenderItem2}
         keyExtractor={(item) => item?.id}
         contentContainerStyle={{ flexGrow: 1 }}
         horizontal
@@ -121,7 +115,7 @@ function Recipee() {
       />
       <FlatList
         data={recipees}
-        renderItem={renderItem3}
+        renderItem={RenderItem3}
         keyExtractor={(item) => item?.id}
         contentContainerStyle={{ flexGrow: 1 }}
         horizontal
@@ -131,6 +125,6 @@ function Recipee() {
       />
     </ScrollView>
   );
-}
+};
 
 export default Recipee;

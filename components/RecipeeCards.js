@@ -1,22 +1,32 @@
 import { View, Text, TouchableOpacity, Image } from "react-native";
+import { useDispatch } from "react-redux";
+import { selectedRecipe } from "../Redux/Reducers";
 
 const RecipeeCards = ({
   name,
   image,
   width,
-  height,
   time,
   description,
   ingredients,
   method,
-  // onPress,
 }) => {
+  const dispatch = useDispatch();
   return (
     <TouchableOpacity
       style={{
         margin: 10,
       }}
-      // onPress={onPress}
+      onPress={() =>
+        dispatch(
+          selectedRecipe({
+            description: description,
+            method: method,
+            ingredients: ingredients,
+            time: time,
+          })
+        )
+      }
     >
       <View
         justifyContent="center"
