@@ -1,3 +1,5 @@
+import React from "react";
+import { ReactDOM } from "react";
 import { Stack } from "expo-router";
 import { useCallback } from "react";
 import { useFonts } from "expo-font";
@@ -26,11 +28,11 @@ const Layout = () => {
   if (!fontsLoaded) return null;
 
   return (
-    <Provider context={null} store={store}>
-      <PersistGate loading={null} persistor={persistor}>
+    <PersistGate loading={null} persistor={persistor}>
+      <Provider context={null} store={store}>
         <Stack onLayout={onLayoutRootView} />
-      </PersistGate>
-    </Provider>
+      </Provider>
+    </PersistGate>
   );
 };
 

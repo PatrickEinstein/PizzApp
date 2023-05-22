@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { Text, View } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Icon from "react-native-vector-icons/FontAwesome"; // Example icon library
 import Recipee from "../pages/recipee";
 import TabViewExample from "../Tabs/tab";
+import Stackscreen from "../components/stackscreen";
+import MenuList from "../components/menulist";
 
 function RECIPEES() {
   return (
@@ -16,10 +18,30 @@ function RECIPEES() {
 }
 
 function PIZZACALC() {
+  const [open, setOpen] = useState(0);
+  console.log(open);
   return (
-    // <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-    <TabViewExample />
-    // </View>
+    <>
+      <Stackscreen
+        icon="menu"
+        height={70}
+        onPress={() => setOpen((prev) => !prev)}
+      />
+      {open ? (
+        <View
+          style={{
+            position: "absolute",
+            top: 5,
+            right: 0,
+            zIndex:10,
+            padding:5
+          }}
+        >
+          <MenuList />
+        </View>
+      ) : null}
+      <TabViewExample />
+    </>
   );
 }
 

@@ -34,6 +34,7 @@ const RecipeeCards = ({
         style={{
           width: width,
           height: 200,
+          marginBottom: 20,
         }}
       >
         <Text
@@ -41,6 +42,7 @@ const RecipeeCards = ({
             textAlign: "center",
             fontSize: 15,
             fontWeight: "bold",
+            marginTop: 30,
           }}
         >
           {name}

@@ -5,7 +5,7 @@ import { Feather } from "react-native-vector-icons";
 import React from "react";
 import { TouchableOpacity } from "react-native-gesture-handler";
 
-function Stackscreen({ onPress, title, icon, height }) {
+function Stackscreen({ onPress, title, icon, height, width }) {
   return (
     <Stack.Screen
       options={{
@@ -13,7 +13,7 @@ function Stackscreen({ onPress, title, icon, height }) {
         headerTitleStyle: { color: "white" },
         headerStyle: {
           backgroundColor: "#990000",
-          height:300,
+          height: height,
           borderColor: "#990000",
         },
         headerShadowVisible: false,

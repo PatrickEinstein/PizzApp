@@ -55,7 +55,7 @@ const Save = () => {
       }}
     >
       <Stackscreen
-        onPress={() => router.push("/")}
+        onPress={() => router.push("/BottomNavs")}
         title="Save Recipee"
         icon="home"
       />

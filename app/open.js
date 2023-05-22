@@ -13,7 +13,7 @@ function Open() {
       <Stackscreen
         title="Open Recipee"
         icon="home"
-        onPress={() => router.push("/")}
+        onPress={() => router.push("/BottomNavs")}
       />
 
       {savedstuffs?.map(({ setvalues, recipe }) => (

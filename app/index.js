@@ -30,18 +30,6 @@ const Home = () => {
         >
           <Stackscreen onPress={onPress} icon="menu" title="Welcome" />
           <HomePage />
-
-          {visible ? (
-            <View
-              style={{
-                position: "absolute",
-                top: 5,
-                right: 0,
-              }}
-            >
-              <MenuList />
-            </View>
-          ) : null}
         </SafeAreaView>
       </PersistGate>
     </Provider>

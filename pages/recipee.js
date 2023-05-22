@@ -74,11 +74,11 @@ const RenderItem3 = ({ item }) => {
   return null;
 };
 
-const Recipee = () => {
+export const Recipee = () => {
   const recipees = useSelector((state) => state.recipe.recipee);
-  useEffect(() => {
-    // useFetch();
-  });
+  // useEffect(() => {
+  useFetch();
+  // }, []);
 
   return (
     <ScrollView>
@@ -87,7 +87,7 @@ const Recipee = () => {
         alignItems="center"
         style={{
           height: "auto",
-          marginBottom: 20,
+          // marginBottom: 20,
         }}
       >
         <Carousels />

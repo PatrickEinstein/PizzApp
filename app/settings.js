@@ -167,7 +167,7 @@ const Settings = () => {
   return (
     <View>
       <Stackscreen
-        onPress={() => router.push("/")}
+        onPress={() => router.push("/BottomNavs")}
         title="Settings"
         icon="home"
       />
