@@ -1,20 +1,49 @@
 import { View, Text, TouchableOpacity, Image } from "react-native";
 
-const RecipeeCards = ({ name }) => {
+const RecipeeCards = ({
+  name,
+  image,
+  width,
+  height,
+  time,
+  description,
+  ingredients,
+  method,
+  // onPress,
+}) => {
   return (
-    <TouchableOpacity>
+    <TouchableOpacity
+      style={{
+        margin: 10,
+      }}
+      // onPress={onPress}
+    >
       <View
         justifyContent="center"
         alignItems="center"
         style={{
-          width: 200,
+          width: width,
           height: 200,
-          backgroundColor: "#990000",
-          borderRadius: 20,
-          margin:10
         }}
       >
-        <Text>{name}</Text>
+        <Text
+          style={{
+            textAlign: "center",
+            fontSize: 15,
+            fontWeight: "bold",
+          }}
+        >
+          {name}
+        </Text>
+        <Image
+          src={image}
+          style={{
+            objectFit: "cover",
+            height: "100%",
+            width: "100%",
+            borderRadius: 20,
+          }}
+        />
       </View>
     </TouchableOpacity>
   );

@@ -22,10 +22,14 @@ export const recipeReducer = createSlice({
     saved: [],
     picker: 0,
     recipee: [],
+    selectedRecipe: {},
   },
   reducers: {
     saveRecipee: (state, action) => {
-      state.recipee.push(action.payload);
+      state.recipee = action.payload;
+    },
+    selectedRecipe: (state, action) => {
+      state.selectedRecipe = action.payload;
     },
     toggleSaved: (state, action) => {
       state.saved.push(action.payload);
@@ -85,6 +89,7 @@ export const recipeReducer = createSlice({
 });
 
 export const {
+  selectedRecipe,
   saveRecipee,
   togglePicker,
   toggleSaved,

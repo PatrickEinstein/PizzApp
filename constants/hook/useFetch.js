@@ -5,7 +5,6 @@ import { saveRecipee } from "../../Redux/Reducers";
 
 export const useFetch = () => {
   const dispatch = useDispatch();
-  // const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
@@ -23,8 +22,8 @@ export const useFetch = () => {
 
     try {
       const response = await axios.request(options);
-      // console.log(response.data);
-      // setData(response.data.data);
+      console.log(response.data);
+      
       dispatch(saveRecipee(response.data));
       setIsLoading(false);
       alert("Success");
