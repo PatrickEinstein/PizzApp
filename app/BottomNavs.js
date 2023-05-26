@@ -33,8 +33,8 @@ function PIZZACALC() {
             position: "absolute",
             top: 5,
             right: 0,
-            zIndex:10,
-            padding:5
+            zIndex: 10,
+            padding: 5,
           }}
         >
           <MenuList />
@@ -65,52 +65,58 @@ const Tab = createBottomTabNavigator();
 
 export default function BottomNavs() {
   return (
-    <Tab.Navigator
-      screenOptions={({ route }) => ({
-        tabBarIcon: ({ focused, color, size }) => {
-          let iconName;
+    <>
+      <Stackscreen 
+      title="MENU"
+      />
 
-          if (route.name === "RECIPEES") {
-            iconName = focused ? "book" : "book";
-          } else if (route.name === "PIZZA CALC") {
-            iconName = focused ? "calculator" : "calculator";
-          } else if (route.name === "COURSES") {
-            iconName = focused ? "graduation-cap" : "graduation-cap";
-          } else if (route.name === "PRODUCTS") {
-            iconName = focused ? "shopping-cart" : "shopping-cart";
-          }
+      <Tab.Navigator
+        screenOptions={({ route }) => ({
+          tabBarIcon: ({ focused, color, size }) => {
+            let iconName;
 
-          // Example of using FontAwesome icons
-          return <Icon name={iconName} size={size} color={color} />;
-        },
-      })}
-      tabBarOptions={{
-        activeTintColor: "black",
-        inactiveTintColor: "gray",
-        labelStyle: { fontSize: 12, textAlign: "center" },
-        style: { justifyContent: "center" },
-      }}
-    >
-      <Tab.Screen
-        name="RECIPEES"
-        component={RECIPEES}
-        options={{ headerTitleAlign: "center" }}
-      />
-      <Tab.Screen
-        name="PIZZA CALC"
-        component={PIZZACALC}
-        options={{ headerTitleAlign: "center" }}
-      />
-      <Tab.Screen
-        name="COURSES"
-        component={COURSES}
-        options={{ headerTitleAlign: "center" }}
-      />
-      <Tab.Screen
-        name="PRODUCTS"
-        component={PRODUCTS}
-        options={{ headerTitleAlign: "center" }}
-      />
-    </Tab.Navigator>
+            if (route.name === "RECIPEES") {
+              iconName = focused ? "book" : "book";
+            } else if (route.name === "PIZZA CALC") {
+              iconName = focused ? "calculator" : "calculator";
+            } else if (route.name === "COURSES") {
+              iconName = focused ? "graduation-cap" : "graduation-cap";
+            } else if (route.name === "PRODUCTS") {
+              iconName = focused ? "shopping-cart" : "shopping-cart";
+            }
+
+            // Example of using FontAwesome icons
+            return <Icon name={iconName} size={size} color={color} />;
+          },
+        })}
+        tabBarOptions={{
+          activeTintColor: "black",
+          inactiveTintColor: "gray",
+          labelStyle: { fontSize: 12, textAlign: "center" },
+          style: { justifyContent: "center" },
+        }}
+      >
+        <Tab.Screen
+          name="RECIPEES"
+          component={RECIPEES}
+          options={{ headerTitleAlign: "center" }}
+        />
+        <Tab.Screen
+          name="PIZZA CALC"
+          component={PIZZACALC}
+          options={{ headerTitleAlign: "center" }}
+        />
+        <Tab.Screen
+          name="COURSES"
+          component={COURSES}
+          options={{ headerTitleAlign: "center" }}
+        />
+        <Tab.Screen
+          name="PRODUCTS"
+          component={PRODUCTS}
+          options={{ headerTitleAlign: "center" }}
+        />
+      </Tab.Navigator>
+    </>
   );
 }

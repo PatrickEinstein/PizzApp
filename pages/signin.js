@@ -45,7 +45,7 @@ const SignIn = () => {
         backgroundColor="#990000"
         borderRadius={10}
         onPress={() => {
-          router.push("/BottomNavs");
+          router.push("/Welcome");
         }}
       />
 

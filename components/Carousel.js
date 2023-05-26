@@ -16,7 +16,7 @@ const renderItem = ({ item }) => {
           name={item.title}
           image={item.image}
           width={350}
-          // height={300}
+         
         />
       </View>
     );

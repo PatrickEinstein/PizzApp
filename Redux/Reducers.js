@@ -22,7 +22,7 @@ export const recipeReducer = createSlice({
     saved: [],
     picker: 0,
     recipee: [],
-    selectedRecipe: {},
+    selectedRecipe: [],
   },
   reducers: {
     saveRecipee: (state, action) => {
