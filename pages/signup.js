@@ -14,7 +14,7 @@ const SignUp = () => {
   const [password, setPassword] = React.useState("");
   const [confirmPassword, setConfirmpassword] = React.useState("");
   const [visible, setVisible] = React.useState(false);
-  // const [response, setResponse] = React.useState({});
+  const [response, setResponse] = React.useState();
 
   const Submit = async () => {
     if (
@@ -60,7 +60,7 @@ const SignUp = () => {
       <SnackBar
         visible={visible}
         onDismissSnackBar={() => setVisible(false)}
-        // message={response}
+        message={response}
       />
 
       <TextInput
