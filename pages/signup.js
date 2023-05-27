@@ -3,18 +3,69 @@ import { TextInput, Button } from "react-native-paper";
 import { View } from "react-native";
 import Buttons from "../components/Buttton";
 import { ScrollView } from "react-native-gesture-handler";
+import { useRouter } from "expo-router";
+import { saveLoggedInUser } from "../Redux/Reducers";
+import SnackBar from "../components/snackbar";
 const SignUp = () => {
-  const [text, setText] = React.useState("");
+  const router = useRouter();
+  const [fullname, setFullname] = React.useState("");
+  const [email, setEmail] = React.useState("");
+  const [phone, setPhone] = React.useState("");
+  const [password, setPassword] = React.useState("");
+  const [confirmPassword, setConfirmpassword] = React.useState("");
+  const [visible, setVisible] = React.useState(false);
+  // const [response, setResponse] = React.useState({});
+
+  const Submit = async () => {
+    if (
+      password !== confirmPassword ||
+      password === "" ||
+      confirmPassword === ""
+    ) {
+      setVisible(true);
+      return;
+    }
+    // console.log(`${email}: ${password} : ${confirmPassword} : ${phone}`);
+    try {
+      const submit = await fetch("http://192.168.43.15:8080/pizzaSignUp", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          fullname: fullname,
+          email: email,
+          phone: phone,
+          password: password,
+        }),
+      });
+
+      router.push("/Welcome");
+
+      const submitted = await submit.json();
+      setResponse(submitted);
+      console.log(response);
+      setVisible(true);
+      // dispatch(saveLoggedInUser())
+    } catch (err) {
+      console.log(err);
+    }
+  };
   return (
     <View
       style={{
-        height: 700,
-        marginTop: 40,
+        height: 650,
       }}
     >
+      <SnackBar
+        visible={visible}
+        onDismissSnackBar={() => setVisible(false)}
+        // message={response}
+      />
+
       <TextInput
-        value={text}
-        onChangeText={(text) => setText(text)}
+        value={fullname}
+        onChangeText={(text) => setFullname(text)}
         mode="flat"
         label="Full name"
         style={{
@@ -24,8 +75,8 @@ const SignUp = () => {
         }}
       />
       <TextInput
-        value={text}
-        onChangeText={(text) => setText(text)}
+        value={email}
+        onChangeText={(text) => setEmail(text)}
         mode="flat"
         label="Email"
         style={{
@@ -35,8 +86,8 @@ const SignUp = () => {
         }}
       />
       <TextInput
-        value={text}
-        onChangeText={(text) => setText(text)}
+        value={phone}
+        onChangeText={(text) => setPhone(text)}
         mode="flat"
         label="Phone number"
         style={{
@@ -46,8 +97,8 @@ const SignUp = () => {
         }}
       />
       <TextInput
-        value={text}
-        onChangeText={(text) => setText(text)}
+        value={password}
+        onChangeText={(text) => setPassword(text)}
         mode="flat"
         label="Password"
         style={{
@@ -57,8 +108,8 @@ const SignUp = () => {
         }}
       />
       <TextInput
-        value={text}
-        onChangeText={(text) => setText(text)}
+        value={confirmPassword}
+        onChangeText={(text) => setConfirmpassword(text)}
         mode="flat"
         label="Confirm password"
         style={{
@@ -75,6 +126,7 @@ const SignUp = () => {
         marginTop={30}
         backgroundColor="#990000"
         borderRadius={10}
+        onPress={() => router.push("/Welcome")}
       />
 
       <View>
@@ -84,7 +136,7 @@ const SignUp = () => {
           width="100%"
           marginTop={30}
           backgroundColor="white"
-          borderRadius={0}
+          borderRadius={10}
         />
         <Buttons
           text="Sign up with email"
@@ -92,7 +144,7 @@ const SignUp = () => {
           width="100%"
           marginTop={30}
           backgroundColor="white"
-          borderRadius={0}
+          borderRadius={10}
         />
         <Buttons
           text="Sign up with facebook"
@@ -100,7 +152,7 @@ const SignUp = () => {
           width="100%"
           marginTop={30}
           backgroundColor="white"
-          borderRadius={0}
+          borderRadius={10}
         />
       </View>
     </View>

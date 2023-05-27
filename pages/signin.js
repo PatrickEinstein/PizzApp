@@ -1,34 +1,82 @@
 import React from "react";
 import { TextInput } from "react-native-paper";
-import { View, Text } from "react-native";
+import { View, Text, Button } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import Buttons from "../components/Buttton";
 import { useRouter } from "expo-router";
+import { saveLoggedInUser } from "../Redux/Reducers";
+import { useNavigation } from "@react-navigation/native";
+import SnackBar from "../components/snackbar";
+import { useDispatch } from "react-redux";
 
 const SignIn = () => {
+  const dispatch = useDispatch();
+  const navigation = useNavigation();
   const router = useRouter();
-  const [text, setText] = React.useState("");
+  const [email, setEmail] = React.useState("");
+  const [password, setPassword] = React.useState("");
+  const [response, setResponse] = React.useState("");
+  const [visible, setVisible] = React.useState(false);
+  const Submit = async (e) => {
+    try {
+      const submit = await fetch("http://192.168.43.15:8080/pizzaSignIn", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: email,
+          password: password,
+        }),
+      });
+
+      const submitted = await submit.json();
+      setResponse(submitted.message);
+      console.log(response);
+      setVisible(true);
+
+      if (
+        response === "wrong email or password" ||
+        response === "something went wrong" ||
+        response === "user does not exist"
+      ) {
+        setVisible(true);
+        return;
+      } else {
+        setVisible(true);
+        router.push("/Welcome");
+        dispatch(saveLoggedInUser());
+      }
+    } catch (err) {
+      console.log(`err --> ${err.message}`);
+    }
+  };
   return (
     <View
       style={{
-        height: "auto",
+        height: 450,
         justifyContent: "space-between",
       }}
     >
+      <SnackBar
+        visible={visible}
+        onDismissSnackBar={() => setVisible(false)}
+        message={response}
+      />
       <View>
         <TextInput
-          value={text}
-          onChangeText={(text) => setText(text)}
+          value={email}
+          onChangeText={(text) => setEmail(text)}
           mode="flat"
-          label="Email/phone number"
+          label="Email"
           style={{
             width: "100%",
             backgroundColor: "white",
           }}
         />
         <TextInput
-          value={text}
-          onChangeText={(text) => setText(text)}
+          value={password}
+          onChangeText={(text) => setPassword(text)}
           mode="flat"
           label="Password"
           style={{
@@ -44,9 +92,7 @@ const SignIn = () => {
         marginTop={30}
         backgroundColor="#990000"
         borderRadius={10}
-        onPress={() => {
-          router.push("/Welcome");
-        }}
+        onPress={() => router.push("/Welcome")}
       />
 
       <View

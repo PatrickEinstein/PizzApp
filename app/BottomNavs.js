@@ -7,6 +7,7 @@ import Recipee from "../pages/recipee";
 import TabViewExample from "../Tabs/tab";
 import Stackscreen from "../components/stackscreen";
 import MenuList from "../components/menulist";
+import { useRouter } from "expo-router";
 
 function RECIPEES() {
   return (
@@ -64,11 +65,10 @@ function PRODUCTS() {
 const Tab = createBottomTabNavigator();
 
 export default function BottomNavs() {
+  const router = useRouter()
   return (
     <>
-      <Stackscreen 
-      title="MENU"
-      />
+      <Stackscreen title="MENU" icon="home" onPress={() => router.push('/')} />
 
       <Tab.Navigator
         screenOptions={({ route }) => ({

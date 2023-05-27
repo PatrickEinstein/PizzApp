@@ -9,6 +9,7 @@ import Stackscreen from "../components/stackscreen";
 import HomePage from "../pages";
 import { Logo, Logo2 } from "../assets";
 import { StyleSheet } from "react-native";
+import SnackBar from "../components/snackbar";
 
 const styles = StyleSheet.create({
   logo: {
@@ -47,6 +48,7 @@ const Home = () => {
         >
           <Stackscreen onPress={onPress} icon="menu" title="Welcome" />
           <HomePage />
+          {/* <SnackBar /> */}
           {/* <Description /> */}
         </SafeAreaView>
       </PersistGate>
