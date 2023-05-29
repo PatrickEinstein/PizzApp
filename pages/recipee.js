@@ -91,23 +91,23 @@ const styles = StyleSheet.create({
 export const Recipee = () => {
   const recipees = useSelector((state) => state.recipe.recipee);
 
-  // const { isLoading, error } = useFetch();
+  const { isLoading, error } = useFetch();
 
-  // if (isLoading) {
-  //   return (
-  //     <Image
-  //       source={Logo}
-  //       style={{
-  //         width: 200,
-  //         height: 200,
-  //       }}
-  //     />
-  //   );
-  // }
+  if (isLoading) {
+    return (
+      <Image
+        source={Logo}
+        style={{
+          width: 200,
+          height: 200,
+        }}
+      />
+    );
+  }
 
-  // if (error) {
-  //   return <Text>Ooops, check your network</Text>;
-  // }
+  if (error) {
+    return <Text>Ooops, check your network</Text>;
+  }
 
   return (
     <ScrollView>
