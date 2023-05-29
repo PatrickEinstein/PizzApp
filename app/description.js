@@ -5,7 +5,7 @@ import { useWindowDimensions } from "react-native";
 import { TabView, SceneMap } from "react-native-tab-view";
 import { ScrollView } from "react-native";
 import { TabBar } from "react-native-tab-view";
-import Stackscreen from "../components/stackscreen";
+import Stackscreen, { CustomTitle } from "../components/stackscreen";
 import { useRouter } from "expo-router";
 
 const FirstRoute = () => {
@@ -102,7 +102,7 @@ const ThirdRoute = () => {
   // ))}
 
   return (
-    <View style={{ flex: 1, backgroundColor: "white" }}>
+    <View style={{ flex: 1, backgroundColor: "white" , height: 500}}>
       <ScrollView
         style={{
           padding: 10,
@@ -122,10 +122,10 @@ const renderScene = SceneMap({
 const renderTabBar = (props) => (
   <TabBar
     {...props}
-    indicatorStyle={{ backgroundColor: "white" }}
-    style={{ backgroundColor: "#990000", borderColor: "#ffcc33", height: 50 }}
+    indicatorStyle={{ backgroundColor: "black" }}
+    style={{ backgroundColor: "white", borderColor: "#ffcc33", height: 50 }}
     labelStyle={{
-      color: "white",
+      color: "black",
     }}
   />
 );
@@ -144,25 +144,20 @@ const Description = () => {
   const item = selected[0];
 
   return (
-    // <View
-    //   style={{
-    //     padding: 10,
-    //   }}
-    // >
     <>
       <Stackscreen
         onPress={() => router.push("/BottomNavs")}
         icon="home"
-        title="Description"
+        help="menu"
+        title="RECIPES"
+        color="black"
+        titleicon={CustomTitle}
+        
       />
-      <TouchableOpacity
+      <View
         style={{
-          marginTop: 10,
-          marginLeft: "auto",
-          marginRight: "auto",
-          width: "80%",
-          height: "auto",
-          backgroundColor: "aqua",
+          padding: 20,
+          backgroundColor: "white",
         }}
       >
         <Image
@@ -171,13 +166,18 @@ const Description = () => {
             objectFit: "cover",
             height: 200,
             width: "100%",
+            marginRight: "auto",
+            marginLeft: "auto",
             borderRadius: 20,
+            backgroundColor: "white",
           }}
         />
-      </TouchableOpacity>
+      </View>
+
       <View
         style={{
           marginTop: "auto",
+          backgroundColor: "white",
         }}
       >
         <Text
@@ -187,6 +187,7 @@ const Description = () => {
             marginBottom: 10,
             marginTop: 10,
             marginLeft: 20,
+            backgroundColor: "white",
           }}
         >
           {item.name}
@@ -201,7 +202,6 @@ const Description = () => {
         navigationState={{ index, routes }}
       />
     </>
-    // </View>
   );
 };
 

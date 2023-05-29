@@ -7,6 +7,7 @@ import { ScrollView } from "react-native";
 import { Settings } from "../app/settings";
 import { TabBar } from "react-native-tab-view";
 import Recipee from "./recipee";
+import Stackscreen from "../components/stackscreen";
 
 const FirstRoute = () => (
   <View style={{ flex: 1, backgroundColor: "white", padding: 20 }}>
@@ -57,7 +58,6 @@ export default function HomePage() {
   const [routes, setRoutes] = React.useState([
     { key: "first", title: "SignIn" },
     { key: "second", title: "SignUp" },
-    // { key: "third", title: "Test" },
   ]);
 
   return (
@@ -69,9 +69,7 @@ export default function HomePage() {
       navigationState={{ index, routes }}
       style={{
         borderRadius: 20,
-        marginTop: 40,
       }}
     />
-    // </View>
   );
 }

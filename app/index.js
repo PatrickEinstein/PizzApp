@@ -5,9 +5,9 @@ import { PersistGate } from "redux-persist/integration/react";
 import store from "../Redux/store";
 import { useState } from "react";
 import { persistStore } from "redux-persist";
-import Stackscreen from "../components/stackscreen";
+import Stackscreen, { CustomTitle } from "../components/stackscreen";
 import HomePage from "../pages";
-import { Logo, Logo2 } from "../assets";
+import Logo from "../assets/images/pizza.png";
 import { StyleSheet } from "react-native";
 import SnackBar from "../components/snackbar";
 
@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
 });
 
 const persistor = persistStore(store);
-//<Text>Loading ...</Text>
+
 const Home = () => {
   const [visible, setVisible] = useState(false);
   const onPress = () => setVisible((prev) => !prev);
@@ -34,7 +34,10 @@ const Home = () => {
       <PersistGate
         loading={
           <>
-            <Stackscreen title="Rome Pizza and  Pasta" />
+            <Stackscreen
+              title="Rome Pizza and  Pasta"
+              backgroundColor="#990000"
+            />
             <Image source={Logo} style={styles.logo} />
           </>
         }
@@ -43,13 +46,16 @@ const Home = () => {
         <SafeAreaView
           style={{
             flex: 1,
-            backgroundColor: "#990000",
           }}
         >
-          <Stackscreen onPress={onPress} icon="menu" title="Welcome" />
+          <Stackscreen
+            title="Welcome"
+            icon="menu"
+            help="help-circle"
+            backgroundColor="white"
+            titleicon={CustomTitle}
+          />
           <HomePage />
-          {/* <SnackBar /> */}
-          {/* <Description /> */}
         </SafeAreaView>
       </PersistGate>
     </Provider>

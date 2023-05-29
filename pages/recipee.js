@@ -8,6 +8,7 @@ import { Stack, useRouter, useSearchParams } from "expo-router";
 import { useFetch } from "../constants/hook/useFetch";
 import { useSelector } from "react-redux";
 import { Logo } from "../assets";
+import Stackscreen, { CustomTitle } from "../components/stackscreen";
 
 const RenderItem1 = ({ item }) => {
   const desiredRange = { start: 1, end: 5 }; // Define the desired ID range
@@ -90,24 +91,32 @@ const styles = StyleSheet.create({
 export const Recipee = () => {
   const recipees = useSelector((state) => state.recipe.recipee);
 
-  const { isLoading, error } = useFetch();
+  // const { isLoading, error } = useFetch();
 
-  if (isLoading) {
-    return (<Image source={Logo} style={styles.logo} />);
-  }
+  // if (isLoading) {
+  //   return (
+  //     <Image
+  //       source={Logo}
+  //       style={{
+  //         width: 200,
+  //         height: 200,
+  //       }}
+  //     />
+  //   );
+  // }
 
-  if (error) {
-    return <Text>Ooops, check your network</Text>;
-  }
+  // if (error) {
+  //   return <Text>Ooops, check your network</Text>;
+  // }
 
   return (
     <ScrollView>
+      <Stackscreen />
       <View
         justifyContent="center"
         alignItems="center"
         style={{
           height: "auto",
-          // marginBottom: 20,
         }}
       >
         <Carousels />

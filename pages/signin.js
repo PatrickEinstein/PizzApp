@@ -9,6 +9,7 @@ import { useNavigation } from "@react-navigation/native";
 import SnackBar from "../components/snackbar";
 import { useDispatch } from "react-redux";
 
+
 const SignIn = () => {
   const dispatch = useDispatch();
   const navigation = useNavigation();
@@ -120,22 +121,25 @@ const SignIn = () => {
           icon={"facebook"}
           width="10%"
           marginTop={30}
-          backgroundColor="grey"
+          backgroundColor="white"
           borderRadius={10}
+          color="black"
         />
         <Buttons
           icon={"instagram"}
           width="10%"
           marginTop={30}
-          backgroundColor="grey"
+          backgroundColor="white"
           borderRadius={10}
+          color="black"
         />
         <Buttons
           icon={"music-clef-treble"}
           width="10%"
           marginTop={30}
-          backgroundColor="grey"
+          backgroundColor="white"
           borderRadius={10}
+          color="black"
         />
       </View>
     </View>

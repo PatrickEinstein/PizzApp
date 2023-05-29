@@ -1,44 +1,90 @@
 import { Stack } from "expo-router";
 import Icon from "react-native-vector-icons/Feather";
 import { Feather } from "react-native-vector-icons";
-
-import React from "react";
+import { View, Animated, Image, Easing } from "react-native";
+import React, { useRef, useEffect } from "react";
 import { TouchableOpacity } from "react-native-gesture-handler";
+import LogoImage from "../assets/images/pizza.png";
 
-function Stackscreen({ onPress, title, icon, height, width }) {
+export function CustomTitle({ viewheight, viewwidth }) {
+  const rotation = useRef(new Animated.Value(0)).current;
+  useEffect(() => {
+    const spinAnimation = Animated.timing(rotation, {
+      toValue: 1,
+      duration: 1000, // Adjust the duration as needed
+      easing: Easing.linear,
+      useNativeDriver: true,
+    });
+
+    Animated.loop(spinAnimation).start();
+
+    return () => {
+      spinAnimation.stop();
+    };
+  }, []);
+
+  const spin = rotation.interpolate({
+    inputRange: [0, 1],
+    outputRange: ["0deg", "360deg"],
+  });
+
+  return (
+    <View
+      style={{
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    >
+      {/* <Animated.Image */}
+      <Image
+        source={require("../assets/images/pizza.png")} // Replace with your image path
+        style={{
+          width: 150,
+          height: 100,
+          // transform: [{ rotate: spin }],
+        }}
+      />
+    </View>
+  );
+}
+function Stackscreen({
+  onPress,
+  title,
+  icon,
+  height,
+  width,
+  backgroundColor,
+  titleicon,
+  color,
+  help,
+}) {
   return (
     <Stack.Screen
       options={{
         title: title,
-        headerTitleStyle: { color: "white" },
+        headerTitleStyle: { color: color },
+        headerTitle: titleicon,
         headerStyle: {
-          backgroundColor: "#990000",
-          height: height,
-          borderColor: "#990000",
+          backgroundColor: backgroundColor,
+          height: 100,
         },
+
         headerShadowVisible: false,
 
         headerTitleAlign: "center",
-        //headerLeft: () => <Icon name="help" size={15} color="white" />,
 
         headerLeft: () => (
           <Feather
-            name="help-circle"
+            name={help}
             size={30}
-            color="#FFF"
+            color={color}
             onPress={() => console.log("Help button pressed")}
             style={{ marginRight: 10 }}
           />
         ),
         headerRight: () => (
           <TouchableOpacity onPress={onPress}>
-            <Icon
-              name={icon}
-              // name="help-circle"
-              size={30}
-              color="white"
-              //   onPress={onPress}
-            />
+            <Icon name={icon} size={30} color={color} />
           </TouchableOpacity>
         ),
       }}

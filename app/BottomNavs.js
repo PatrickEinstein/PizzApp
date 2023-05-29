@@ -5,14 +5,15 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Icon from "react-native-vector-icons/FontAwesome"; // Example icon library
 import Recipee from "../pages/recipee";
 import TabViewExample from "../Tabs/tab";
-import Stackscreen from "../components/stackscreen";
+import Stackscreen, { CustomTitle } from "../components/stackscreen";
 import MenuList from "../components/menulist";
 import { useRouter } from "expo-router";
+import Courses from "../components/Courses";
+import Products from "../components/Products";
 
 function RECIPEES() {
   return (
     <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-      {/* <Text>RECIPEES</Text> */}
       <Recipee />
     </View>
   );
@@ -49,7 +50,7 @@ function PIZZACALC() {
 function COURSES() {
   return (
     <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-      <Text>COURSES</Text>
+      <Courses />
     </View>
   );
 }
@@ -57,7 +58,7 @@ function COURSES() {
 function PRODUCTS() {
   return (
     <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-      <Text>PRODUCTS</Text>
+      <Products />
     </View>
   );
 }
@@ -65,10 +66,14 @@ function PRODUCTS() {
 const Tab = createBottomTabNavigator();
 
 export default function BottomNavs() {
-  const router = useRouter()
+  const router = useRouter();
   return (
     <>
-      <Stackscreen title="MENU" icon="home" onPress={() => router.push('/')} />
+      <Stackscreen
+        titleicon={CustomTitle}
+        onPress={() => router.push("/")}
+        icon="search"
+      />
 
       <Tab.Navigator
         screenOptions={({ route }) => ({
@@ -90,10 +95,11 @@ export default function BottomNavs() {
           },
         })}
         tabBarOptions={{
+          backgroundColor: "grey",
           activeTintColor: "black",
           inactiveTintColor: "gray",
           labelStyle: { fontSize: 12, textAlign: "center" },
-          style: { justifyContent: "center" },
+          style: { justifyContent: "center", backgroundColor: "#990000" },
         }}
       >
         <Tab.Screen

@@ -1,11 +1,12 @@
 import React from "react";
 import { TextInput, Button } from "react-native-paper";
-import { View } from "react-native";
+import { Text, View } from "react-native";
 import Buttons from "../components/Buttton";
-import { ScrollView } from "react-native-gesture-handler";
+import { Buttons2 } from "../components/Buttton";
 import { useRouter } from "expo-router";
-import { saveLoggedInUser } from "../Redux/Reducers";
+
 import SnackBar from "../components/snackbar";
+
 const SignUp = () => {
   const router = useRouter();
   const [fullname, setFullname] = React.useState("");
@@ -130,7 +131,17 @@ const SignUp = () => {
       />
 
       <View>
-        <Buttons
+        <Text
+          style={{
+            textAlign: "center",
+            marginTop: 20,
+            fontSize: 20,
+            fontWeight: "bold",
+          }}
+        >
+          OR
+        </Text>
+        <Buttons2
           text="Sign up with google"
           icon={"google"}
           width="100%"
@@ -138,7 +149,7 @@ const SignUp = () => {
           backgroundColor="white"
           borderRadius={10}
         />
-        <Buttons
+        <Buttons2
           text="Sign up with email"
           icon={"gmail"}
           width="100%"
@@ -146,7 +157,7 @@ const SignUp = () => {
           backgroundColor="white"
           borderRadius={10}
         />
-        <Buttons
+        <Buttons2
           text="Sign up with facebook"
           icon={"facebook"}
           width="100%"

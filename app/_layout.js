@@ -9,7 +9,6 @@ import { persistStore } from "redux-persist";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 
-
 const persistor = persistStore(store);
 SplashScreen.preventAutoHideAsync();
 
