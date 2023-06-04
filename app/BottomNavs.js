@@ -10,6 +10,8 @@ import MenuList from "../components/menulist";
 import { useRouter } from "expo-router";
 import Courses from "../components/Courses";
 import Products from "../components/Products";
+import { Logo } from "../assets/images/pizza.png";
+import { NoRollLogo, RollLogo } from "../components/animatedLogo";
 
 function RECIPEES() {
   return (
@@ -70,9 +72,9 @@ export default function BottomNavs() {
   return (
     <>
       <Stackscreen
-        titleicon={CustomTitle}
+        titleicon={NoRollLogo}
         onPress={() => router.push("/")}
-        icon="search"
+        icon=""
       />
 
       <Tab.Navigator

@@ -3,15 +3,18 @@ import { View, Text } from "react-native";
 import Buttons from "../components/Buttton";
 import { useRouter } from "expo-router";
 import Stackscreen, { CustomTitle } from "../components/stackscreen";
+import { useSelector } from "react-redux";
 
 function Welcome() {
+  const welcome = useSelector((state) => state.recipe.loggedInUser.message);
   const router = useRouter();
   return (
     <>
       <Stackscreen
         backgroundColor="white"
         titleicon={CustomTitle}
-        icon="home"
+        icon=""
+        help=""
       />
       <View
         justifyContent="center"
@@ -29,8 +32,7 @@ function Welcome() {
             marginBottom: 10,
           }}
         >
-          {" "}
-          Welcome Amir
+          {welcome}
         </Text>
 
         <Text
@@ -38,7 +40,7 @@ function Welcome() {
             textAlign: "center",
             fontWeight: "bold",
             fontSize: 15,
-            padding:15
+            padding: 15,
           }}
         >
           Lorem ipsum dolor sit amet consectetur. Vitae nam ultricies fermentum
@@ -62,6 +64,7 @@ function Welcome() {
             backgroundColor="#990000"
             borderRadius={10}
             onPress={() => router.push("/BottomNavs")}
+            marginLeft={100}
           />
         </View>
       </View>

@@ -11,6 +11,7 @@ const Buttons = ({
   borderRadius,
   backgroundColor,
   color,
+  marginLeft,
 }) => {
   const [isPressed, setIsPressed] = useState(false);
 
@@ -24,13 +25,13 @@ const Buttons = ({
 
   return (
     <Button
-      icon={icon}
+      // icon={icon}
       mode="contained"
       onPress={onPress}
       onPressIn={handlePressIn}
       onPressOut={handlePressOut}
       labelStyle={{
-        color: color,
+        color: "white",
         fontWeight: "bold",
         fontSize: 20,
       }}
@@ -39,6 +40,8 @@ const Buttons = ({
         marginTop: marginTop,
         backgroundColor: backgroundColor,
         borderRadius: borderRadius,
+        color: "white",
+        marginLeft: marginLeft,
       }}
     >
       {text}

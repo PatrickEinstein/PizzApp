@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { TextInput } from "react-native-paper";
 import { View, Text, Button } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
@@ -9,7 +9,6 @@ import { useNavigation } from "@react-navigation/native";
 import SnackBar from "../components/snackbar";
 import { useDispatch } from "react-redux";
 
-
 const SignIn = () => {
   const dispatch = useDispatch();
   const navigation = useNavigation();
@@ -18,47 +17,45 @@ const SignIn = () => {
   const [password, setPassword] = React.useState("");
   const [response, setResponse] = React.useState("");
   const [visible, setVisible] = React.useState(false);
+
   const Submit = async (e) => {
     try {
-      const submit = await fetch("http://192.168.43.15:8080/pizzaSignIn", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email: email,
-          password: password,
-        }),
-      });
+      //"http://192.168.43.16:8080/pizzaSignIn"
+      const submit = await fetch(
+        "https://nice-red-piglet-veil.cyclic.app/pizzaSignIn",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email: email,
+            password: password,
+          }),
+        }
+      );
 
       const submitted = await submit.json();
       setResponse(submitted.message);
+      console.log(submitted);
       console.log(response);
       setVisible(true);
 
-      if (
-        response === "wrong email or password" ||
-        response === "something went wrong" ||
-        response === "user does not exist"
-      ) {
+      if (submitted.status === "200") {
         setVisible(true);
-        return;
-      } else {
         setVisible(true);
         router.push("/Welcome");
-        dispatch(saveLoggedInUser());
+        dispatch(saveLoggedInUser(submitted));
+      } else {
+        return;
       }
     } catch (err) {
-      console.log(`err --> ${err.message}`);
+      setResponse(err.message);
     }
   };
+
   return (
-    <View
-      style={{
-        height: 450,
-        justifyContent: "space-between",
-      }}
-    >
+    <View>
       <SnackBar
         visible={visible}
         onDismissSnackBar={() => setVisible(false)}
@@ -88,12 +85,13 @@ const SignIn = () => {
       </View>
       <Buttons
         text="Sign In"
-        icon={"door"}
+        // icon={"door"}
         width="100%"
         marginTop={30}
         backgroundColor="#990000"
         borderRadius={10}
-        onPress={() => router.push("/Welcome")}
+        onPress={Submit}
+        // onPress={() => router.push("/Welcome")}
       />
 
       <View

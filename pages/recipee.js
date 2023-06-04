@@ -1,92 +1,19 @@
 import React, { useEffect } from "react";
 import { Text, TouchableOpacity, View, FlatList, Image } from "react-native";
-import { StyleSheet } from "react-native";
 import RecipeeCards from "../components/RecipeeCards";
 import { ScrollView } from "react-native-gesture-handler";
 import Carousels from "../components/Carousel";
 import { Stack, useRouter, useSearchParams } from "expo-router";
 import { useFetch } from "../constants/hook/useFetch";
 import { useSelector } from "react-redux";
-import { Logo } from "../assets";
+import Logo from "../assets/images/pizza.png";
 import Stackscreen, { CustomTitle } from "../components/stackscreen";
-
-const RenderItem1 = ({ item }) => {
-  const desiredRange = { start: 1, end: 5 }; // Define the desired ID range
-
-  if (item.id >= desiredRange.start && item.id <= desiredRange.end) {
-    return (
-      <RecipeeCards
-        key={item.id}
-        name={item.title}
-        image={item.image}
-        width={180}
-        ingredients={item.ingredients}
-        method={item.method}
-        description={item.description}
-        time={item.time}
-      />
-    );
-  }
-
-  // Return null if the item's ID is not within the desired range
-  return null;
-};
-
-const RenderItem2 = ({ item }) => {
-  const desiredRange = { start: 6, end: 10 }; // Define the desired ID range
-
-  if (item.id >= desiredRange.start && item.id <= desiredRange.end) {
-    return (
-      <RecipeeCards
-        key={item.id}
-        name={item.title}
-        image={item.image}
-        width={180}
-        ingredients={item.ingredients}
-        method={item.method}
-        description={item.description}
-        time={item.time}
-        title={item.title}
-      />
-    );
-  }
-
-  //Return null if the item's ID is not within the desired range
-  return null;
-};
-const RenderItem3 = ({ item }) => {
-  const desiredRange = { start: 11, end: 15 }; // Define the desired ID range
-
-  if (item.id >= desiredRange.start && item.id <= desiredRange.end) {
-    return (
-      <RecipeeCards
-        key={item.id}
-        name={item.title}
-        image={item.image}
-        width={180}
-        ingredients={item.ingredients}
-        method={item.method}
-        description={item.description}
-        time={item.time}
-      />
-    );
-  }
-
-  // Return null if the item's ID is not within the desired range
-  return null;
-};
-const styles = StyleSheet.create({
-  logo: {
-    width: 200,
-    height: 200,
-    resizeMode: "contain",
-    position: "absolute",
-    top: 200,
-    left: 100,
-    borderWidth: 0,
-    borderColor: "transparent",
-  },
-});
+import {
+  RenderItem1,
+  RenderItem2,
+  RenderItem3,
+} from "../components/RenderItems";
+import { NoRollLogo, RollLogo } from "../components/animatedLogo";
 
 export const Recipee = () => {
   const recipees = useSelector((state) => state.recipe.recipee);
@@ -95,13 +22,18 @@ export const Recipee = () => {
 
   if (isLoading) {
     return (
-      <Image
-        source={Logo}
-        style={{
-          width: 200,
-          height: 200,
-        }}
-      />
+      <View justifyContent="center" alignItems="center">
+        <Image
+          source={Logo}
+          style={{
+            width: 200,
+            height: 200,
+            marginLeft: 50,
+            marginRight: 50,
+          }}
+        />
+        <Text>Loading, please wait</Text>
+      </View>
     );
   }
 
@@ -111,7 +43,7 @@ export const Recipee = () => {
 
   return (
     <ScrollView>
-      <Stackscreen />
+      <Stackscreen title="RECIPEE" icon="" />
       <View
         justifyContent="center"
         alignItems="center"
@@ -131,7 +63,7 @@ export const Recipee = () => {
             paddingLeft: 10,
           }}
         >
-          Summer Toppings
+          Pizza Toppings
         </Text>
         <FlatList
           data={recipees}
@@ -154,7 +86,7 @@ export const Recipee = () => {
             paddingLeft: 10,
           }}
         >
-          Pizza Toppings
+          Summer Toppings
         </Text>
 
         <FlatList
@@ -178,7 +110,123 @@ export const Recipee = () => {
             paddingLeft: 10,
           }}
         >
-          Crunchies Spellazinni
+          Winter Toppings
+        </Text>
+        <FlatList
+          data={recipees}
+          renderItem={RenderItem3}
+          keyExtractor={(item) => item?.id}
+          contentContainerStyle={{ flexGrow: 1 }}
+          horizontal
+          style={{
+            padding: 10,
+          }}
+        />
+      </View>
+      <View>
+        <Text
+          style={{
+            textAlign: "left",
+            fontSize: 25,
+            fontWeight: "bold",
+            marginTop: 10,
+            paddingLeft: 10,
+          }}
+        >
+          Gourment Toppings
+        </Text>
+        <FlatList
+          data={recipees}
+          renderItem={RenderItem3}
+          keyExtractor={(item) => item?.id}
+          contentContainerStyle={{ flexGrow: 1 }}
+          horizontal
+          style={{
+            padding: 10,
+          }}
+        />
+      </View>
+      <View>
+        <Text
+          style={{
+            textAlign: "left",
+            fontSize: 25,
+            fontWeight: "bold",
+            marginTop: 10,
+            paddingLeft: 10,
+          }}
+        >
+          Pasta Sauces
+        </Text>
+        <FlatList
+          data={recipees}
+          renderItem={RenderItem3}
+          keyExtractor={(item) => item?.id}
+          contentContainerStyle={{ flexGrow: 1 }}
+          horizontal
+          style={{
+            padding: 10,
+          }}
+        />
+      </View>
+      <View>
+        <Text
+          style={{
+            textAlign: "left",
+            fontSize: 25,
+            fontWeight: "bold",
+            marginTop: 10,
+            paddingLeft: 10,
+          }}
+        >
+          Summer Sauces
+        </Text>
+        <FlatList
+          data={recipees}
+          renderItem={RenderItem3}
+          keyExtractor={(item) => item?.id}
+          contentContainerStyle={{ flexGrow: 1 }}
+          horizontal
+          style={{
+            padding: 10,
+          }}
+        />
+      </View>
+      <View>
+        <Text
+          style={{
+            textAlign: "left",
+            fontSize: 25,
+            fontWeight: "bold",
+            marginTop: 10,
+            paddingLeft: 10,
+          }}
+        >
+          Winter Sauces
+        </Text>
+        <FlatList
+          data={recipees}
+          renderItem={RenderItem3}
+          keyExtractor={(item) => item?.id}
+          contentContainerStyle={{ flexGrow: 1 }}
+          horizontal
+          style={{
+            padding: 10,
+          }}
+        />
+      </View>
+
+      <View>
+        <Text
+          style={{
+            textAlign: "left",
+            fontSize: 25,
+            fontWeight: "bold",
+            marginTop: 10,
+            paddingLeft: 10,
+          }}
+        >
+          Pasta Shapes
         </Text>
         <FlatList
           data={recipees}

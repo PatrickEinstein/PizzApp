@@ -15,8 +15,8 @@ const SnackBar = ({ message, visible, onDismissSnackBar }) => {
           },
         }}
         style={{
-          backgroundColor: "yellow",
-          color: "white",
+          backgroundColor: "white",
+          color: "red",
         }}
       >
         <Text
@@ -35,6 +35,9 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: "space-between",
+
+    top: 100,
+    zIndex: 5,
   },
 });
 

@@ -10,15 +10,19 @@ import HomePage from "../pages";
 import Logo from "../assets/images/pizza.png";
 import { StyleSheet } from "react-native";
 import SnackBar from "../components/snackbar";
+import { RollLogo } from "../components/animatedLogo";
+import { useSelector } from "react-redux";
+import BottomNavs from "./BottomNavs";
 
 const styles = StyleSheet.create({
   logo: {
-    width: 200,
-    height: 200,
+    width: 400,
+    height: 400,
     resizeMode: "contain",
     position: "absolute",
-    top: 200,
-    left: 100,
+    marginTop: 50,
+    marginLeft: "auto",
+    marginRight: "auto",
     borderWidth: 0,
     borderColor: "transparent",
   },
@@ -27,6 +31,8 @@ const styles = StyleSheet.create({
 const persistor = persistStore(store);
 
 const Home = () => {
+  const screen = useSelector((state) => state.recipe.loggedInUser.user);
+  console.log(screen);
   const [visible, setVisible] = useState(false);
   const onPress = () => setVisible((prev) => !prev);
   return (
@@ -34,10 +40,7 @@ const Home = () => {
       <PersistGate
         loading={
           <>
-            <Stackscreen
-              title="Rome Pizza and  Pasta"
-              backgroundColor="#990000"
-            />
+            <Stackscreen title="" />
             <Image source={Logo} style={styles.logo} />
           </>
         }
@@ -50,12 +53,12 @@ const Home = () => {
         >
           <Stackscreen
             title="Welcome"
-            icon="menu"
-            help="help-circle"
+            icon=""
+            help=""
             backgroundColor="white"
             titleicon={CustomTitle}
           />
-          <HomePage />
+          {screen? <BottomNavs /> : <HomePage />}
         </SafeAreaView>
       </PersistGate>
     </Provider>
