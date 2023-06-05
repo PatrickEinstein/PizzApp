@@ -12,7 +12,13 @@ import {
   RenderItem1,
   RenderItem2,
   RenderItem3,
+  RenderItem4,
+  RenderItem5,
+  RenderItem6,
+  RenderItem7,
+  RenderItem8,
 } from "../components/RenderItems";
+import MyCarousel from "../components/Carousel2";
 import { NoRollLogo, RollLogo } from "../components/animatedLogo";
 
 export const Recipee = () => {
@@ -43,15 +49,15 @@ export const Recipee = () => {
 
   return (
     <ScrollView>
-      <Stackscreen title="RECIPEE" icon="" />
+      <Stackscreen title="RECIPE" icon="" />
       <View
         justifyContent="center"
         alignItems="center"
         style={{
-          height: "auto",
+          height: 400,
         }}
       >
-        <Carousels />
+        <MyCarousel />
       </View>
       <View>
         <Text
@@ -59,8 +65,7 @@ export const Recipee = () => {
             textAlign: "left",
             fontSize: 25,
             fontWeight: "bold",
-            marginTop: 10,
-            paddingLeft: 10,
+            // marginTop: 10,
           }}
         >
           Pizza Toppings

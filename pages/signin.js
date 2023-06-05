@@ -22,7 +22,7 @@ const SignIn = () => {
     try {
       //"http://192.168.43.16:8080/pizzaSignIn"
       const submit = await fetch(
-        "https://nice-red-piglet-veil.cyclic.app/pizzaSignIn",
+        "https://vote-verse-server-production-6153.up.railway.app/pizzaSignIn",
         {
           method: "POST",
           headers: {
@@ -37,20 +37,22 @@ const SignIn = () => {
 
       const submitted = await submit.json();
       setResponse(submitted.message);
-      console.log(submitted);
-      console.log(response);
       setVisible(true);
-
       if (submitted.status === "200") {
+        router.push("/BottomNavs");
+        alert("verifying ... click again");
         setVisible(true);
         setVisible(true);
-        router.push("/Welcome");
+
         dispatch(saveLoggedInUser(submitted));
       } else {
+        alert("verifying ... click again");
         return;
       }
+      console.log(submitted);
+      console.log(response);
     } catch (err) {
-      setResponse(err.message);
+      setResponse("verifying ... click again");
     }
   };
 
@@ -102,9 +104,9 @@ const SignIn = () => {
         <TouchableOpacity>
           <Text>Forgot your password ?</Text>
         </TouchableOpacity>
-        <TouchableOpacity>
+        {/* <TouchableOpacity>
           <Text>Dont't have an account ? Sign up</Text>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
       </View>
       <View
         style={{

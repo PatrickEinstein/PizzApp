@@ -1,22 +1,20 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 import Carousel from "react-native-snap-carousel";
-import RecipeeCards from "./RecipeeCards";
+import RecipeeCards, { RecipeeCardsCarousel } from "./RecipeeCards";
 import { useSelector } from "react-redux";
 import { useSearchParams } from "expo-router";
-import { useFetch } from "../constants/hook/useFetch";
 
 const renderItem = ({ item }) => {
   const desiredRange = { start: 1, end: 50 };
   if (item.id >= desiredRange.start && item.id <= desiredRange.end) {
     return (
       <View style={styles.carouselItem}>
-        <RecipeeCards
+        <RecipeeCardsCarousel
           key={item.id}
           name={item.title}
           image={item.image}
           width={350}
-         
         />
       </View>
     );

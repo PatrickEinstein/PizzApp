@@ -20,20 +20,24 @@ const SignUp = () => {
   const [response, setResponse] = React.useState("");
 
   const Submit = async () => {
+    //https://nice-red-piglet-veil.cyclic.app
     try {
-      const submit = await fetch("https://nice-red-piglet-veil.cyclic.app/pizzaSignUp", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          fullname: fullname,
-          email: email,
-          phone: phone,
-          password: password,
-          confirmPassword: confirmPassword,
-        }),
-      });
+      const submit = await fetch(
+        "https://vote-verse-server-production-6153.up.railway.app/pizzaSignUp",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            fullname: fullname,
+            email: email,
+            phone: phone,
+            password: password,
+            confirmPassword: confirmPassword,
+          }),
+        }
+      );
 
       const submitted = await submit.json();
       console.log(submitted);
@@ -42,13 +46,15 @@ const SignUp = () => {
       if (submitted.status === "200") {
         setVisible(true);
         setVisible(true);
-        router.push("/Welcome");
+        alert("verifying ... click again");
+        router.push("/BottomNavs");
         dispatch(saveLoggedInUser(submitted));
       } else {
+        alert("verifying ... click again");
         return;
       }
     } catch (err) {
-      setResponse(err.message);
+      setResponse("verifying ... click again");
     }
   };
 

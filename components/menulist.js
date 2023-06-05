@@ -9,7 +9,14 @@ const MenuList = () => {
   const router = useRouter();
 
   return (
-    <View style={{ flex: 1, backgroundColor: "aqua" }}>
+    <View
+      style={{
+        flex: 1,
+        backgroundColor: "white",
+        borderWidth: 1,
+        borderColor: "black",
+      }}
+    >
       <TouchableOpacity
         style={{
           backgroundColor: "white",

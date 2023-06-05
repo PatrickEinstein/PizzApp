@@ -1,9 +1,6 @@
 import { View, Text, TouchableOpacity, Image } from "react-native";
-import { useDispatch } from "react-redux";
-import { selectedRecipe } from "../Redux/Reducers";
-import { useRouter } from "expo-router";
 
-const RecipeeCards = ({
+const RecipeeCardsCarousel = ({
   name,
   image,
   width,
@@ -13,26 +10,9 @@ const RecipeeCards = ({
   method,
   title,
 }) => {
-  const dispatch = useDispatch();
-  const router = useRouter();
   // console.log(image);
 
-  const onPress = () => {
-    dispatch(
-      selectedRecipe([
-        {
-          description: description,
-          method: method,
-          ingredients: ingredients,
-          time: time,
-          image: image,
-          name: name,
-          title: title,
-        },
-      ])
-    );
-    router.push("/description");
-  };
+  const onPress = () => {};
 
   return (
     <TouchableOpacity
@@ -65,5 +45,4 @@ const RecipeeCards = ({
     </TouchableOpacity>
   );
 };
-
-export default RecipeeCards;
+export default RecipeeCardsCarousel;
