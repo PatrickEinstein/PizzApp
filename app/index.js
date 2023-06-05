@@ -5,14 +5,14 @@ import { PersistGate } from "redux-persist/integration/react";
 import store from "../Redux/store";
 import { useState } from "react";
 import { persistStore } from "redux-persist";
-import Stackscreen, { CustomTitle } from "../components/stackscreen";
+import Stackscreen from "../components/stackscreen";
 import HomePage from "../pages";
 import Logo from "../assets/images/pizza.png";
 import { StyleSheet } from "react-native";
-import SnackBar from "../components/snackbar";
-import { RollLogo } from "../components/animatedLogo";
+import { CustomTitle } from "../components/stackscreen";
 import { useSelector } from "react-redux";
 import BottomNavs from "./BottomNavs";
+import { NoRollLogo } from "../components/animatedLogo";
 
 const styles = StyleSheet.create({
   logo: {
@@ -56,9 +56,9 @@ const Home = () => {
             icon=""
             help=""
             backgroundColor="white"
-            titleicon={CustomTitle}
+            titleicon={NoRollLogo}
           />
-          {screen? <BottomNavs /> : <HomePage />}
+          {screen ? <BottomNavs /> : <HomePage />}
         </SafeAreaView>
       </PersistGate>
     </Provider>
