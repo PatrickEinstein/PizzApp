@@ -35,9 +35,11 @@ const FirstRoute = () => {
           <CoursesTemplate
             background={link}
             key={idx}
-            onClick={openLink(
-              "https://fareharbor.com/embeds/book/onceinrome/items/?flow=173458&full-items=yes&back=https://www.romepizzaschool.com/&a=yes&g4=yes"
-            )}
+            onClick={() =>
+              openLink(
+                "https://fareharbor.com/embeds/book/onceinrome/items/?flow=173458&full-items=yes&back=https://www.romepizzaschool.com/&a=yes&g4=yes"
+              )
+            }
           />
         ))}
       </View>
@@ -53,9 +55,11 @@ const SecondRoute = () => {
           <CoursesTemplate
             background={link}
             key={idx}
-            onClick={openLink(
-              "https://fareharbor.com/embeds/book/onceinrome/items/?flow=173459&full-items=yes&back=https://www.romepizzaschool.com/&a=yes&g4=yes"
-            )}
+            onClick={() =>
+              openLink(
+                "https://fareharbor.com/embeds/book/onceinrome/items/?flow=173459&full-items=yes&back=https://www.romepizzaschool.com/&a=yes&g4=yes"
+              )
+            }
           />
         ))}
       </View>
