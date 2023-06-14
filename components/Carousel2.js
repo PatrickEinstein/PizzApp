@@ -29,7 +29,7 @@ const MyCarousel = () => {
             key={item.id}
             name={item.title}
             image={item.image}
-            width={350}
+            width={400}
           />
         </View>
       );
@@ -45,7 +45,8 @@ const MyCarousel = () => {
           backgroundColor: "rgba(0, 0, 0, 0.75)",
           padding: 0,
           margin: 0,
-          top: -140,
+          top: -70,
+          borderBottomLeftRadius:5
         }}
         dotStyle={{
           width: 10,
@@ -53,11 +54,10 @@ const MyCarousel = () => {
           borderRadius: 5,
           backgroundColor: "rgba(0, 0, 0, 0.75)",
         }}
-        inactiveDotStyle={
-          {
-            // Define styles for inactive dots here
-          }
-        }
+        // inactiveDotStyle={
+        //     // Define styles for inactive dots here
+        //   }
+        // }
         inactiveDotOpacity={0.4}
         inactiveDotScale={0.6}
         animatedDuration={500}
@@ -78,10 +78,12 @@ const MyCarousel = () => {
         loop={true}
         loopClonesPerSide={recipees.length}
         windowSize={50}
-        sliderWidth={350}
+        sliderWidth={400}
+        sliderHeight={300}
         itemWidth={350}
         style={{
           paddingTop: 0,
+          height: 450
         }}
       />
       {pagination()}

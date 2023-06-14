@@ -17,7 +17,7 @@ const RecipeeCardsCarousel = ({
   return (
     <TouchableOpacity
       style={{
-        margin: 10,
+        // margin: 10,
         width: width,
         height: "auto",
       }}
@@ -32,7 +32,7 @@ const RecipeeCardsCarousel = ({
           borderRadius: 20,
         }}
       />
-      <Text
+      {/* <Text
         style={{
           textAlign: "center",
           fontSize: 15,
@@ -41,7 +41,7 @@ const RecipeeCardsCarousel = ({
         }}
       >
         {name}
-      </Text>
+      </Text> */}
     </TouchableOpacity>
   );
 };

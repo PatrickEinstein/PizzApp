@@ -6,7 +6,6 @@ import React, { useRef, useEffect } from "react";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import LogoImage from "../assets/images/pizza.png";
 
-
 function Stackscreen({
   onPress,
   title,
@@ -17,6 +16,7 @@ function Stackscreen({
   titleicon,
   color,
   help,
+  onPress2,
 }) {
   return (
     <Stack.Screen
@@ -38,7 +38,7 @@ function Stackscreen({
             name={help}
             size={30}
             color={color}
-            onPress={() => console.log("Help button pressed")}
+            onPress={onPress2}
             style={{ marginRight: 10 }}
           />
         ),

@@ -50,15 +50,15 @@ export const Recipee = () => {
   return (
     <ScrollView>
       <Stackscreen title="RECIPE" icon="" />
-      <View
-        justifyContent="center"
-        alignItems="center"
+      {/* <View
+        // justifyContent="center"
+        // alignItems="center"
         style={{
-          height: 400,
+          height: 500,
         }}
-      >
+      > */}
         <MyCarousel />
-      </View>
+      {/* </View> */}
       <View>
         <Text
           style={{

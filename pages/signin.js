@@ -18,41 +18,48 @@ const SignIn = () => {
   const [response, setResponse] = React.useState("");
   const [visible, setVisible] = React.useState(false);
 
+  useEffect(() => {
+    Submit();
+  }, [password]);
+
   const Submit = async (e) => {
-    try {
-      //"http://192.168.43.16:8080/pizzaSignIn"
-      const submit = await fetch(
-        "https://vote-verse-server-production-6153.up.railway.app/pizzaSignIn",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            email: email,
-            password: password,
-          }),
+    if (password.length > 3) {
+      try {
+        const submit = await fetch(
+          "https://vote-verse-server-production-6153.up.railway.app/pizzaSignIn",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              email: email,
+              password: password,
+            }),
+          }
+        );
+
+        const submitted = await submit.json();
+        setResponse(submitted.message);
+        setVisible(true);
+        if (submitted.status === "200") {
+          dispatch(saveLoggedInUser(submitted));
+          router.push("/BottomNavs");
+          setResponse(submitted.message);
+          setVisible(true);
+        } else {
+          setResponse(submitted.message);
+          setVisible(true);
+          return;
         }
-      );
-
-      const submitted = await submit.json();
-      setResponse(submitted.message);
-      setVisible(true);
-      if (submitted.status === "200") {
-        router.push("/BottomNavs");
-        alert("verifying ... click again");
-        setVisible(true);
-        setVisible(true);
-
-        dispatch(saveLoggedInUser(submitted));
-      } else {
-        alert("verifying ... click again");
-        return;
+        console.log(submitted);
+        console.log(response);
+      } catch (err) {
+        setResponse("something went wrong, please try again later");
       }
-      console.log(submitted);
-      console.log(response);
-    } catch (err) {
-      setResponse("verifying ... click again");
+    } else {
+      setVisible(true);
+      setResponse("Please enter a valid password");
     }
   };
 
@@ -87,13 +94,11 @@ const SignIn = () => {
       </View>
       <Buttons
         text="Sign In"
-        // icon={"door"}
         width="100%"
         marginTop={30}
         backgroundColor="#990000"
         borderRadius={10}
         onPress={Submit}
-        // onPress={() => router.push("/Welcome")}
       />
 
       <View
@@ -101,12 +106,9 @@ const SignIn = () => {
           marginTop: 40,
         }}
       >
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => router.push("/input")}>
           <Text>Forgot your password ?</Text>
         </TouchableOpacity>
-        {/* <TouchableOpacity>
-          <Text>Dont't have an account ? Sign up</Text>
-        </TouchableOpacity> */}
       </View>
       <View
         style={{

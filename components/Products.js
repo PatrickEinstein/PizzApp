@@ -8,39 +8,34 @@ import { TabBar } from "react-native-tab-view";
 import { useRouter } from "expo-router";
 import CoursesTemplate from "./CoursesTemplate";
 
+const ImageUrl = [
+  { link: "https://i.ibb.co/ZYNyWbV/img11.jpg" },
+  { link: "https://i.ibb.co/PwSM8Ld/img10.jpg" },
+  { link: "https://i.ibb.co/YL0CVms/img9.jpg" },
+  { link: "https://i.ibb.co/phqPmwm/img8.jpg" },
+  { link: "https://i.ibb.co/nLQg8FT/img7.jpg" },
+  { link: "https://i.ibb.co/brTxLDy/img6.jpg" },
+  { link: "https://i.ibb.co/RPK6MBR/img5.jpg" },
+  { link: "https://i.ibb.co/zXX9Q09/img4.jpg" },
+  { link: "https://i.ibb.co/pPkKnPS/img3.jpg" },
+  { link: "https://i.ibb.co/JrqXJ7h/img2.jpg" },
+  { link: "https://i.ibb.co/x6TwB0b/img1.jpg" },
+];
+
 const FirstRoute = () => {
   return (
     <ScrollView>
       <View style={{ flex: 1 }}>
-        {[1, 2, 3, 4].map((idx) => (
-          <CoursesTemplate key={idx} />
+        {ImageUrl.map(({ idx, link }) => (
+          <CoursesTemplate background={link} key={idx} />
         ))}
       </View>
     </ScrollView>
   );
 };
 
-const SecondRoute = () => {
-  return (
-    <ScrollView>
-      <View style={{ flex: 1 }}>
-        {[1, 2, 3, 4].map((idx) => (
-          <CoursesTemplate key={idx} />
-        ))}
-      </View>
-    </ScrollView>
-  );
-};
-
-const ThirdRoute = () => {
-  return (
-    <View style={{ flex: 1, backgroundColor: "white", height: 500 }}></View>
-  );
-};
 const renderScene = SceneMap({
   first: FirstRoute,
-  second: SecondRoute,
-  third: ThirdRoute,
 });
 
 const renderTabBar = (props) => (

@@ -1,27 +1,26 @@
 import React from "react";
+import { ImageBackground, TouchableOpacity } from "react-native";
 import { View, Text, ScrollView } from "react-native";
 
-function CoursesTemplate() {
+function CoursesTemplate({ background, onClick }) {
   return (
     <View
       style={{
         width: "100%",
       }}
     >
-      <View
-        style={{
-          padding: 20,
-          backgroundColor: "aqua",
-          width: "90%",
-          marginRight: "auto",
-          marginLeft: "auto",
-          height: 200,
-          borderRadius: 20,
-          margin: 10,
-        }}
-      >
-        <Text>courses</Text>
-      </View>
+      <TouchableOpacity onPress={onClick}>
+        <ImageBackground
+          source={{ uri: background }}
+          style={{
+            width: "100%",
+            height: 300,
+            borderRadius: 20,
+
+            overflow: "hidden",
+          }}
+        ></ImageBackground>
+      </TouchableOpacity>
 
       <View
         style={{

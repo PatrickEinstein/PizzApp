@@ -7,13 +7,38 @@ import Stackscreen, { CustomTitle } from "./stackscreen";
 import { TabBar } from "react-native-tab-view";
 import { useRouter } from "expo-router";
 import CoursesTemplate from "./CoursesTemplate";
+import { Linking } from "react-native";
+const ImageUrl1 = [
+  {
+    link: "https://i.ibb.co/DzxPCB1/img12.png",
+  },
+];
+const ImageUrl2 = [
+  {
+    link: "https://i.ibb.co/f2Fc4wj/image.png",
+  },
+];
+
+const openLink = async (link) => {
+  try {
+    await Linking.openURL(link);
+  } catch (error) {
+    console.error("Failed to open link:", error);
+  }
+};
 
 const FirstRoute = () => {
   return (
     <ScrollView>
       <View style={{ flex: 1 }}>
-        {[1, 2, 3, 4].map((idx) => (
-          <CoursesTemplate key={idx} />
+        {ImageUrl1.map(({ idx, link }) => (
+          <CoursesTemplate
+            background={link}
+            key={idx}
+            onClick={openLink(
+              "https://fareharbor.com/embeds/book/onceinrome/items/?flow=173458&full-items=yes&back=https://www.romepizzaschool.com/&a=yes&g4=yes"
+            )}
+          />
         ))}
       </View>
     </ScrollView>
@@ -24,8 +49,14 @@ const SecondRoute = () => {
   return (
     <ScrollView>
       <View style={{ flex: 1 }}>
-        {[1, 2, 3, 4].map((idx) => (
-          <CoursesTemplate key={idx} />
+        {ImageUrl2.map(({ idx, link }) => (
+          <CoursesTemplate
+            background={link}
+            key={idx}
+            onClick={openLink(
+              "https://fareharbor.com/embeds/book/onceinrome/items/?flow=173459&full-items=yes&back=https://www.romepizzaschool.com/&a=yes&g4=yes"
+            )}
+          />
         ))}
       </View>
     </ScrollView>
