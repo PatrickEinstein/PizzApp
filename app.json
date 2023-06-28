@@ -5,7 +5,7 @@
       "bundler": "metro"
     },
     "name": "PizzaApp",
-    "slug": "PizzaApp",
+    "slug": "pizzaapp",
     "extra": {
       "eas": {
         "projectId": "6a1477c6-8ceb-4795-9d64-0209bd0a746e"
