@@ -40,7 +40,7 @@ const Layout = () => {
   return (
     <PersistGate loading={null} persistor={persistor}>
       <Provider context={null} store={store}>
-         {/* <Stack onLayout={onLayoutRootView} /> */}
+        {/* <Stack onLayout={onLayoutRootView} /> */}
         <Stack.Navigator
           screenOptions={{
             headerShown: false,
@@ -63,3 +63,4 @@ const Layout = () => {
 };
 
 export default Layout;
+// /a69023f0-6339-4fbd-aac7-b971f7e45331
