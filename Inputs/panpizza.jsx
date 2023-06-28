@@ -1033,7 +1033,7 @@ const Inputs = () => {
         >
           <HDivider />
           <Text>
-            Autolysis doses{" "}
+            Autolysis doses
             {isNaN(result.autolysisdose) ? "" : result.autolysisdose.toFixed(2)}
             g
           </Text>
@@ -1051,8 +1051,12 @@ const Inputs = () => {
                 borderRadius: 25,
               }}
             >
-              <Text>
-                Flour :{" "}
+              <Text
+                style={{
+                  color: "white",
+                }}
+              >
+                Flour :
                 {isNaN(result.autolysisflourmass)
                   ? ""
                   : result.autolysisflourmass.toFixed(2)}
@@ -1067,8 +1071,12 @@ const Inputs = () => {
                 borderRadius: 25,
               }}
             >
-              <Text>
-                Water :{" "}
+              <Text
+                style={{
+                  color: "white",
+                }}
+              >
+                Water :
                 {isNaN(result.autolysiswatermass)
                   ? ""
                   : result.autolysiswatermass.toFixed(2)}
@@ -1087,7 +1095,13 @@ const Inputs = () => {
           }}
         >
           <HDivider />
-          <Text>Poolish doses :value</Text>
+          <Text
+            style={{
+              color: "white",
+            }}
+          >
+            Poolish doses :value
+          </Text>
           <Spacer height={20} />
           <View
             style={{
@@ -1103,8 +1117,20 @@ const Inputs = () => {
               }}
             >
               <View>
-                <Text>Flour</Text>
-                <Text>Value</Text>
+                <Text
+                  style={{
+                    color: "white",
+                  }}
+                >
+                  Flour
+                </Text>
+                <Text
+                  style={{
+                    color: "white",
+                  }}
+                >
+                  Value
+                </Text>
               </View>
             </View>
             <Spacer width={30} />
@@ -1115,8 +1141,20 @@ const Inputs = () => {
                 borderRadius: 25,
               }}
             >
-              <Text>Water</Text>
-              <Text>Value</Text>
+              <Text
+                style={{
+                  color: "white",
+                }}
+              >
+                Water
+              </Text>
+              <Text
+                style={{
+                  color: "white",
+                }}
+              >
+                Value
+              </Text>
             </View>
             <Spacer width={30} />
             <View
@@ -1126,8 +1164,20 @@ const Inputs = () => {
                 borderRadius: 25,
               }}
             >
-              <Text>Water</Text>
-              <Text>Value</Text>
+              <Text
+                style={{
+                  color: "white",
+                }}
+              >
+                Water
+              </Text>
+              <Text
+                style={{
+                  color: "white",
+                }}
+              >
+                Value
+              </Text>
             </View>
           </View>
         </View>

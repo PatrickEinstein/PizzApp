@@ -29,7 +29,7 @@ const MyCarousel = () => {
             key={item.id}
             name={item.title}
             image={item.image}
-            width={400}
+            width={350}
           />
         </View>
       );
@@ -42,11 +42,11 @@ const MyCarousel = () => {
         dotsLength={5}
         activeDotIndex={activeSlide}
         containerStyle={{
-          backgroundColor: "rgba(0, 0, 0, 0.75)",
+          // backgroundColor: "rgba(0, 0, 0, 0.75)",
           padding: 0,
           margin: 0,
           top: -70,
-          borderBottomLeftRadius:5
+          borderBottomLeftRadius: 5,
         }}
         dotStyle={{
           width: 10,
@@ -69,7 +69,14 @@ const MyCarousel = () => {
   };
 
   return (
-    <View>
+    <View
+      style={{
+        justifyContent: "center",
+        alignItems: "center",
+        marginRight: "auto",
+        marginLeft: "auto",
+      }}
+    >
       <Carousel
         ref={carouselRef}
         data={recipees}
@@ -83,7 +90,7 @@ const MyCarousel = () => {
         itemWidth={350}
         style={{
           paddingTop: 0,
-          height: 450
+          height: 450,
         }}
       />
       {pagination()}
@@ -93,7 +100,7 @@ const MyCarousel = () => {
 
 const styles = StyleSheet.create({
   carouselItem: {
-    flex: 1,
+    marginTop: 20,
     alignItems: "center",
     justifyContent: "center",
     width: "100%",

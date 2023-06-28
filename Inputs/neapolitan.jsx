@@ -13,7 +13,7 @@ import Factors from "../components/YeastFactors";
 
 const Inputs = () => {
   const [clickedLabel, setClickedLabel] = useState("");
-  console.log(clickedLabel);
+  // console.log(clickedLabel);
   const handleButtonClick = (label) => {
     if (label === clickedLabel) {
       setClickedLabel("");
@@ -66,7 +66,7 @@ const Inputs = () => {
   const [NewYeastFactor, setNewYeastFactor] = useState(0);
   const [CTleaven, setCTleaven] = useState(43);
   const [CTC, setCTC] = useState(4);
-  console.log(NewYeastFactor);
+  // console.log(NewYeastFactor);
 
   const onhandleCTleaven = (newValue) => {
     setCTleaven(newValue);
@@ -424,7 +424,7 @@ const Inputs = () => {
   const FSDplus = () => {
     setyeastfactor(+0.15);
   };
-  console.log(oldDoughIn);
+  // console.log(oldDoughIn);
   const LSDplus = () => {
     setyeastfactor(+0.4);
   };
@@ -467,7 +467,7 @@ const Inputs = () => {
         style={{
           flexDirection: "row",
           justifyContent: "space-between",
-          marginTop: 20,
+          marginTop: 10,
           alignItems: "center",
         }}
       >
@@ -517,7 +517,7 @@ const Inputs = () => {
               onIncrement={BallWeight2plus}
               onDecrement={BallWeight2minus}
               borderColor={"#990000"}
-              label="Ball Weight"
+              label="Ball Weight (g)"
               viewWidth={150}
             />
           </View>
@@ -545,7 +545,7 @@ const Inputs = () => {
             onIncrement={flour1plus}
             onDecrement={flour1minus}
             borderColor={"#990000"}
-            label="Flour 1"
+            label="Flour 1 (%)"
             viewWidth={150}
             name="pencil"
           />
@@ -557,7 +557,7 @@ const Inputs = () => {
               onIncrement={flour2plus}
               onDecrement={flour2minus}
               borderColor={"#990000"}
-              label="Flour 2"
+              label="Flour 2 (%)"
               viewWidth={150}
               name="pencil"
             />
@@ -584,7 +584,7 @@ const Inputs = () => {
                 onIncrement={flour3plus}
                 onDecrement={flour3minus}
                 borderColor={"#990000"}
-                label="Flour 3"
+                label="Flour 3 (%)"
                 viewWidth={150}
                 name="pencil"
               />
@@ -597,7 +597,7 @@ const Inputs = () => {
                 onIncrement={flour4plus}
                 onDecrement={flour4minus}
                 borderColor={"#990000"}
-                label="Flour 4"
+                label="Flour 4 (%)"
                 viewWidth={150}
                 name="pencil"
               />
@@ -623,7 +623,7 @@ const Inputs = () => {
               onIncrement={flour5plus}
               onDecrement={flour5minus}
               borderColor={"#990000"}
-              label="Flour 5"
+              label="Flour 5 (%)"
               viewWidth={150}
               name="pencil"
             />
@@ -635,13 +635,11 @@ const Inputs = () => {
               onIncrement={flour6plus}
               onDecrement={flour6minus}
               borderColor={"#990000"}
-              label="Flour 6"
+              label="Flour 6 (%)"
               viewWidth={150}
               name="pencil"
             />
-          ) : (
-            <Text></Text>
-          )}
+          ) : null}
         </View>
       ) : null}
       <View>
@@ -651,7 +649,7 @@ const Inputs = () => {
           onIncrement={waterplus}
           onDecrement={waterminus}
           borderColor={"#990000"}
-          label="Water"
+          label="Water (%)"
         />
         <InputWithAdornments
           value={salt}
@@ -659,7 +657,7 @@ const Inputs = () => {
           onIncrement={saltplus}
           onDecrement={saltminus}
           borderColor={"#990000"}
-          label="Salt"
+          label="Salt (%)"
         />
       </View>
       <Spacer height={20} />
@@ -677,7 +675,7 @@ const Inputs = () => {
           onIncrement={leavenplus}
           onDecrement={leavenminus}
           borderColor={"#990000"}
-          label="RT leavening"
+          label="RT leavening (h)"
           viewWidth={150}
           name="pencil"
         />
@@ -728,36 +726,37 @@ const Inputs = () => {
         </>
       ) : null}
       {autolysis ? (
-        <View
-          style={{
-            flexDirection: "row",
-            justifyContent: "space-between",
-            marginBottom: 20,
-            justifyContent: "space-between",
-            alignItems: "center",
-          }}
-        >
-          <InputWithAdornments
-            value={autolysisflour}
-            onChange={onHandleautolysisflour}
-            onIncrement={autolysisflourplus}
-            onDecrement={autolysisflourminus}
-            borderColor={"#990000"}
-            label="Autolysis flour(%)"
-            viewWidth={150}
-            name="pencil"
-          />
-          <InputWithAdornments
-            value={autolysiswater}
-            onChange={onHandleautolysiswater}
-            onIncrement={autolysiswaterplus}
-            onDecrement={autolysiswaterminus}
-            borderColor={"#990000"}
-            label="Autolysis water(%) "
-            viewWidth={150}
-            name="pencil"
-          />
-        </View>
+        <>
+          <View
+            style={{
+              flexDirection: "row",
+              justifyContent: "space-between",
+              marginBottom: 20,
+              alignItems: "center",
+            }}
+          >
+            <InputWithAdornments
+              value={autolysisflour}
+              onChange={onHandleautolysisflour}
+              onIncrement={autolysisflourplus}
+              onDecrement={autolysisflourminus}
+              borderColor={"#990000"}
+              label="Autolysis flour(%)"
+              viewWidth={150}
+              name="pencil"
+            />
+            <InputWithAdornments
+              value={autolysiswater}
+              onChange={onHandleautolysiswater}
+              onIncrement={autolysiswaterplus}
+              onDecrement={autolysiswaterminus}
+              borderColor={"#990000"}
+              label="Autolysis water(%) "
+              viewWidth={150}
+              name="pencil"
+            />
+          </View>
+        </>
       ) : null}
 
       {oldDoughIn ? (
@@ -768,8 +767,8 @@ const Inputs = () => {
               flexDirection: "row",
               justifyContent: "space-between",
               marginBottom: 20,
-              justifyContent: "space-between",
-              alignItems: "center",
+              // justifyContent: "space-between",
+              // alignItems: "center",
             }}
           >
             <InputWithAdornments
@@ -989,7 +988,13 @@ const Inputs = () => {
                 borderRadius: 25,
               }}
             >
-              <Text>Flour : {result.autolysisflourmass.toFixed(2)}g</Text>
+              <Text
+                style={{
+                  color: "white",
+                }}
+              >
+                Flour : {result.autolysisflourmass.toFixed(2)}g
+              </Text>
             </View>
             <Spacer width={30} />
             <View
@@ -999,7 +1004,13 @@ const Inputs = () => {
                 borderRadius: 25,
               }}
             >
-              <Text>Water : {result.autolysiswatermass.toFixed(2)}g</Text>
+              <Text
+                style={{
+                  color: "white",
+                }}
+              >
+                Water : {result.autolysiswatermass.toFixed(2)}g
+              </Text>
             </View>
           </View>
         </View>
@@ -1029,8 +1040,20 @@ const Inputs = () => {
               }}
             >
               <View>
-                <Text>Flour</Text>
-                <Text>Value</Text>
+                <Text
+                  style={{
+                    color: "white",
+                  }}
+                >
+                  Flour
+                </Text>
+                <Text
+                  style={{
+                    color: "white",
+                  }}
+                >
+                  Value
+                </Text>
               </View>
             </View>
             <Spacer width={30} />
@@ -1041,8 +1064,20 @@ const Inputs = () => {
                 borderRadius: 25,
               }}
             >
-              <Text>Water</Text>
-              <Text>Value</Text>
+              <Text
+                style={{
+                  color: "white",
+                }}
+              >
+                Water
+              </Text>
+              <Text
+                style={{
+                  color: "white",
+                }}
+              >
+                Value
+              </Text>
             </View>
             <Spacer width={30} />
             <View
@@ -1052,8 +1087,20 @@ const Inputs = () => {
                 borderRadius: 25,
               }}
             >
-              <Text>Water</Text>
-              <Text>Value</Text>
+              <Text
+                style={{
+                  color: "white",
+                }}
+              >
+                Water
+              </Text>
+              <Text
+                style={{
+                  color: "white",
+                }}
+              >
+                Value
+              </Text>
             </View>
           </View>
         </View>

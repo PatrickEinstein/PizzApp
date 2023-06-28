@@ -23,9 +23,17 @@ export const recipeReducer = createSlice({
     picker: 0,
     recipee: [],
     selectedRecipe: [],
+    adminRecipee: {},
     loggedInUser: {},
+    toggleMenuList: false,
   },
   reducers: {
+    toggleMenuList: (state, action) => {
+      state.toggleMenuList = !state.toggleMenuList;
+    },
+    saveAdminRecipe: (state, action) => {
+      state.adminRecipee = action.payload;
+    },
     saveLoggedInUser: (state, action) => {
       state.loggedInUser = action.payload;
     },
@@ -93,6 +101,8 @@ export const recipeReducer = createSlice({
 });
 
 export const {
+  toggleMenuList,
+  saveAdminRecipe,
   saveLoggedInUser,
   selectedRecipe,
   saveRecipee,

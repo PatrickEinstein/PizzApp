@@ -47,7 +47,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useDispatch } from "react-redux";
-import { saveRecipee } from "../../Redux/Reducers";
+import { saveAdminRecipe, saveRecipee } from "../../Redux/Reducers";
 
 export const useFetch = () => {
   const dispatch = useDispatch();
@@ -76,6 +76,8 @@ export const useFetch = () => {
       }
     };
 
+   
+
     const fetchAllData = async () => {
       setIsLoading(true);
 
@@ -87,11 +89,15 @@ export const useFetch = () => {
     };
 
     fetchAllData();
+   
   }, []);
 
   useEffect(() => {
     dispatch(saveRecipee(Array.from(fetchedData)));
   }, [fetchedData]);
-  //dispatch, fetchedData
+
   return { isLoading, error };
 };
+
+
+

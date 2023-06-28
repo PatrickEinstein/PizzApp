@@ -4,14 +4,12 @@ import { View, Text, Button } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import Buttons from "../components/Buttton";
 import { useRouter } from "expo-router";
-import { saveLoggedInUser } from "../Redux/Reducers";
-import { useNavigation } from "@react-navigation/native";
 import SnackBar from "../components/snackbar";
 import { useDispatch } from "react-redux";
+import { saveLoggedInUser } from "../Redux/Reducers";
 
 const SignIn = () => {
   const dispatch = useDispatch();
-  const navigation = useNavigation();
   const router = useRouter();
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
@@ -44,7 +42,8 @@ const SignIn = () => {
         setVisible(true);
         if (submitted.status === "200") {
           dispatch(saveLoggedInUser(submitted));
-          router.push("/BottomNavs");
+          router.push("BottomNavs");
+
           setResponse(submitted.message);
           setVisible(true);
         } else {
@@ -55,6 +54,7 @@ const SignIn = () => {
         console.log(submitted);
         console.log(response);
       } catch (err) {
+        console.log(err);
         setResponse("something went wrong, please try again later");
       }
     } else {

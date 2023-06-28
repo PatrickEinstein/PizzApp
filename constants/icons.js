@@ -6,10 +6,14 @@ import left from "../assets/icons/left.png";
 import heartOutline from "../assets/icons/heart-ol.png";
 import share from "../assets/icons/share.png";
 import location from "../assets/icons/location.png";
-import chevronLeft from '../assets/icons/chevron-left.png'
-import chevronRight from '../assets/icons/chevron-right.png'
+import chevronLeft from "../assets/icons/chevron-left.png";
+import chevronRight from "../assets/icons/chevron-right.png";
+import trash from "../assets/icons/trash.png";
+import edit from "../assets/icons/edit.png";
 
 export default {
+  trash,
+  edit,
   heart,
   menu,
   search,
@@ -19,5 +23,5 @@ export default {
   share,
   location,
   chevronLeft,
-  chevronRight
+  chevronRight,
 };

@@ -1,13 +1,17 @@
 import * as React from "react";
-import { View, useWindowDimensions } from "react-native";
+import { TouchableOpacity, View, useWindowDimensions } from "react-native";
 import { TabView, SceneMap } from "react-native-tab-view";
 import SignUp from "./signup";
 import SignIn from "./signin";
+import { Ionicons } from "@expo/vector-icons";
 import { ScrollView } from "react-native";
 import { Settings } from "../app/settings";
 import { TabBar } from "react-native-tab-view";
 import Recipee from "./recipee";
 import Stackscreen from "../components/stackscreen";
+import { Text } from "react-native";
+import { NoRollLogo } from "../components/animatedLogo";
+import { useRouter } from "expo-router";
 
 const FirstRoute = () => (
   <View style={{ flex: 1, backgroundColor: "white", padding: 20 }}>
@@ -43,9 +47,9 @@ const renderTabBar = (props) => (
     style={{
       backgroundColor: "white",
       borderColor: "#black",
-      height: 100,
+      height: "auto",
       color: "black",
-      paddingTop: 20,
+      paddingTop: 2,
     }}
     labelStyle={{ color: "black" }}
   />
@@ -53,7 +57,7 @@ const renderTabBar = (props) => (
 
 export default function HomePage() {
   const layout = useWindowDimensions();
-
+  const router = useRouter();
   const [index, setIndex] = React.useState(0);
   const [routes, setRoutes] = React.useState([
     { key: "first", title: "SignIn" },
@@ -61,15 +65,46 @@ export default function HomePage() {
   ]);
 
   return (
-    <TabView
-      renderScene={renderScene}
-      onIndexChange={setIndex}
-      initialLayout={{ width: layout.width }}
-      renderTabBar={renderTabBar}
-      navigationState={{ index, routes }}
-      style={{
-        borderRadius: 20,
-      }}
-    />
+    <>
+      <View
+        flexDirection="row"
+        justifyContent="space-between"
+        backgroundColor="white"
+        sx={{
+          background: "white",
+        }}
+      >
+        <TouchableOpacity onPress={() => router.push("/welcome")}>
+          <Text
+            style={{
+              paddingTop: 25,
+            }}
+          >
+            <Ionicons name="home" size={30} color="black" />
+          </Text>
+        </TouchableOpacity>
+
+        <Text
+          style={{
+            fontSize: 25,
+            paddingTop: 25,
+            textAlign: "center",
+          }}
+        >
+          Welcome
+        </Text>
+        <NoRollLogo />
+      </View>
+      <TabView
+        renderScene={renderScene}
+        onIndexChange={setIndex}
+        initialLayout={{ width: layout.width }}
+        renderTabBar={renderTabBar}
+        navigationState={{ index, routes }}
+        style={{
+          borderRadius: 20,
+        }}
+      />
+    </>
   );
 }

@@ -13,6 +13,7 @@ import { NoRollLogo } from "../components/animatedLogo";
 const FirstRoute = () => {
   const selected = useSelector((state) => state.recipe.selectedRecipe);
   const item = selected[0];
+  console.log(item);
   return (
     <View style={{ flex: 1, backgroundColor: "white" }}>
       <ScrollView
@@ -35,29 +36,6 @@ const FirstRoute = () => {
 const SecondRoute = () => {
   const selected = useSelector((state) => state.recipe.selectedRecipe);
   const item = selected[0];
-  const ing = item.ingredients;
-  const itemsText = ing.map((item, index) => {
-    return (
-      <View style={{ flex: 1, backgroundColor: "white" }}>
-        <ScrollView
-          style={{
-            padding: 10,
-          }}
-        >
-          <Text
-            key={index}
-            style={{
-              fontWeight: "bold",
-              marginBottom: 10,
-            }}
-          >
-            {item}
-          </Text>
-        </ScrollView>
-      </View>
-    );
-  });
-
   return (
     <View style={{ flex: 1, backgroundColor: "white" }}>
       <ScrollView
@@ -65,7 +43,14 @@ const SecondRoute = () => {
           padding: 10,
         }}
       >
-        <View>{itemsText}</View>
+        <Text
+          style={{
+            fontWeight: "bold",
+            lineHeight: 30,
+          }}
+        >
+          {item.ingredients}
+        </Text>
       </ScrollView>
     </View>
   );
@@ -74,34 +59,6 @@ const SecondRoute = () => {
 const ThirdRoute = () => {
   const selected = useSelector((state) => state.recipe.selectedRecipe);
   const item = selected[0];
-  const ing = item.method;
-
-  const renderSteps = () => {
-    return ing.map((item, index) => {
-      const stepNumber = `Step ${index + 1}`;
-      const stepDescription = Object.values(item)[0];
-      return (
-        <ScrollView
-          style={{
-            padding: 10,
-          }}
-        >
-          <Text
-            key={index}
-            style={{
-              fontWeight: "bold",
-            }}
-          >
-            {stepNumber}: {stepDescription}
-            {"\n"} {"\n"}
-          </Text>
-        </ScrollView>
-      );
-    });
-  };
-  // {renderSteps().map((step, index) => (
-  //   <Text key={index}>{step}</Text>
-  // ))}
 
   return (
     <View style={{ flex: 1, backgroundColor: "white", height: 500 }}>
@@ -110,7 +67,14 @@ const ThirdRoute = () => {
           padding: 10,
         }}
       >
-        {renderSteps()}
+        <Text
+          style={{
+            fontWeight: "bold",
+            lineHeight: 30,
+          }}
+        >
+          {item.method}
+        </Text>
       </ScrollView>
     </View>
   );
@@ -132,7 +96,7 @@ const renderTabBar = (props) => (
   />
 );
 
-const Description = () => {
+const AdminDescription = () => {
   const router = useRouter();
   const layout = useWindowDimensions();
 
@@ -149,7 +113,7 @@ const Description = () => {
     <>
       <View
         style={{
-          padding: 20,
+          padding: 5,
           backgroundColor: "white",
         }}
       >
@@ -207,7 +171,6 @@ const Description = () => {
         >
           {item.name}
         </Text>
-        {/* <Text>{item.title}</Text> */}
       </View>
       <TabView
         renderScene={renderScene}
@@ -220,4 +183,4 @@ const Description = () => {
   );
 };
 
-export default Description;
+export default AdminDescription;

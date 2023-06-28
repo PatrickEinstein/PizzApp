@@ -42,7 +42,13 @@ const renderTabBar = (props) => (
   <TabBar
     {...props}
     indicatorStyle={{ backgroundColor: "white" }}
-    style={{ backgroundColor: "white", borderColor: "#ffcc33", height: 50 }}
+    style={{
+      backgroundColor: "white",
+      borderColor: "#black",
+      height: "auto",
+      color: "black",
+      paddingTop: 2,
+    }}
     labelStyle={{
       color: "black",
     }}

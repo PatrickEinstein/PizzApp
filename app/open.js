@@ -4,40 +4,58 @@ import { useSelector } from "react-redux";
 import Icon from "react-native-vector-icons/Feather";
 import Stackscreen from "../components/stackscreen";
 import { useRouter } from "expo-router";
+import { Ionicons } from "@expo/vector-icons";
+import { NoRollLogo } from "../components/animatedLogo";
 function Open() {
   const router = useRouter();
 
   const savedstuffs = useSelector((state) => state.recipe.saved);
   return (
     <View>
-      <Stackscreen
-        title="Open Recipee"
-        icon="home"
-        onPress={() => router.push("/BottomNavs")}
-      />
-
-      {savedstuffs?.map(({ setvalues, recipe }) => (
-       
-          <View
-          key={recipe}
+      <View flexDirection="row" justifyContent="space-between">
+        <TouchableOpacity onPress={() => router.push("/BottomNavs")}>
+          <Text
             style={{
-              height: 100,
-              width: "100%",
-              padding: 20,
-              borderWidth: 3,
-              flexDirection: "row",
-              justifyContent: "space-between",
-              flexDirection:"row"
+              paddingTop: 25,
             }}
           >
-            <TouchableOpacity onPress={() => router.push("/")}>
+            <Ionicons name="home" size={30} color="black" />
+          </Text>
+        </TouchableOpacity>
+
+        <Text
+          style={{
+            fontSize: 25,
+            paddingTop: 25,
+            marginLeft: 10,
+          }}
+        >
+          Saved Recipees
+        </Text>
+        <NoRollLogo />
+      </View>
+
+      {savedstuffs?.map(({ setvalues, recipe }) => (
+        <View
+          key={recipe}
+          style={{
+            height: 100,
+            width: "100%",
+            padding: 20,
+            borderWidth: 3,
+            flexDirection: "row",
+            justifyContent: "space-between",
+            flexDirection: "row",
+          }}
+        >
+          <TouchableOpacity onPress={() => router.push("/")}>
             <View
-            style={{
-              flexDirection: "row",
-              justifyContent: "space-between",
-              alignItems: "center",
-              width:"80%"
-            }}
+              style={{
+                flexDirection: "row",
+                justifyContent: "space-between",
+                alignItems: "center",
+                width: "80%",
+              }}
             >
               <Icon
                 name="folder"
@@ -62,10 +80,9 @@ function Open() {
                 <Text>{setvalues}</Text>
                 <Text>{recipe}</Text>
               </View>
-              </View>
-            </TouchableOpacity>
-          </View>
-        
+            </View>
+          </TouchableOpacity>
+        </View>
       ))}
     </View>
   );

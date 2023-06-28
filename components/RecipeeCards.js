@@ -37,7 +37,7 @@ const RecipeeCards = ({
   return (
     <TouchableOpacity
       style={{
-        margin: 10,
+        margin: 5,
         width: width,
         height: "auto",
       }}

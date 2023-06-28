@@ -10,9 +10,10 @@ import HomePage from "../pages";
 import Logo from "../assets/images/pizza.png";
 import { StyleSheet } from "react-native";
 import { CustomTitle } from "../components/stackscreen";
-import { useSelector } from "react-redux";
+// import { useSelector } from "react-redux";
 import BottomNavs from "./BottomNavs";
 import { NoRollLogo } from "../components/animatedLogo";
+import Layout from "./_layout";
 
 const styles = StyleSheet.create({
   logo: {
@@ -31,37 +32,23 @@ const styles = StyleSheet.create({
 const persistor = persistStore(store);
 
 const Home = () => {
-  const screen = useSelector((state) => state.recipe.loggedInUser.user);
-  console.log(screen);
-  const [visible, setVisible] = useState(false);
-  const onPress = () => setVisible((prev) => !prev);
+  // const screen = useSelector((state) => state.recipe.loggedInUser.user);
+  // console.log(screen);
   return (
-    <Provider context={null} store={store}>
-      <PersistGate
-        loading={
-          <>
-            <Stackscreen title="" />
-            <Image source={Logo} style={styles.logo} />
-          </>
-        }
-        persistor={persistor}
-      >
-        <SafeAreaView
-          style={{
-            flex: 1,
-          }}
-        >
-          <Stackscreen
-            title="Welcome"
-            icon=""
-            help=""
-            backgroundColor="white"
-            titleicon={NoRollLogo}
-          />
-          {screen ? <BottomNavs /> : <HomePage />}
-        </SafeAreaView>
-      </PersistGate>
-    </Provider>
+    // <Provider context={null} store={store}>
+    //   <PersistGate
+    //     loading={
+    //       <>
+    //         <Stackscreen title="" />
+    //         <Image source={Logo} style={styles.logo} />
+    //       </>
+    //     }
+    //     persistor={persistor}
+    //   >
+        <Layout />
+        // {/* {screen ? <BottomNavs /> : <HomePage />} */}
+    //   </PersistGate>
+    // </Provider>
   );
 };
 

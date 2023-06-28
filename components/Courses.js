@@ -8,6 +8,7 @@ import { TabBar } from "react-native-tab-view";
 import { useRouter } from "expo-router";
 import CoursesTemplate from "./CoursesTemplate";
 import { Linking } from "react-native";
+import { useSelector } from "react-redux";
 const ImageUrl1 = [
   {
     link: "https://i.ibb.co/DzxPCB1/img12.png",
@@ -28,8 +29,22 @@ const openLink = async (link) => {
 };
 
 const FirstRoute = () => {
+  const adminRecipe = useSelector((state) => state.recipe.adminRecipee.courses);
   return (
     <ScrollView>
+      <View style={{ flex: 1 }}>
+        {adminRecipe.map(({ idx, image }) => (
+          <CoursesTemplate
+            background={image}
+            key={idx}
+            // onClick={() =>
+            //   openLink(
+            //     "https://fareharbor.com/embeds/book/onceinrome/items/?flow=173458&full-items=yes&back=https://www.romepizzaschool.com/&a=yes&g4=yes"
+            //   )
+            // }
+          />
+        ))}
+      </View>
       <View style={{ flex: 1 }}>
         {ImageUrl1.map(({ idx, link }) => (
           <CoursesTemplate
@@ -48,8 +63,22 @@ const FirstRoute = () => {
 };
 
 const SecondRoute = () => {
+  const adminRecipe = useSelector((state) => state.recipe.adminRecipee.courses);
   return (
     <ScrollView>
+      <View style={{ flex: 1 }}>
+        {adminRecipe.map(({ idx, image }) => (
+          <CoursesTemplate
+            background={image}
+            key={idx}
+            // onClick={() =>
+            //   openLink(
+            //     "https://fareharbor.com/embeds/book/onceinrome/items/?flow=173458&full-items=yes&back=https://www.romepizzaschool.com/&a=yes&g4=yes"
+            //   )
+            // }
+          />
+        ))}
+      </View>
       <View style={{ flex: 1 }}>
         {ImageUrl2.map(({ idx, link }) => (
           <CoursesTemplate
@@ -108,13 +137,6 @@ const Courses = () => {
         width: "100%",
       }}
     >
-      <Stackscreen
-        onPress={() => router.push("/BottomNavs")}
-        // icon="home"
-        // help="menu"
-        title="COURSES"
-        color="black"
-      />
       <TabView
         renderScene={renderScene}
         onIndexChange={setIndex}

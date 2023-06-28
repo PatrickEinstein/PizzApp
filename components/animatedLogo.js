@@ -79,8 +79,8 @@ export function NoRollLogo() {
       <Image
         source={require("../assets/images/pizza.png")} // Replace with your image path
         style={{
-          width: 100,
-          height: 100,
+          width: 70,
+          height: 70,
         }}
       />
     </View>

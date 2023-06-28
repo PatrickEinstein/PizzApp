@@ -1,3 +1,4 @@
+import AdminCard from "./AdminCard";
 import RecipeeCards from "./RecipeeCards.js";
 import { StyleSheet } from "react-native";
 
@@ -14,6 +15,27 @@ const styles = StyleSheet.create({
   },
 });
 
+const AdminRecipeeCard = ({ item }) => {
+  return (
+    <AdminCard
+      category={item.category}
+      title={item.title}
+      key={item.id}
+      _id={item._id}
+      name={item.title}
+      image={item.image}
+      width={180}
+      preparation={item.preparation}
+      ingredients={item.ingredients}
+      method={item.preparation}
+      description={item.description}
+      time={item.time}
+    />
+  );
+
+  // Return null if the item's ID is not within the desired range
+  return <Text>Admin has no items yet</Text>;
+};
 const RenderItem1 = ({ item }) => {
   const desiredRange = { start: 1, end: 5 }; // Define the desired ID range
 
@@ -221,6 +243,7 @@ const RenderItem10 = ({ item }) => {
         ingredients={item.ingredients}
         method={item.method}
         description={item.description}
+        category={item.category}
         time={item.time}
       />
     );
@@ -241,4 +264,5 @@ export {
   RenderItem8,
   RenderItem9,
   RenderItem10,
+  AdminRecipeeCard,
 };

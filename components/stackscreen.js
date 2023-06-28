@@ -23,10 +23,10 @@ function Stackscreen({
       options={{
         title: title,
         headerTitleStyle: { color: color },
-        headerTitle: titleicon,
+        // headerTitle: titleicon,
         headerStyle: {
           backgroundColor: backgroundColor,
-          height: 100,
+          // height: 10,
         },
 
         headerShadowVisible: false,

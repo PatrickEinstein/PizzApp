@@ -7,44 +7,39 @@ import Stackscreen, { CustomTitle } from "./stackscreen";
 import { TabBar } from "react-native-tab-view";
 import { useRouter } from "expo-router";
 import CoursesTemplate from "./CoursesTemplate";
-import { useSelector } from "react-redux";
-
-const ImageUrl = [
-  { link: "https://i.ibb.co/ZYNyWbV/img11.jpg" },
-  { link: "https://i.ibb.co/PwSM8Ld/img10.jpg" },
-  { link: "https://i.ibb.co/YL0CVms/img9.jpg" },
-  { link: "https://i.ibb.co/phqPmwm/img8.jpg" },
-  { link: "https://i.ibb.co/nLQg8FT/img7.jpg" },
-  { link: "https://i.ibb.co/brTxLDy/img6.jpg" },
-  { link: "https://i.ibb.co/RPK6MBR/img5.jpg" },
-  { link: "https://i.ibb.co/zXX9Q09/img4.jpg" },
-  { link: "https://i.ibb.co/pPkKnPS/img3.jpg" },
-  { link: "https://i.ibb.co/JrqXJ7h/img2.jpg" },
-  { link: "https://i.ibb.co/x6TwB0b/img1.jpg" },
-];
+import { Linking } from "react-native";
 
 const FirstRoute = () => {
-  const adminRecipe = useSelector(
-    (state) => state.recipe.adminRecipee.products
-  );
+  return <ScrollView></ScrollView>;
+};
+
+const SecondRoute = () => {
   return (
     <ScrollView>
-      <View style={{ flex: 1 }}>
-        {adminRecipe.map(({ idx, image }) => (
-          <CoursesTemplate background={image} key={idx} />
-        ))}
-      </View>
-      <View style={{ flex: 1 }}>
-        {ImageUrl.map(({ idx, link }) => (
-          <CoursesTemplate background={link} key={idx} />
-        ))}
-      </View>
+      <Text>Hi</Text>
     </ScrollView>
   );
 };
 
+const ThirdRoute = () => {
+  return (
+    <ScrollView>
+      <Text>Hi</Text>
+    </ScrollView>
+  );
+};
+const FourthRoute = () => {
+  return (
+    <ScrollView>
+      <Text>Hi</Text>
+    </ScrollView>
+  );
+};
 const renderScene = SceneMap({
   first: FirstRoute,
+  second: SecondRoute,
+  third: ThirdRoute,
+  fourth: FourthRoute,
 });
 
 const renderTabBar = (props) => (
@@ -54,19 +49,21 @@ const renderTabBar = (props) => (
     style={{ backgroundColor: "white", borderColor: "#ffcc33", height: 50 }}
     labelStyle={{
       color: "black",
+      fontSize: 10,
     }}
   />
 );
 
-const Products = () => {
+const AddStuffs = () => {
   const router = useRouter();
   const layout = useWindowDimensions();
 
   const [index, setIndex] = React.useState(0);
   const [routes, setRoutes] = React.useState([
-    { key: "first", title: "Products" },
-    // { key: "second", title: "Rome COurses" },
-    // { key: "third", title: "Preparation" },
+    { key: "first", title: "Add Online Courses" },
+    { key: "second", title: "Add Rome Courses" },
+    { key: "third", title: "Add Products" },
+    { key: "fourth", title: "Add Recipee" },
   ]);
 
   return (
@@ -77,13 +74,11 @@ const Products = () => {
         width: "100%",
       }}
     >
-      {/* <Stackscreen
+      <Stackscreen
         onPress={() => router.push("/BottomNavs")}
-        // icon="home"
-        // help="menu"
-        title="PRODUCTS"
+        title="Dashboard"
         color="black"
-      /> */}
+      />
       <TabView
         renderScene={renderScene}
         onIndexChange={setIndex}
@@ -95,4 +90,4 @@ const Products = () => {
   );
 };
 
-export default Products;
+export default AddStuffs;

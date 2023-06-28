@@ -1,6 +1,7 @@
-import { View, Text } from "react-native";
+import { View, Text, TouchableOpacity } from "react-native";
 import Switches from "../components/switch";
 import { useEffect, useState } from "react";
+import { Ionicons } from "@expo/vector-icons";
 import {
   toggleFats,
   toggleTwoballsize,
@@ -18,39 +19,37 @@ import {
   toggleflour6,
   togglePicker,
 } from "../Redux/Reducers";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Spacer } from "../components/spacer";
 import { Pickers } from "../components/picker";
-import Stackscreen from "../components/stackscreen";
 import MenuList from "../components/menulist";
 import { useRouter } from "expo-router";
+import { NoRollLogo } from "../components/animatedLogo";
+import { ScrollView } from "react-native";
 const Settings = () => {
+  const values = useSelector((state) => state.recipe);
+  console.log(`values in settings==>`, values.autolysis);
+
   const router = useRouter();
   const [visible, setVisible] = useState(false);
   const dispatch = useDispatch();
   const [selectedValue, setSelectedValue] = useState(1);
-  const [twoBallSize, setTwoBallSize] = useState(0);
-  const [fats, setFats] = useState(0);
-  const [CT, setCT] = useState(0);
-  const [oldDoughIn, setOldDoughIn] = useState(0);
-  const [oldDoughOut, setOldDoughOut] = useState(0);
-  const [autolysis, setAutolysis] = useState(0);
-  const [biga, setBiga] = useState(0);
-  const [poolish, setPoolish] = useState(0);
-  const [displayOn, setDisplayOn] = useState(0);
-  const [flour2, setFlour2] = useState(0);
-  const [flour3, setFlour3] = useState(0);
-  const [flour4, setFlour4] = useState(0);
-  const [flour5, setFlour5] = useState(0);
-  const [flour6, setFlour6] = useState(0);
-  console.log(`2 ==> ${flour2}`);
-  console.log(`3 ==> ${flour3}`);
-  console.log(`4 ==> ${flour4}`);
-  console.log(`5 ==> ${flour5}`);
-  console.log(`6 ==> ${flour6}`);
-
-  console.log(`values ==> ${selectedValue}`);
-
+  console.log(`selectedValue in settings==>`, selectedValue);
+  const [twoBallSize, setTwoBallSize] = useState(values.twoballsize);
+  const [fats, setFats] = useState(values.fats);
+  const [CT, setCT] = useState(values.ct);
+  const [oldDoughIn, setOldDoughIn] = useState(values.olddoughin);
+  const [oldDoughOut, setOldDoughOut] = useState(values.olddoughout);
+  const [autolysis, setAutolysis] = useState(values.autolysis);
+  const [biga, setBiga] = useState(values.biga);
+  const [poolish, setPoolish] = useState(values.poolish);
+  const [displayOn, setDisplayOn] = useState(values.displayon);
+  const [flour2, setFlour2] = useState(values.flour2);
+  const [flour3, setFlour3] = useState(values.flour3);
+  const [flour4, setFlour4] = useState(values.flour4);
+  const [flour5, setFlour5] = useState(values.flour5);
+  const [flour6, setFlour6] = useState(values.flour6);
+  console.log(`flours`, flour3, flour4, flour5, flour6);
   const onValueChange = (selectedValue) => {
     setSelectedValue(selectedValue);
     dispatch(togglePicker(selectedValue));
@@ -165,12 +164,29 @@ const Settings = () => {
   }, [selectedValue]);
 
   return (
-    <View>
-      <Stackscreen
-        onPress={() => router.push("/BottomNavs")}
-        title="Settings"
-        icon="home"
-      />
+    <ScrollView>
+      <View flexDirection="row" justifyContent="space-between">
+        <TouchableOpacity onPress={() => router.push("/BottomNavs")}>
+          <Text
+            style={{
+              paddingTop: 25,
+            }}
+          >
+            <Ionicons name="home" size={30} color="black" />
+          </Text>
+        </TouchableOpacity>
+
+        <Text
+          style={{
+            fontSize: 25,
+            paddingTop: 25,
+            marginLeft: 10,
+          }}
+        >
+          Saved Recipees
+        </Text>
+        <NoRollLogo />
+      </View>
       <View
         style={{
           paddingLeft: 20,
@@ -315,7 +331,7 @@ const Settings = () => {
           </View>
         ) : null}
       </View>
-    </View>
+    </ScrollView>
   );
 };
 export default Settings;
