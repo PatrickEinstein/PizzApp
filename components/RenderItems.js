@@ -20,7 +20,7 @@ const AdminRecipeeCard = ({ item }) => {
     <AdminCard
       category={item.category}
       title={item.title}
-      key={item.id}
+      key={item._id}
       _id={item._id}
       name={item.title}
       image={item.image}
@@ -42,7 +42,7 @@ const RenderItem1 = ({ item }) => {
   if (item.id >= desiredRange.start && item.id <= desiredRange.end) {
     return (
       <RecipeeCards
-        key={item.id}
+        _id={item._id}
         name={item.title}
         image={item.image}
         width={180}
@@ -64,7 +64,7 @@ const RenderItem2 = ({ item }) => {
   if (item.id >= desiredRange.start && item.id <= desiredRange.end) {
     return (
       <RecipeeCards
-        key={item.id}
+        _id={item._id}
         name={item.title}
         image={item.image}
         width={180}
@@ -87,7 +87,7 @@ const RenderItem3 = ({ item }) => {
   if (item.id >= desiredRange.start && item.id <= desiredRange.end) {
     return (
       <RecipeeCards
-        key={item.id}
+        _id={item._id}
         name={item.title}
         image={item.image}
         width={180}
@@ -109,7 +109,7 @@ const RenderItem4 = ({ item }) => {
   if (item.id >= desiredRange.start && item.id <= desiredRange.end) {
     return (
       <RecipeeCards
-        key={item.id}
+        _id={item._id}
         name={item.title}
         image={item.image}
         width={180}
@@ -131,7 +131,7 @@ const RenderItem5 = ({ item }) => {
   if (item.id >= desiredRange.start && item.id <= desiredRange.end) {
     return (
       <RecipeeCards
-        key={item.id}
+        _id={item._id}
         name={item.title}
         image={item.image}
         width={180}
@@ -152,7 +152,7 @@ const RenderItem6 = ({ item }) => {
   if (item.id >= desiredRange.start && item.id <= desiredRange.end) {
     return (
       <RecipeeCards
-        key={item.id}
+        _id={item._id}
         name={item.title}
         image={item.image}
         width={180}
@@ -173,7 +173,7 @@ const RenderItem7 = ({ item }) => {
   if (item.id >= desiredRange.start && item.id <= desiredRange.end) {
     return (
       <RecipeeCards
-        key={item.id}
+        _id={item._id}
         name={item.title}
         image={item.image}
         width={180}
@@ -194,7 +194,7 @@ const RenderItem8 = ({ item }) => {
   if (item.id >= desiredRange.start && item.id <= desiredRange.end) {
     return (
       <RecipeeCards
-        key={item.id}
+        _id={item._id}
         name={item.title}
         image={item.image}
         width={180}
@@ -215,7 +215,7 @@ const RenderItem9 = ({ item }) => {
   if (item.id >= desiredRange.start && item.id <= desiredRange.end) {
     return (
       <RecipeeCards
-        key={item.id}
+        _id={item._id}
         name={item.title}
         image={item.image}
         width={180}
@@ -236,7 +236,7 @@ const RenderItem10 = ({ item }) => {
   if (item.id >= desiredRange.start && item.id <= desiredRange.end) {
     return (
       <RecipeeCards
-        key={item.id}
+        _id={item._id}
         name={item.title}
         image={item.image}
         width={180}

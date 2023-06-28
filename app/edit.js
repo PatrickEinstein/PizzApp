@@ -27,7 +27,6 @@ const styles = StyleSheet.create({
 function AdminDetails() {
   const selected = useSelector((state) => state.recipe.selectedRecipe);
   const item = selected[0];
-  console.log(`item ===>`, item);
   const router = useRouter();
 
   const [title, setTitle] = useState(item.name);
@@ -86,7 +85,7 @@ function AdminDetails() {
             description: description,
             ingredients: ingredients,
             preparation: preparation,
-            image: image,
+            image: image.uri ? image.uri : image,
           }),
         }
       );

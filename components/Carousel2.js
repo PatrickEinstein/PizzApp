@@ -26,7 +26,7 @@ const MyCarousel = () => {
       return (
         <View style={styles.carouselItem}>
           <RecipeeCardsCarousel
-            key={item.id}
+            key={item._id}
             name={item.title}
             image={item.image}
             width={350}

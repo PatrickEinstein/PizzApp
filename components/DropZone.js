@@ -1,19 +1,19 @@
 import React, { useState } from "react";
 import { Button } from "react-native";
-import { View, Text, TouchableOpacity, StyleSheet,Image } from "react-native";
+import { View, Text, TouchableOpacity, StyleSheet, Image } from "react-native";
 import * as DocumentPicker from "expo-document-picker";
 
-const FileInputComponent = ({ style, image, setImage }) => {
-  const [name, setName] = useState();
-  console.log(`image`, image);
+const FileInputComponent = ({ style, setImage, image }) => {
+  const [name, setName] = useState("");
+
   const handleFileSelect = async () => {
     try {
       const res = await DocumentPicker.getDocumentAsync({});
 
       if (res.type === "success") {
+        console.log(`res==>`, res);
         setImage(res);
         setName(res.name);
-        console.log(res);
       } else {
         console.log("File selection cancelled.");
       }
@@ -44,16 +44,21 @@ const FileInputComponent = ({ style, image, setImage }) => {
             alignItems: "center",
           }}
         >
+          {/* //<Text>{name}</Text> */}
           {image ? (
-            <Image
-              src={image}
-              style={{
-                objectFit: "cover",
-                height: "100%",
-                width: "100%",
-                borderRadius: 20,
-              }}
-            />
+            image.uri ? (
+              <Text>{name}</Text>
+            ) : (
+              <Image
+                src={image}
+                style={{
+                  objectFit: "cover",
+                  height: "100%",
+                  width: "100%",
+                  borderRadius: 20,
+                }}
+              />
+            )
           ) : (
             <Text>Select an image</Text>
           )}
@@ -65,3 +70,12 @@ const FileInputComponent = ({ style, image, setImage }) => {
 };
 
 export default FileInputComponent;
+// <Image
+//   src={image}
+//   style={{
+//     objectFit: "cover",
+//     height: "100%",
+//     width: "100%",
+//     borderRadius: 20,
+//   }}
+// />

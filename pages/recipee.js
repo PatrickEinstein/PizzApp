@@ -14,7 +14,7 @@ import {
   RenderItem3,
   AdminRecipeeCard,
 } from "../components/RenderItems";
-// import MyCarousel from "../components/Carousel2";
+import MyCarousel from "../components/Carousel2";
 import { NoRollLogo, RollLogo } from "../components/animatedLogo";
 import { useTelephone } from "../constants/hook/Telephone";
 
@@ -52,9 +52,9 @@ export const Recipee = () => {
   return (
     <ScrollView>
       {/* <Stackscreen title="RECIPE" icon="" /> */}
-      {/* <View>
+      <View>
         <MyCarousel />
-      </View> */}
+      </View>
       <View>
         <Text
           style={{

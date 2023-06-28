@@ -7,6 +7,7 @@ import FileInputComponent from "./DropZone";
 import Buttons from "./Buttton";
 import SnackBar from "../components/snackbar";
 import { Text } from "react-native";
+import { useRouter } from "expo-router";
 const styles = StyleSheet.create({
   dropzone: {
     borderWidth: 2,
@@ -21,6 +22,7 @@ const styles = StyleSheet.create({
 });
 
 function Details({ show }) {
+  const router = useRouter();
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [ingredients, setIngredients] = useState("");
@@ -46,33 +48,64 @@ function Details({ show }) {
   ];
 
   const onSubmit = async () => {
-    console.log(
-      `${image}\n${title}\n${description}\n${ingredients}\n${preparation}`
-    );
+    console.log(`image==>`, image);
 
     const preset_key = "ivpdncki";
     const cloudName = "dsdkmnf0b";
-    if (image) {
-      const formData = new FormData();
-      formData.append("file", image);
-      formData.append("filepath", image.path);
-      formData.append("upload_preset", preset_key);
 
-      const UploadedImage = await fetch(
-        "https://api.cloudinary.com/v1_1/dsdkmnf0b/image/upload",
+    if (image) {
+      setImage(image);
+
+      // const formData = new FormData();
+      // formData.append("file", image);
+      // formData.append("filepath", image.uri ? image.uri : image.path);
+      // formData.append("upload_preset", preset_key);
+
+      // const UploadedImage = await fetch(
+      //   "https://api.cloudinary.com/v1_1/dsdkmnf0b/image/upload",
+      //   {
+      //     method: "POST",
+      //      headers: { "Content-Type": "application/json" },
+      //     body: formData,
+      //   }
+      // );
+      // const UploadedImageResponse = await UploadedImage.json();
+      // console.log(`cloud==>`, UploadedImageResponse.secure_url);
+      // setImage(UploadedImageResponse.secure_url);
+      // console.log(`image==>`, image);
+
+      const UploadImage = await fetch(
+        "https://vote-verse-server-production-6153.up.railway.app/upload",
         {
           method: "POST",
-          body: formData,
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            category: selectedValue,
+            title: title,
+            description: description,
+            ingredients: ingredients,
+            preparation: preparation,
+            image: image.uri,
+          }),
         }
       );
-      const UploadedImageResponse = await UploadedImage.json();
-      console.log(UploadedImageResponse.secure_url);
-      setImage(UploadedImageResponse.secure_url);
+
+      const UploadResponse = await UploadImage.json();
+      setResponse(UploadResponse.message);
+      setVisible(true);
+
+      console.log(`UploadResponse==>`, UploadResponse);
+
+      // Redirect to "/BottomNavs" after a delay of 3 seconds
+      setTimeout(() => {
+        router.push("/BottomNavs");
+      }, 3000);
     } else {
       setVisible(true);
       setResponse("Please provide an image");
     }
   };
+
   return (
     <ScrollView
       style={{
@@ -100,7 +133,7 @@ function Details({ show }) {
       </View>
       {/* PICKER */}
       {/* PICKER */}
-     
+
       <Text>Category</Text>
       <Picker
         selectedValue={selectedValue}
