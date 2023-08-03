@@ -1,270 +1,83 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Text, TouchableOpacity, View, FlatList, Image } from "react-native";
-import RecipeeCards from "../components/RecipeeCards";
 import { ScrollView } from "react-native-gesture-handler";
-// import Carousels from "../components/Carousel";
-import { Stack, useRouter, useSearchParams } from "expo-router";
-import { useFetch } from "../constants/hook/useFetch";
-import { useSelector } from "react-redux";
 import Logo from "../assets/images/pizza.png";
-import Stackscreen, { CustomTitle } from "../components/stackscreen";
-import {
-  RenderItem1,
-  RenderItem2,
-  RenderItem3,
-  AdminRecipeeCard,
-} from "../components/RenderItems";
-import MyCarousel from "../components/Carousel2";
-import { NoRollLogo, RollLogo } from "../components/animatedLogo";
-import { useTelephone } from "../constants/hook/Telephone";
+import { useDispatch } from "react-redux";
+import AdminRecipeeCard from "../components/AdminCard";
 
-export const Recipee = () => {
-  const recipees = useSelector((state) => state.recipe.recipee);
-  const adminRecipe = useSelector(
-    (state) => state.recipe.adminRecipee.recipees
-  );
+const useInterval = (callback, delay) => {
+  useEffect(() => {
+    const interval = setInterval(callback, delay);
+    return () => clearInterval(interval);
+  }, [callback, delay]);
+};
 
-  // console.log(`adminRecipee==>`, adminRecipe);
-  const { isLoading, error } = useFetch();
-  useTelephone();
+const Recipee = () => {
+  const dispatch = useDispatch();
+  const [categories, setCategories] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
-  if (isLoading) {
-    return (
-      <View justifyContent="center" alignItems="center">
-        <Image
-          source={Logo}
-          style={{
-            width: 200,
-            height: 200,
-            marginLeft: 50,
-            marginRight: 50,
-          }}
-        />
-        <Text>Loading, please wait</Text>
-      </View>
+  console.log(categories);
+
+  const GetAdminData = async () => {
+    const getAdminData = await fetch(
+      "https://all-servers.vercel.app/getcollection",
+      {
+        method: "GET",
+      }
     );
-  }
+    const gottenAdminData = await getAdminData.json();
+    setCategories(gottenAdminData.NewUserCollectionItem);
+  };
 
-  if (error) {
-    return <Text>Ooops, check your network</Text>;
-  }
+  useInterval(() => {
+    GetAdminData();
+    setIsLoading(false);
+  }, 3000);
 
-  return (
+  return isLoading ? (
+    <View justifyContent="center" alignItems="center">
+      <Image
+        source={Logo}
+        style={{
+          width: 200,
+          height: 200,
+          marginLeft: 50,
+          marginRight: 50,
+        }}
+      />
+      <Text>Loading, please wait</Text>
+    </View>
+  ) : (
     <ScrollView>
-      {/* <Stackscreen title="RECIPE" icon="" /> */}
-      <View>
-        <MyCarousel />
-      </View>
-      <View>
-        <Text
-          style={{
-            textAlign: "left",
-            fontSize: 25,
-            fontWeight: "bold",
-            marginTop: 10,
-            paddingLeft: 10,
-          }}
-        >
-          Admin
-        </Text>
-
-        <FlatList
-          data={adminRecipe}
-          renderItem={AdminRecipeeCard}
-          keyExtractor={(item) => item?.id}
-          contentContainerStyle={{ flexGrow: 1 }}
-          horizontal
-          style={{
-            padding: 10,
-          }}
-        />
-      </View>
-      <View>
-        <Text
-          style={{
-            textAlign: "left",
-            fontSize: 25,
-            fontWeight: "bold",
-            marginTop: 10,
-            paddingLeft: 10,
-          }}
-        >
-          Pizza Toppings
-        </Text>
-        <FlatList
-          data={recipees}
-          renderItem={RenderItem1}
-          keyExtractor={(item) => item?.id}
-          contentContainerStyle={{ flexGrow: 1 }}
-          horizontal
-          style={{
-            padding: 10,
-          }}
-        />
-      </View>
-      <View>
-        <Text
-          style={{
-            textAlign: "left",
-            fontSize: 25,
-            fontWeight: "bold",
-            marginTop: 10,
-            paddingLeft: 10,
-          }}
-        >
-          Summer Toppings
-        </Text>
-
-        <FlatList
-          data={recipees}
-          renderItem={RenderItem2}
-          keyExtractor={(item) => item?.id}
-          contentContainerStyle={{ flexGrow: 1 }}
-          horizontal
-          style={{
-            padding: 10,
-          }}
-        />
-      </View>
-      <View>
-        <Text
-          style={{
-            textAlign: "left",
-            fontSize: 25,
-            fontWeight: "bold",
-            marginTop: 10,
-            paddingLeft: 10,
-          }}
-        >
-          Winter Toppings
-        </Text>
-        <FlatList
-          data={recipees}
-          renderItem={RenderItem3}
-          keyExtractor={(item) => item?.id}
-          contentContainerStyle={{ flexGrow: 1 }}
-          horizontal
-          style={{
-            padding: 10,
-          }}
-        />
-      </View>
-      <View>
-        <Text
-          style={{
-            textAlign: "left",
-            fontSize: 25,
-            fontWeight: "bold",
-            marginTop: 10,
-            paddingLeft: 10,
-          }}
-        >
-          Gourment Toppings
-        </Text>
-        <FlatList
-          data={recipees}
-          renderItem={RenderItem3}
-          keyExtractor={(item) => item?.id}
-          contentContainerStyle={{ flexGrow: 1 }}
-          horizontal
-          style={{
-            padding: 10,
-          }}
-        />
-      </View>
-      <View>
-        <Text
-          style={{
-            textAlign: "left",
-            fontSize: 25,
-            fontWeight: "bold",
-            marginTop: 10,
-            paddingLeft: 10,
-          }}
-        >
-          Pasta Sauces
-        </Text>
-        <FlatList
-          data={recipees}
-          renderItem={RenderItem1}
-          keyExtractor={(item) => item?.id}
-          contentContainerStyle={{ flexGrow: 1 }}
-          horizontal
-          style={{
-            padding: 10,
-          }}
-        />
-      </View>
-      <View>
-        <Text
-          style={{
-            textAlign: "left",
-            fontSize: 25,
-            fontWeight: "bold",
-            marginTop: 10,
-            paddingLeft: 10,
-          }}
-        >
-          Summer Sauces
-        </Text>
-        <FlatList
-          data={recipees}
-          renderItem={RenderItem1}
-          keyExtractor={(item) => item?.id}
-          contentContainerStyle={{ flexGrow: 1 }}
-          horizontal
-          style={{
-            padding: 10,
-          }}
-        />
-      </View>
-      <View>
-        <Text
-          style={{
-            textAlign: "left",
-            fontSize: 25,
-            fontWeight: "bold",
-            marginTop: 10,
-            paddingLeft: 10,
-          }}
-        >
-          Winter Sauces
-        </Text>
-        <FlatList
-          data={recipees}
-          renderItem={RenderItem3}
-          keyExtractor={(item) => item?.id}
-          contentContainerStyle={{ flexGrow: 1 }}
-          horizontal
-          style={{
-            padding: 10,
-          }}
-        />
-      </View>
-
-      <View>
-        <Text
-          style={{
-            textAlign: "left",
-            fontSize: 25,
-            fontWeight: "bold",
-            marginTop: 10,
-            paddingLeft: 10,
-          }}
-        >
-          Pasta Shapes
-        </Text>
-        <FlatList
-          data={recipees}
-          renderItem={RenderItem2}
-          keyExtractor={(item) => item?.id}
-          contentContainerStyle={{ flexGrow: 1 }}
-          horizontal
-          style={{
-            padding: 10,
-          }}
-        />
-      </View>
+      {categories.map(({ _id, name, filteredFormattedRecipes }) => (
+        <View key={_id}>
+          <Text
+            style={{
+              textAlign: "left",
+              fontSize: 25,
+              fontWeight: "bold",
+              marginTop: 10,
+              paddingLeft: 10,
+            }}
+          >
+            Category: {name}
+          </Text>
+          {/* {filteredFormattedRecipes.map(({_id}) => (
+            <FlatList
+              key={_id} // Use a unique identifier as the key
+              data={filteredFormattedRecipes}
+              renderItem={AdminRecipeeCard}
+              keyExtractor={(item) => item?.name}
+              contentContainerStyle={{ flexGrow: 1 }}
+              horizontal
+              style={{
+                padding: 10,
+              }}
+            />
+          ))} */}
+        </View>
+      ))}
     </ScrollView>
   );
 };
