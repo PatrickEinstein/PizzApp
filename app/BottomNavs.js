@@ -21,7 +21,7 @@ import { useDispatch, useSelector } from "react-redux";
 function RECIPEES() {
   //style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
   return (
-    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+    <View style={{ flex: 1, }}>
       <Recipee />
     </View>
   );
@@ -64,9 +64,6 @@ function PRODUCTS() {
       <Products />
     </View>
   );
-}
-function DASHBOARD() {
-  return <Details show={true} />;
 }
 
 const Tab = createBottomTabNavigator();
@@ -154,15 +151,6 @@ export default function BottomNavs() {
       <Tab.Screen
         name="PRODUCTS"
         component={PRODUCTS}
-        options={{
-          headerTitleAlign: "center",
-          headerLeft: () => <Ionicons name="home" size={24} color="black" />,
-          headerRight: () => <NoRollLogo />,
-        }}
-      />
-      <Tab.Screen
-        name="DASHBOARD"
-        component={DASHBOARD}
         options={{
           headerTitleAlign: "center",
           headerLeft: () => <Ionicons name="home" size={24} color="black" />,

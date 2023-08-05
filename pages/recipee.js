@@ -17,7 +17,7 @@ const Recipee = () => {
   const [categories, setCategories] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  console.log(categories);
+  // console.log(categories);
 
   const GetAdminData = async () => {
     const getAdminData = await fetch(
@@ -61,21 +61,33 @@ const Recipee = () => {
               paddingLeft: 10,
             }}
           >
-            Category: {name}
+            {name}
           </Text>
-          {/* {filteredFormattedRecipes.map(({_id}) => (
-            <FlatList
-              key={_id} // Use a unique identifier as the key
-              data={filteredFormattedRecipes}
-              renderItem={AdminRecipeeCard}
-              keyExtractor={(item) => item?.name}
-              contentContainerStyle={{ flexGrow: 1 }}
-              horizontal
-              style={{
-                padding: 10,
-              }}
-            />
-          ))} */}
+          <View style={{ flexDirection: "row", width: "100%", scroll: "auto" }}>
+            {filteredFormattedRecipes.map(
+              ({
+                _id,
+                name,
+                cover,
+                descriptions,
+                ingredients,
+                preparations,
+                title,
+                covervideo,
+              }) => (
+                <AdminRecipeeCard
+                  key={_id}
+                  name={name}
+                  cover={cover}
+                  description={descriptions}
+                  ingredients={ingredients}
+                  preparations={preparations}
+                  title={title}
+                  covervideo={covervideo}
+                />
+              )
+            )}
+          </View>
         </View>
       ))}
     </ScrollView>

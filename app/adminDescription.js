@@ -1,19 +1,61 @@
 import React from "react";
-import { View, Text, TouchableOpacity, Image } from "react-native";
+import { View, Text, TouchableOpacity, Image, Video } from "react-native";
 import { useSelector } from "react-redux";
 import { useWindowDimensions } from "react-native";
 import { TabView, SceneMap } from "react-native-tab-view";
 import { ScrollView } from "react-native";
 import { TabBar } from "react-native-tab-view";
 import { Ionicons } from "@expo/vector-icons";
-import Stackscreen, { CustomTitle } from "../components/stackscreen";
 import { useRouter } from "expo-router";
 import { NoRollLogo } from "../components/animatedLogo";
+
+const RenderImageOrVideo = (item) => {
+  // Check if the item is a video link based on some condition (you can customize this part)
+  const isVideoLink = item && item.toString().includes(".mp4");
+
+  if (isVideoLink) {
+    return (
+      <View style={{ borderRadius: 20, overflow: "hidden" }}>
+        {/* <Video
+          source={{ uri: item }}
+          style={{
+            height: 200,
+            width: "100%",
+          }}
+          resizeMode="cover"
+          controls={true}
+        /> */}
+        <video
+          controls
+          style={{
+            height: 200,
+            width: "100%",
+          }}
+        >
+          <source source={{ uri: item }} type="video/mp4" />
+        </video>
+      </View>
+    );
+  } else {
+    return (
+      <Image
+        source={{ uri: item }}
+        style={{
+          objectFit: "cover",
+          height: 200,
+          width: "100%",
+          borderRadius: 20,
+        }}
+      />
+    );
+  }
+};
 
 const FirstRoute = () => {
   const selected = useSelector((state) => state.recipe.selectedRecipe);
   const item = selected[0];
   console.log(item);
+
   return (
     <View style={{ flex: 1, backgroundColor: "white" }}>
       <ScrollView
@@ -26,8 +68,20 @@ const FirstRoute = () => {
             fontWeight: "bold",
           }}
         >
-          {item.description}
+          {item.description.descriptions}
         </Text>
+        {item.description.descriptionimage.map(({ item }) => (
+          <img
+            key={item}
+            src={item}
+            style={{
+              objectFit: "cover",
+              height: 200,
+              width: "100%",
+              borderRadius: 20,
+            }}
+          />
+        ))}
       </ScrollView>
     </View>
   );
@@ -36,6 +90,7 @@ const FirstRoute = () => {
 const SecondRoute = () => {
   const selected = useSelector((state) => state.recipe.selectedRecipe);
   const item = selected[0];
+
   return (
     <View style={{ flex: 1, backgroundColor: "white" }}>
       <ScrollView
@@ -46,11 +101,22 @@ const SecondRoute = () => {
         <Text
           style={{
             fontWeight: "bold",
-            lineHeight: 30,
           }}
         >
-          {item.ingredients}
+          {item.ingredients.ingredients}
         </Text>
+        {item.ingredients.ingredientsimage.map(({ item }) => (
+          <img
+            key={item}
+            src={item}
+            style={{
+              objectFit: "cover",
+              height: 200,
+              width: "100%",
+              borderRadius: 20,
+            }}
+          />
+        ))}
       </ScrollView>
     </View>
   );
@@ -73,7 +139,7 @@ const ThirdRoute = () => {
             lineHeight: 30,
           }}
         >
-          {item.method}
+          {item.methods}
         </Text>
       </ScrollView>
     </View>
@@ -139,18 +205,7 @@ const AdminDescription = () => {
           </Text>
           <NoRollLogo />
         </View>
-        <Image
-          src={item.image}
-          style={{
-            objectFit: "cover",
-            height: 200,
-            width: "100%",
-            marginRight: "auto",
-            marginLeft: "auto",
-            borderRadius: 20,
-            backgroundColor: "white",
-          }}
-        />
+        {RenderImageOrVideo(item.covervideo ? item.covervideo : item.cover)}
       </View>
 
       <View
@@ -169,7 +224,7 @@ const AdminDescription = () => {
             backgroundColor: "white",
           }}
         >
-          {item.name}
+          {item.title}
         </Text>
       </View>
       <TabView
