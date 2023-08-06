@@ -18,6 +18,7 @@ import Details from "../components/Details";
 import { toggleMenuList } from "../Redux/Reducers";
 import { useDispatch, useSelector } from "react-redux";
 import HomePage from "../pages";
+import Blogs from "../components/Blogs";
 
 function RECIPEES() {
   //style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
@@ -78,6 +79,7 @@ export default function BottomNavs() {
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
+     
         tabBarIcon: ({ focused, color, size }) => {
           let iconName;
 
@@ -89,7 +91,7 @@ export default function BottomNavs() {
             iconName = focused ? "graduation-cap" : "graduation-cap";
           } else if (route.name === "PRODUCTS") {
             iconName = focused ? "shopping-cart" : "shopping-cart";
-          } else if (route.name === "DASHBOARD") {
+          } else if (route.name === "BLOGS") {
             iconName = focused ? "plus-circle" : "plus-circle";
           }
 
@@ -97,13 +99,13 @@ export default function BottomNavs() {
           return <Icon name={iconName} size={size} color={color} />;
         },
       })}
-      tabBarOptions={{
-        backgroundColor: "grey",
-        activeTintColor: "black",
-        inactiveTintColor: "gray",
-        labelStyle: { fontSize: 12, textAlign: "center" },
-        style: { justifyContent: "center", backgroundColor: "#990000" },
-      }}
+      // tabBarOptions={{
+      //   backgroundColor: "grey",
+      //   activeTintColor: "black",
+      //   inactiveTintColor: "gray",
+      //   labelStyle: { fontSize: 12, textAlign: "center" },
+      //   style: { justifyContent: "center", backgroundColor: "#990000" },
+      // }}
     >
       <Tab.Screen
         name="RECIPE"
@@ -155,6 +157,15 @@ export default function BottomNavs() {
       <Tab.Screen
         name="PRODUCTS"
         component={PRODUCTS}
+        options={{
+          headerTitleAlign: "center",
+          headerLeft: () => <Ionicons name="home" size={24} color="black" />,
+          headerRight: () => <NoRollLogo />,
+        }}
+      />
+       <Tab.Screen
+        name="BLOGS"
+        component={Blogs}
         options={{
           headerTitleAlign: "center",
           headerLeft: () => <Ionicons name="home" size={24} color="black" />,

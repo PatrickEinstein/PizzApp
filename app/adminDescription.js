@@ -1,6 +1,6 @@
 import React from "react";
 import { View, Text, TouchableOpacity, Image } from "react-native";
-import { Video } from "expo-av";
+// import { Video } from "expo-av";
 import { useSelector } from "react-redux";
 import { useWindowDimensions } from "react-native";
 import { TabView, SceneMap } from "react-native-tab-view";
@@ -55,14 +55,7 @@ const FirstRoute = () => {
           padding: 10,
         }}
       >
-        <Text
-          style={{
-            fontWeight: "bold",
-          }}
-        >
-          {item.description.descriptions}
-        </Text>
-        <ScrollView horizontal={true} >
+         <ScrollView horizontal={true} >
         {item.description.descriptionimage.map((item ) => (
        
          <Image
@@ -78,6 +71,14 @@ const FirstRoute = () => {
      
         ))}
          </ScrollView>
+        <Text
+          style={{
+            fontWeight: "bold",
+          }}
+        >
+          {item.description.descriptions}
+        </Text>
+       
       </ScrollView>
     </View>
   );
@@ -94,14 +95,7 @@ const SecondRoute = () => {
           padding: 10,
         }}
       >
-        <Text
-          style={{
-            fontWeight: "bold",
-          }}
-        >
-          {item.ingredients.ingredients}
-        </Text>
-        <ScrollView horizontal={true} >
+         <ScrollView horizontal={true} >
         {item.ingredients.ingredientsimage.map(( item ) => (
          
              <Image
@@ -118,6 +112,14 @@ const SecondRoute = () => {
          
         ))}
          </ScrollView>
+        <Text
+          style={{
+            fontWeight: "bold",
+          }}
+        >
+          {item.ingredients.ingredients}
+        </Text>
+       
       </ScrollView>
     </View>
   );
@@ -128,7 +130,7 @@ const ThirdRoute = () => {
   const item = selected[0];
 
   return (
-    <View style={{ flex: 1, backgroundColor: "white", height: 500 }}>
+    <View style={{ flex: 1, backgroundColor: "white" }}>
       <ScrollView
         style={{
           padding: 10,
@@ -137,11 +139,27 @@ const ThirdRoute = () => {
         <Text
           style={{
             fontWeight: "bold",
-            lineHeight: 30,
           }}
         >
-          {item.methods}
+          {item.preparations.preparations}
         </Text>
+        <ScrollView horizontal={true} >
+        {item.preparations.preparationsimage.map(( item ) => (
+         
+             <Image
+            key={item}
+            src={item}
+            style={{
+              objectFit: "cover",
+              height: 200,
+              width:200,
+              borderRadius: 20,
+            }}
+          />
+         
+         
+        ))}
+         </ScrollView>
       </ScrollView>
     </View>
   );

@@ -24,7 +24,7 @@ const AdminCard = ({
           cover: cover,
           description: description,
           ingredients: ingredients,
-          preparation: preparations,
+          preparations: preparations,
           title: title,
           covervideo: covervideo,
         },
