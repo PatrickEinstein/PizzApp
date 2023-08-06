@@ -1,6 +1,6 @@
 import React from "react";
-import { View, Text, TouchableOpacity, Image } from "react-native";
-// import { Video } from "expo-av";
+import { View, Text, TouchableOpacity, Image} from "react-native";
+import { Video } from "expo-av";
 import { useSelector } from "react-redux";
 import { useWindowDimensions } from "react-native";
 import { TabView, SceneMap } from "react-native-tab-view";

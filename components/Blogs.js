@@ -45,7 +45,6 @@ const FirstRoute = () => {
             coverpicture={coverpicture}
             avatar={avatar}
             body={body}
-            // onClick={() => (link ? openLink(link) : null)}
           />
         ))}
     </ScrollView>
