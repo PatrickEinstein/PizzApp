@@ -4,6 +4,7 @@ import { View } from "react-native";
 import { Text } from "react-native";
 
 export const Pickers = ({ selectedValue, onValueChange }) => {
+  // console.log(`value in picker`, selectedValue)
   return (
     <View>
       
@@ -11,14 +12,12 @@ export const Pickers = ({ selectedValue, onValueChange }) => {
         selectedValue={selectedValue}
         onValueChange={onValueChange}
         style={{
-          width: 40,
-          color: "white",
-          // backgroundColor: "maroon",
-          color: "white",
-          width: 70,
+          color: "black",
+          width: 150,
         }}
       >
          <Text>{selectedValue}</Text>
+         
         <Picker.Item label="1" value="1" />
         <Picker.Item label="2" value="2" />
         <Picker.Item label="3" value="3" />

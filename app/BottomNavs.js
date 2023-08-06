@@ -77,7 +77,7 @@ export default function BottomNavs() {
         tabBarIcon: ({ focused, color, size }) => {
           let iconName;
 
-          if (route.name === "RECIPEES") {
+          if (route.name === "RECIPE") {
             iconName = focused ? "book" : "book";
           } else if (route.name === "PIZZA CALC") {
             iconName = focused ? "calculator" : "calculator";

@@ -28,13 +28,13 @@ import { NoRollLogo } from "../components/animatedLogo";
 import { ScrollView } from "react-native";
 const Settings = () => {
   const values = useSelector((state) => state.recipe);
-  console.log(`values in settings==>`, values.autolysis);
+
 
   const router = useRouter();
   const [visible, setVisible] = useState(false);
   const dispatch = useDispatch();
-  const [selectedValue, setSelectedValue] = useState(1);
-  console.log(`selectedValue in settings==>`, selectedValue);
+  const [selectedValue, setSelectedValue] = useState("1");
+  console.log(`value in settings`, selectedValue)
   const [twoBallSize, setTwoBallSize] = useState(values.twoballsize);
   const [fats, setFats] = useState(values.fats);
   const [CT, setCT] = useState(values.ct);
@@ -49,7 +49,7 @@ const Settings = () => {
   const [flour4, setFlour4] = useState(values.flour4);
   const [flour5, setFlour5] = useState(values.flour5);
   const [flour6, setFlour6] = useState(values.flour6);
-  console.log(`flours`, flour3, flour4, flour5, flour6);
+  
   const onValueChange = (selectedValue) => {
     setSelectedValue(selectedValue);
     dispatch(togglePicker(selectedValue));
@@ -95,13 +95,13 @@ const Settings = () => {
     dispatch(togglepoolish(!displayOn));
   };
 
-  const onToggleFlours = async () => {
-    dispatch(toggleflour2(flour2));
-    dispatch(toggleflour3(flour3));
-    dispatch(toggleflour4(flour4));
-    dispatch(toggleflour5(flour5));
-    dispatch(toggleflour6(flour6));
-  };
+  // const onToggleFlours = async () => {
+  //   dispatch(toggleflour2(flour2));
+  //   dispatch(toggleflour3(flour3));
+  //   dispatch(toggleflour4(flour4));
+  //   dispatch(toggleflour5(flour5));
+  //   dispatch(toggleflour6(flour6));
+  // };
   const options = [
     { label: 1, value: 1 },
     { label: 2, value: 2 },
@@ -113,49 +113,76 @@ const Settings = () => {
   const Dispatchers = async () => {
     switch (+selectedValue) {
       case 2:
-        setFlour2(true);
-        setFlour3(false);
-        setFlour3(false);
-        setFlour4(false);
-        setFlour5(false);
-        setFlour6(false);
-        await onToggleFlours();
+        dispatch(toggleflour2(true));
+        dispatch(toggleflour3(false));
+        dispatch(toggleflour4(false));
+        dispatch(toggleflour5(false));
+        dispatch(toggleflour6(false));
+        // setFlour2(true);
+        // setFlour3(false);
+        // setFlour3(false);
+        // setFlour4(false);
+        // setFlour5(false);
+        // setFlour6(false);
+        // await onToggleFlours();
 
         break;
       case 3:
-        setFlour2(true);
-        setFlour3(true);
-        setFlour4(false);
-        setFlour5(false);
-        setFlour6(false);
-        await onToggleFlours();
+        dispatch(toggleflour2(true));
+        dispatch(toggleflour3(true));
+        dispatch(toggleflour4(false));
+        dispatch(toggleflour5(false));
+        dispatch(toggleflour6(false));
+        // setFlour2(true);
+        // setFlour3(true);
+        // setFlour4(false);
+        // setFlour5(false);
+        // setFlour6(false);
+        // await onToggleFlours();
 
         break;
       case 4:
-        setFlour2(true);
-        setFlour3(true);
-        setFlour4(true);
-        setFlour5(false);
-        setFlour6(false);
-        await onToggleFlours();
+        dispatch(toggleflour2(true));
+        dispatch(toggleflour3(true));
+        dispatch(toggleflour4(true));
+        dispatch(toggleflour5(false));
+        dispatch(toggleflour6(false));
+        // setFlour2(true);
+        // setFlour3(true);
+        // setFlour4(true);
+        // setFlour5(false);
+        // setFlour6(false);
+        // await onToggleFlours();
 
         break;
       case 5:
-        setFlour2(true);
-        setFlour3(true);
-        setFlour4(true);
-        setFlour5(true);
-        setFlour6(false);
-        await onToggleFlours();
+        dispatch(toggleflour2(true));
+        dispatch(toggleflour3(true));
+        dispatch(toggleflour4(true));
+        dispatch(toggleflour5(true));
+        dispatch(toggleflour6(false));
+        // setFlour2(true);
+        // setFlour3(true);
+        // setFlour4(true);
+        // setFlour5(true);
+        // setFlour6(false);
+        // await onToggleFlours();
 
         break;
       case 6:
-        setFlour2(1);
-        setFlour3(1);
-        setFlour4(1);
-        setFlour5(1);
-        setFlour6(1);
-        await onToggleFlours();
+        dispatch(toggleflour2(true));
+        dispatch(toggleflour3(true));
+        dispatch(toggleflour4(true));
+        dispatch(toggleflour5(true));
+        dispatch(toggleflour6(true));
+        // setFlour2(true);
+        // setFlour3(true);
+        // setFlour4(true);
+        // setFlour5(true);
+        // setFlour6(true);
+        // await onToggleFlours();
+
+      
     }
   };
 

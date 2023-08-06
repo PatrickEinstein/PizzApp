@@ -15,7 +15,7 @@ const Inputs = () => {
 
   const handleButtonClick = (label) => {
     if (label === clickedLabel) {
-      setClickedLabel("");
+      setClickedLabel("CY");
     } else {
       setClickedLabel(label);
     }
@@ -41,16 +41,18 @@ const Inputs = () => {
   const flour05 = onOff.flour5;
   const flour06 = onOff.flour6;
 
+  console.log(`val in pizz`,flour02, flour03, flour04, flour05, flour06)
+
   const [Doughball1, setDoughball1] = useState(1);
   const [Doughball2, setDoughball2] = useState(0);
   const [BallWeight1, setBallWeight1] = useState(600);
   const [BallWeight2, setBallWeight2] = useState(0);
   const [flour1, setflour1] = useState(100);
-  const [flour2, setflour2] = useState(0);
-  const [flour3, setflour3] = useState(0);
-  const [flour4, setflour4] = useState(0);
-  const [flour5, setflour5] = useState(0);
-  const [flour6, setflour6] = useState(0);
+  const [flour2, setflour2] = useState(flour02);
+  const [flour3, setflour3] = useState(flour03);
+  const [flour4, setflour4] = useState(flour04);
+  const [flour5, setflour5] = useState(flour05);
+  const [flour6, setflour6] = useState(flour06);
   const [water, setwater] = useState(80);
   const [salt, setsalt] = useState(3);
   const [leaven, setleaven] = useState(5);
