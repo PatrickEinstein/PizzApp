@@ -32,7 +32,7 @@ function Input() {
     if (text.length > 10) {
       try {
         const submit = await fetch(
-          "https://vote-verse-server-production-6153.up.railway.app/forgetPasswordgetotp",
+          "https://all-servers.vercel.app/forgetPasswordgetotp",
           {
             method: "POST",
             headers: {
@@ -75,7 +75,7 @@ function Input() {
     if (password.length > 3) {
       try {
         const submit = await fetch(
-          "https://vote-verse-server-production-6153.up.railway.app/changePasswordotp",
+          "https://all-servers.vercel.app/changePasswordotp",
           {
             method: "POST",
             headers: {
@@ -119,7 +119,7 @@ function Input() {
     if (text.length > 2) {
       try {
         const submit = await fetch(
-          "https://vote-verse-server-production-6153.up.railway.app/verifypasswordotp",
+          "https://all-servers.vercel.app/verifypasswordotp",
           {
             method: "POST",
             headers: {

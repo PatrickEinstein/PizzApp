@@ -19,6 +19,7 @@ import Open from "./open";
 import Description from "./description";
 import AdminDescription from "./adminDescription";
 import AdminDetails from "./edit";
+import Input from "./input";
 const persistor = persistStore(store);
 SplashScreen.preventAutoHideAsync();
 const Stack = createStackNavigator();
@@ -47,6 +48,7 @@ const Layout = () => {
           }}
         >
           <Stack.Screen name="signinandout" component={HomePage} />
+          <Stack.Screen name="input" component={Input} />
           <Stack.Screen name="index" component={BottomNavs} />
           <Stack.Screen name="edit" component={AdminDetails} />
           <Stack.Screen name="glossary" component={Glossary} />
