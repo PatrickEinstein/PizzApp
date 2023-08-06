@@ -46,9 +46,8 @@ const Layout = () => {
             headerShown: false,
           }}
         >
-          {/* <Stack.Screen name="index" component={HomePage} /> */}
+          <Stack.Screen name="signinandout" component={HomePage} />
           <Stack.Screen name="index" component={BottomNavs} />
-          {/* <Stack.Screen name="BottomNavs" component={BottomNavs} /> */}
           <Stack.Screen name="edit" component={AdminDetails} />
           <Stack.Screen name="glossary" component={Glossary} />
           <Stack.Screen name="open" component={Open} />

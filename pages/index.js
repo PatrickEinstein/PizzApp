@@ -66,7 +66,7 @@ export default function HomePage() {
 
   return (
     <>
-      <View
+      {/* <View
         flexDirection="row"
         justifyContent="space-between"
         backgroundColor="white"
@@ -94,7 +94,7 @@ export default function HomePage() {
           Welcome
         </Text>
         <NoRollLogo />
-      </View>
+      </View> */}
       <TabView
         renderScene={renderScene}
         onIndexChange={setIndex}

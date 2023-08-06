@@ -175,7 +175,6 @@ const AdminDescription = () => {
   ]);
   const selected = useSelector((state) => state.recipe.selectedRecipe);
   const item = selected[0];
-  console.log(item)
   return (
     <>
       <View

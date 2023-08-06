@@ -55,6 +55,7 @@ const Recipee = () => {
       {categories.map(({ _id, name, filteredFormattedRecipes }) => (
         <View  key={_id} > 
           <Text
+          key={filteredFormattedRecipes}
             style={{
               textAlign: "left",
               fontSize: 25,
@@ -78,7 +79,7 @@ const Recipee = () => {
                 covervideo,
               }) => (
                 <AdminRecipeeCard
-                  key={name}
+                  key={cover}
                   name={name}
                   cover={cover}
                   description={descriptions}

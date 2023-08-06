@@ -17,6 +17,7 @@ import AddStuffs from "../components/AddStuffs";
 import Details from "../components/Details";
 import { toggleMenuList } from "../Redux/Reducers";
 import { useDispatch, useSelector } from "react-redux";
+import HomePage from "../pages";
 
 function RECIPEES() {
   //style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
@@ -29,6 +30,9 @@ function RECIPEES() {
 
 function PIZZACALC() {
   const open = useSelector((state) => state.recipe.toggleMenuList);
+  const isLoggenInUser = useSelector((state) => state.recipe.loggedInUser) 
+  const isObjectNotEmpty = (obj) => Object.keys(obj).length > 0;
+
 
   return (
     <>
@@ -45,7 +49,7 @@ function PIZZACALC() {
           <MenuList />
         </View>
       ) : null}
-      <TabViewExample />
+    {isObjectNotEmpty(isLoggenInUser) ?  <TabViewExample /> :<HomePage/>  }
     </>
   );
 }

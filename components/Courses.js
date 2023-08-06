@@ -23,7 +23,7 @@ const openLink = async (link) => {
 
 const FirstRoute = () => {
   const [categories, setCategories] = useState({});
-  console.log(categories)
+ 
 
   const GetAdminData = async () => {
     try {

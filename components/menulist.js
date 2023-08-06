@@ -4,9 +4,12 @@ import { Menu } from "react-native-paper";
 import { useRouter } from "expo-router";
 import { useNavigation, useRootNavigation } from "expo-router";
 import { TouchableOpacity } from "react-native";
+import { useDispatch } from "react-redux";
+import { saveLoggedInUser } from "../Redux/Reducers";
 
 const MenuList = () => {
   const router = useRouter();
+  const dispatch = useDispatch()
 
   return (
     <View
@@ -98,6 +101,16 @@ const MenuList = () => {
         }}
       >
         <Menu.Item leadingIcon="star" onPress={() => {}} title="Rate" />
+      </TouchableOpacity>
+      <TouchableOpacity
+        style={{
+          backgroundColor: "white",
+        }}
+      >
+        <Menu.Item leadingIcon="door" onPress={() => {
+          router.push("signinandout")
+          dispatch(saveLoggedInUser({}));
+        }} title="Log Out" />
       </TouchableOpacity>
     </View>
   );
