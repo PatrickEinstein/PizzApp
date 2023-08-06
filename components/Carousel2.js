@@ -1,18 +1,24 @@
 import Carousel, { Pagination } from "react-native-snap-carousel";
 import React, { useState, useRef, useEffect } from "react";
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, Image } from "react-native";
 import RecipeeCardsCarousel from "./RecipeecardsCarousel";
 import { useSelector } from "react-redux";
+import L1 from "../assets/P1.png";
+import L2 from "../assets/P2.png";
+import L3 from "../assets/P3.png";
+import L4 from "../assets/P4.png";
+import L6 from "../assets/P6.png";
+import L7 from "../assets/P7.png";
 
 const MyCarousel = () => {
   const [activeSlide, setActiveSlide] = useState(0);
-  const recipees = useSelector((state) => state.recipe.recipee);
+  const recipees = [L1, L2, L3, L4, L6, L7];
   const carouselRef = useRef(null);
 
   useEffect(() => {
     const autoScroll = setInterval(() => {
       const nextSlide = (activeSlide + 1) % recipees.length;
-      const isLastSlide = nextSlide === recipees.length - 4;
+      const isLastSlide = nextSlide === recipees.length;
       carouselRef.current.snapToItem(nextSlide, !isLastSlide);
       setActiveSlide(nextSlide);
     }, 2000);
@@ -21,49 +27,28 @@ const MyCarousel = () => {
   }, [activeSlide]);
 
   const renderItem = ({ item }) => {
-    const desiredRange = { start: 1, end: 50 };
-    if (item.id >= desiredRange.start && item.id <= desiredRange.end) {
-      return (
-        <View style={styles.carouselItem}>
-          <RecipeeCardsCarousel
-            key={item._id}
-            name={item.title}
-            image={item.image}
-            width={350}
-          />
-        </View>
-      );
-    }
+    return (
+      <View style={styles.carouselItem}>
+        <Image source={item} style={{ width: 350, height: 200 }} />
+      </View>
+    );
   };
 
   const pagination = () => {
     return (
       <Pagination
-        dotsLength={5}
+        dotsLength={recipees.length}
         activeDotIndex={activeSlide}
-        containerStyle={{
-          // backgroundColor: "rgba(0, 0, 0, 0.75)",
-          padding: 0,
-          margin: 0,
-          top: -70,
-          borderBottomLeftRadius: 5,
-        }}
+        containerStyle={{ paddingVertical: 8 }}
         dotStyle={{
           width: 10,
           height: 10,
           borderRadius: 5,
-          backgroundColor: "rgba(0, 0, 0, 0.75)",
+          marginHorizontal: 8,
+          backgroundColor: "rgba(0, 0, 0, 0.92)",
         }}
-        // inactiveDotStyle={
-        //     // Define styles for inactive dots here
-        //   }
-        // }
         inactiveDotOpacity={0.4}
         inactiveDotScale={0.6}
-        animatedDuration={500}
-        style={{
-          margin: 0,
-        }}
       />
     );
   };
@@ -85,12 +70,12 @@ const MyCarousel = () => {
         loop={true}
         loopClonesPerSide={recipees.length}
         windowSize={50}
-        sliderWidth={400}
-        sliderHeight={300}
-        itemWidth={350}
+        sliderWidth={320}
+        sliderHeight={200}
+        itemWidth={300}
         style={{
-          paddingTop: 0,
-          height: 450,
+          height: 200,
+          
         }}
       />
       {pagination()}

@@ -4,7 +4,7 @@ import { ScrollView } from "react-native-gesture-handler";
 import Logo from "../assets/images/pizza.png";
 import { useDispatch } from "react-redux";
 import AdminRecipeeCard from "../components/AdminCard";
-
+import MyCarousel from "../components/Carousel2"
 const useInterval = (callback, delay) => {
   useEffect(() => {
     const interval = setInterval(callback, delay);
@@ -17,7 +17,6 @@ const Recipee = () => {
   const [categories, setCategories] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  // console.log(categories);
 
   const GetAdminData = async () => {
     const getAdminData = await fetch(
@@ -50,8 +49,11 @@ const Recipee = () => {
     </View>
   ) : (
     <ScrollView>
+       <View>
+       <MyCarousel />
+       </View>
       {categories.map(({ _id, name, filteredFormattedRecipes }) => (
-        <View key={_id}>
+        <View  key={_id} > 
           <Text
             style={{
               textAlign: "left",
@@ -63,7 +65,7 @@ const Recipee = () => {
           >
             {name}
           </Text>
-          <View style={{ flexDirection: "row", width: "100%", scroll: "auto" }}>
+          <ScrollView horizontal={true} key={name} >
             {filteredFormattedRecipes.map(
               ({
                 _id,
@@ -76,7 +78,7 @@ const Recipee = () => {
                 covervideo,
               }) => (
                 <AdminRecipeeCard
-                  key={_id}
+                  key={name}
                   name={name}
                   cover={cover}
                   description={descriptions}
@@ -87,8 +89,8 @@ const Recipee = () => {
                 />
               )
             )}
-          </View>
-        </View>
+          </ScrollView>
+        </View >
       ))}
     </ScrollView>
   );

@@ -102,7 +102,7 @@ export default function BottomNavs() {
       }}
     >
       <Tab.Screen
-        name="RECIPEES"
+        name="RECIPE"
         component={RECIPEES}
         options={{
           headerTitleAlign: "center",

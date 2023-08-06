@@ -1,5 +1,6 @@
 import React from "react";
-import { View, Text, TouchableOpacity, Image, Video } from "react-native";
+import { View, Text, TouchableOpacity, Image } from "react-native";
+import { Video } from "expo-av";
 import { useSelector } from "react-redux";
 import { useWindowDimensions } from "react-native";
 import { TabView, SceneMap } from "react-native-tab-view";
@@ -16,24 +17,15 @@ const RenderImageOrVideo = (item) => {
   if (isVideoLink) {
     return (
       <View style={{ borderRadius: 20, overflow: "hidden" }}>
-        {/* <Video
+        <Video
           source={{ uri: item }}
           style={{
             height: 200,
             width: "100%",
           }}
           resizeMode="cover"
-          controls={true}
-        /> */}
-        <video
-          controls
-          style={{
-            height: 200,
-            width: "100%",
-          }}
-        >
-          <source source={{ uri: item }} type="video/mp4" />
-        </video>
+          useNativeControls
+        />
       </View>
     );
   } else {
@@ -41,7 +33,7 @@ const RenderImageOrVideo = (item) => {
       <Image
         source={{ uri: item }}
         style={{
-          objectFit: "cover",
+          resizeMode: "cover",
           height: 200,
           width: "100%",
           borderRadius: 20,
@@ -51,10 +43,10 @@ const RenderImageOrVideo = (item) => {
   }
 };
 
+
 const FirstRoute = () => {
   const selected = useSelector((state) => state.recipe.selectedRecipe);
   const item = selected[0];
-  console.log(item);
 
   return (
     <View style={{ flex: 1, backgroundColor: "white" }}>
@@ -70,18 +62,22 @@ const FirstRoute = () => {
         >
           {item.description.descriptions}
         </Text>
-        {item.description.descriptionimage.map(({ item }) => (
-          <img
-            key={item}
-            src={item}
-            style={{
-              objectFit: "cover",
-              height: 200,
-              width: "100%",
-              borderRadius: 20,
-            }}
-          />
+        <ScrollView horizontal={true} >
+        {item.description.descriptionimage.map((item ) => (
+       
+         <Image
+        key={item}
+        src={item}
+        style={{
+          objectFit: "cover",
+          height: 100,
+          width: 150,
+          borderRadius: 20,
+        }}
+      />
+     
         ))}
+         </ScrollView>
       </ScrollView>
     </View>
   );
@@ -105,18 +101,23 @@ const SecondRoute = () => {
         >
           {item.ingredients.ingredients}
         </Text>
-        {item.ingredients.ingredientsimage.map(({ item }) => (
-          <img
+        <ScrollView horizontal={true} >
+        {item.ingredients.ingredientsimage.map(( item ) => (
+         
+             <Image
             key={item}
             src={item}
             style={{
               objectFit: "cover",
               height: 200,
-              width: "100%",
+              width: 150,
               borderRadius: 20,
             }}
           />
+         
+         
         ))}
+         </ScrollView>
       </ScrollView>
     </View>
   );
@@ -174,7 +175,7 @@ const AdminDescription = () => {
   ]);
   const selected = useSelector((state) => state.recipe.selectedRecipe);
   const item = selected[0];
-
+  console.log(item)
   return (
     <>
       <View

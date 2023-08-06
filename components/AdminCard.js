@@ -14,6 +14,7 @@ const AdminCard = ({
 }) => {
   const dispatch = useDispatch();
   const router = useRouter();
+  // console.log(`covervideo ==>`,covervideo)
 
   const onPress = () => {
     dispatch(
@@ -36,12 +37,13 @@ const AdminCard = ({
     <TouchableOpacity
       style={{
         height: "auto",
-        alignItems: "center",
-        position: "relative",
+        marginLeft: 5,
+        marginRight:5,
+        width:170
       }}
       onPress={onPress}
     >
-      <img
+      <Image
         src={cover}
         style={{
           objectFit: "cover",

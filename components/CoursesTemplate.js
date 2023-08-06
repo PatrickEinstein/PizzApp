@@ -2,7 +2,7 @@ import React from "react";
 import { ImageBackground, TouchableOpacity } from "react-native";
 import { View, Text, ScrollView } from "react-native";
 
-function CoursesTemplate({ background, onClick }) {
+function CoursesTemplate({ background, onClick, title }) {
   return (
     <View
       style={{
@@ -14,7 +14,7 @@ function CoursesTemplate({ background, onClick }) {
           source={{ uri: background }}
           style={{
             width: "100%",
-            height: 300,
+            height: 200,
             borderRadius: 20,
 
             overflow: "hidden",
@@ -27,17 +27,7 @@ function CoursesTemplate({ background, onClick }) {
           backgroundColor: "white",
         }}
       >
-        <Text
-          style={{
-            fontWeight: "bold",
-            fontSize: 20,
-            marginBottom: 10,
-            marginLeft: 20,
-            backgroundColor: "white",
-          }}
-        >
-          Title
-        </Text>
+       
         <Text
           style={{
             fontSize: 15,
@@ -46,8 +36,7 @@ function CoursesTemplate({ background, onClick }) {
             backgroundColor: "white",
           }}
         >
-          Lorem ipsum dolor sit amet consectetur. Vestibulum vitae magna
-          ultricies tristique. lorem ipsum doloe met si
+       {title}
         </Text>
       </View>
     </View>

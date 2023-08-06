@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { View, Text, TouchableOpacity, Image } from "react-native";
 import { useWindowDimensions } from "react-native";
 import { TabView, SceneMap } from "react-native-tab-view";
@@ -9,16 +9,8 @@ import { useRouter } from "expo-router";
 import CoursesTemplate from "./CoursesTemplate";
 import { Linking } from "react-native";
 import { useSelector } from "react-redux";
-const ImageUrl1 = [
-  {
-    link: "https://i.ibb.co/DzxPCB1/img12.png",
-  },
-];
-const ImageUrl2 = [
-  {
-    link: "https://i.ibb.co/f2Fc4wj/image.png",
-  },
-];
+import { useState } from "react";
+
 
 const openLink = async (link) => {
   try {
@@ -28,71 +20,89 @@ const openLink = async (link) => {
   }
 };
 
+
 const FirstRoute = () => {
-  const adminRecipe = useSelector((state) => state.recipe.adminRecipee.courses);
+  const [categories, setCategories] = useState({});
+  console.log(categories)
+
+  const GetAdminData = async () => {
+    try {
+      const getAdminData = await fetch(
+        "https://all-servers.vercel.app/getupload",
+        {
+          method: "GET",
+        }
+      );
+      const gottenAdminData = await getAdminData.json();
+      setCategories(gottenAdminData.categories);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      GetAdminData();
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <ScrollView>
-      <View style={{ flex: 1 }}>
-        {adminRecipe.map(({ idx, image }) => (
-          <CoursesTemplate
-            background={image}
-            key={idx}
-            // onClick={() =>
-            //   openLink(
-            //     "https://fareharbor.com/embeds/book/onceinrome/items/?flow=173458&full-items=yes&back=https://www.romepizzaschool.com/&a=yes&g4=yes"
-            //   )
-            // }
-          />
-        ))}
-      </View>
-      <View style={{ flex: 1 }}>
-        {ImageUrl1.map(({ idx, link }) => (
-          <CoursesTemplate
-            background={link}
-            key={idx}
-            onClick={() =>
-              openLink(
-                "https://fareharbor.com/embeds/book/onceinrome/items/?flow=173458&full-items=yes&back=https://www.romepizzaschool.com/&a=yes&g4=yes"
-              )
-            }
-          />
-        ))}
+      <View style={{ flex: 1, width:"90%", marginLeft:"auto", marginRight:"auto" }}>
+        {categories.onlineCourse &&
+          categories.onlineCourse.map(({ _id, title, cover,link }) => (
+            <CoursesTemplate
+              background={cover}
+              key={_id}
+              title={title}
+              onClick={()=>  link ? openLink(link) : null}
+            />
+          ))}
       </View>
     </ScrollView>
   );
 };
 
+
 const SecondRoute = () => {
-  const adminRecipe = useSelector((state) => state.recipe.adminRecipee.courses);
+  const [categories, setCategories] = useState({});
+
+  const GetAdminData = async () => {
+    try {
+      const getAdminData = await fetch(
+        "https://all-servers.vercel.app/getupload",
+        {
+          method: "GET",
+        }
+      );
+      const gottenAdminData = await getAdminData.json();
+      setCategories(gottenAdminData.categories);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      GetAdminData();
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, []);
   return (
-    <ScrollView>
-      <View style={{ flex: 1 }}>
-        {adminRecipe.map(({ idx, image }) => (
-          <CoursesTemplate
-            background={image}
-            key={idx}
-            // onClick={() =>
-            //   openLink(
-            //     "https://fareharbor.com/embeds/book/onceinrome/items/?flow=173458&full-items=yes&back=https://www.romepizzaschool.com/&a=yes&g4=yes"
-            //   )
-            // }
-          />
-        ))}
-      </View>
-      <View style={{ flex: 1 }}>
-        {ImageUrl2.map(({ idx, link }) => (
-          <CoursesTemplate
-            background={link}
-            key={idx}
-            onClick={() =>
-              openLink(
-                "https://fareharbor.com/embeds/book/onceinrome/items/?flow=173459&full-items=yes&back=https://www.romepizzaschool.com/&a=yes&g4=yes"
-              )
-            }
-          />
-        ))}
-      </View>
-    </ScrollView>
+    <View style={{ flex: 1 }}>
+      
+    {categories.romeCourse &&categories.romeCourse.map(({ _id, title, cover, link }) => (
+      <CoursesTemplate
+        background={cover}
+        key={_id}
+        title={title}
+        onClick={()=>  link ? openLink(link) : null}
+      />
+    ))}
+  </View>
   );
 };
 
@@ -121,12 +131,12 @@ const renderTabBar = (props) => (
 const Courses = () => {
   const router = useRouter();
   const layout = useWindowDimensions();
+ 
 
   const [index, setIndex] = React.useState(0);
   const [routes, setRoutes] = React.useState([
     { key: "first", title: "Online Courses" },
     { key: "second", title: "Rome COurses" },
-    // { key: "third", title: "Preparation" },
   ]);
 
   return (

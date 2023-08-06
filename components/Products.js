@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { View, Text, TouchableOpacity, Image } from "react-native";
 import { useWindowDimensions } from "react-native";
 import { TabView, SceneMap } from "react-native-tab-view";
@@ -9,36 +9,48 @@ import { useRouter } from "expo-router";
 import CoursesTemplate from "./CoursesTemplate";
 import { useSelector } from "react-redux";
 
-const ImageUrl = [
-  { link: "https://i.ibb.co/ZYNyWbV/img11.jpg" },
-  { link: "https://i.ibb.co/PwSM8Ld/img10.jpg" },
-  { link: "https://i.ibb.co/YL0CVms/img9.jpg" },
-  { link: "https://i.ibb.co/phqPmwm/img8.jpg" },
-  { link: "https://i.ibb.co/nLQg8FT/img7.jpg" },
-  { link: "https://i.ibb.co/brTxLDy/img6.jpg" },
-  { link: "https://i.ibb.co/RPK6MBR/img5.jpg" },
-  { link: "https://i.ibb.co/zXX9Q09/img4.jpg" },
-  { link: "https://i.ibb.co/pPkKnPS/img3.jpg" },
-  { link: "https://i.ibb.co/JrqXJ7h/img2.jpg" },
-  { link: "https://i.ibb.co/x6TwB0b/img1.jpg" },
-];
+const openLink = async (link) => {
+  try {
+    await Linking.openURL(link);
+  } catch (error) {
+    console.error("Failed to open link:", error);
+  }
+};
 
 const FirstRoute = () => {
-  const adminRecipe = useSelector(
-    (state) => state.recipe.adminRecipee.products
-  );
+  const [categories, setCategories] = useState({});
+
+  const GetAdminData = async () => {
+    try {
+      const getAdminData = await fetch(
+        "https://all-servers.vercel.app/getupload",
+        {
+          method: "GET",
+        }
+      );
+      const gottenAdminData = await getAdminData.json();
+      setCategories(gottenAdminData.categories);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      GetAdminData();
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, []);
   return (
     <ScrollView>
       <View style={{ flex: 1 }}>
-        {adminRecipe.map(({ idx, image }) => (
-          <CoursesTemplate background={image} key={idx} />
+        {categories.products && categories.products.map(({ _id, image, link }) => (
+          <CoursesTemplate background={image} key={_id}  onClick={()=>  link ? openLink(link) : null} />
+
         ))}
       </View>
-      <View style={{ flex: 1 }}>
-        {ImageUrl.map(({ idx, link }) => (
-          <CoursesTemplate background={link} key={idx} />
-        ))}
-      </View>
+     
     </ScrollView>
   );
 };
