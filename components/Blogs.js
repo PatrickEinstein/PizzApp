@@ -1,22 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { View, Text, TouchableOpacity, Image } from "react-native";
-import { useWindowDimensions } from "react-native";
-import { TabView, SceneMap } from "react-native-tab-view";
-import { ScrollView } from "react-native";
-import Stackscreen, { CustomTitle } from "./stackscreen";
-import { TabBar } from "react-native-tab-view";
-import { useRouter } from "expo-router";
-import CoursesTemplate from "./CoursesTemplate";
-import { useSelector } from "react-redux";
+import { View, ScrollView, useWindowDimensions } from "react-native";
+import { TabView, SceneMap, TabBar } from "react-native-tab-view";
+import { Linking } from "react-native";
 import BlogCard from "./BlogCard";
-
-const openLink = async (link) => {
-  try {
-    await Linking.openURL(link);
-  } catch (error) {
-    console.error("Failed to open link:", error);
-  }
-};
 
 const FirstRoute = () => {
   const [categories, setCategories] = useState({});
@@ -37,20 +23,31 @@ const FirstRoute = () => {
   };
 
   useEffect(() => {
+    // Fetch data when the component mounts
+    GetAdminData();
+
+    // Fetch data again every 10 seconds
     const interval = setInterval(() => {
       GetAdminData();
-    }, 3000);
+    }, 10000);
 
-    return () => clearInterval(interval);
+    return () => clearInterval(interval); // Clear the interval when the component unmounts
   }, []);
+
   return (
-    <ScrollView>
-      <View style={{ flex: 1, width:"90%", marginLeft:"auto", marginRight:"auto" }}>
-        {categories.message && categories.message.map(({ _id, coverpicture,title, link, avatar, body }) => (
-          <BlogCard coverpicture={coverpicture} key={_id}title={title} avatar={avatar} body={body} onClick={()=>  link ? openLink(link) : null} />
+    <ScrollView style={{ flex: 1, width: "100%", }}>
+      {categories.message &&
+        categories.message.map(({ _id, coverpicture, title, link, avatar, body, subtitle }) => (
+          <BlogCard
+            key={_id}
+            title={title}
+            subtitle={subtitle}
+            coverpicture={coverpicture}
+            avatar={avatar}
+            body={body}
+            // onClick={() => (link ? openLink(link) : null)}
+          />
         ))}
-      </View>
-     
     </ScrollView>
   );
 };
@@ -70,16 +67,19 @@ const renderTabBar = (props) => (
   />
 );
 
+const openLink = async (link) => {
+  try {
+    await Linking.openURL(link);
+  } catch (error) {
+    console.error("Failed to open link:", error);
+  }
+};
+
 const Blogs = () => {
-  const router = useRouter();
   const layout = useWindowDimensions();
 
-  const [index, setIndex] = React.useState(0);
-  const [routes, setRoutes] = React.useState([
-    { key: "first", title: "Blogs" },
-    // { key: "second", title: "Rome COurses" },
-    // { key: "third", title: "Preparation" },
-  ]);
+  const [index, setIndex] = useState(0);
+  const [routes] = useState([{ key: "first", title: "Blogs" }]);
 
   return (
     <View
@@ -89,13 +89,6 @@ const Blogs = () => {
         width: "100%",
       }}
     >
-      {/* <Stackscreen
-        onPress={() => router.push("/BottomNavs")}
-        // icon="home"
-        // help="menu"
-        title="PRODUCTS"
-        color="black"
-      /> */}
       <TabView
         renderScene={renderScene}
         onIndexChange={setIndex}

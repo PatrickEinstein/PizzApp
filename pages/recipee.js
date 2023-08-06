@@ -53,9 +53,9 @@ const Recipee = () => {
        <MyCarousel />
        </View>
       {categories.map(({ _id, name, filteredFormattedRecipes }) => (
-        <View  key={_id} > 
+        <View   > 
           <Text
-          key={filteredFormattedRecipes}
+          key={_id}
             style={{
               textAlign: "left",
               fontSize: 25,
