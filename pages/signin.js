@@ -24,7 +24,7 @@ const SignIn = () => {
     if (password.length > 3) {
       try {
         const submit = await fetch(
-          "https://vote-verse-server-production-6153.up.railway.app/pizzaSignIn",
+          "https://all-servers.vercel.app/pizzaSignIn",
           {
             method: "POST",
             headers: {

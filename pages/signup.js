@@ -23,7 +23,7 @@ const SignUp = () => {
     //https://nice-red-piglet-veil.cyclic.app
     try {
       const submit = await fetch(
-        "https://vote-verse-server-production-6153.up.railway.app/pizzaSignUp",
+        "https://all-servers.vercel.app/pizzaSignUp",
         {
           method: "POST",
           headers: {
