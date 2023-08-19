@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { TextInput, Button } from "react-native-paper";
-import { TouchableOpacity } from "react-native-gesture-handler";
-import Text from "react-native";
+import { Button } from "react-native-paper";
+import { Text, TouchableOpacity } from "react-native";
+
 const Buttons = ({
   icon,
   text,
@@ -70,28 +70,30 @@ export const Buttons2 = ({
   };
 
   return (
-    <Button
-      icon={icon}
-      mode="contained"
-      // onPress={onPress}
-      onPressIn={handlePressIn}
-      onPressOut={handlePressOut}
-      labelStyle={{
-        color: "grey",
-        fontWeight: "bold",
-        fontSize: 20,
-      }}
-      style={{
-        width: width,
-        marginTop: marginTop,
-        backgroundColor: isPressed ? "#990000" : "white",
-        borderRadius: borderRadius,
-        borderWidth: 1,
-        borderColor: "black",
-        color: "grey",
-      }}
-    >
-      {text}
-    </Button>
+   
+      <Button
+        icon={icon}
+        mode="contained"
+        onPress={onPress}
+        onPressIn={handlePressIn}
+        onPressOut={handlePressOut}
+        labelStyle={{
+          color: "grey",
+          fontWeight: "bold",
+          fontSize: 20,
+        }}
+        style={{
+          width: width,
+          marginTop: marginTop,
+          backgroundColor: isPressed ? "#990000" : "white",
+          borderRadius: borderRadius,
+          borderWidth: 1,
+          borderColor: "black",
+          color: "grey",
+        }}
+      >
+        <Text>{text}</Text>
+      </Button>
+  
   );
 };

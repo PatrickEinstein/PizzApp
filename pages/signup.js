@@ -7,6 +7,11 @@ import { useRouter } from "expo-router";
 import { useDispatch } from "react-redux";
 import SnackBar from "../components/snackbar";
 import { saveLoggedInUser } from "../Redux/Reducers";
+import {
+  SignInWithRedirectGoogle2,
+  handleRedirectResult,
+  SignOut,
+} from "../FireBaseConfig";
 
 const SignUp = () => {
   const dispatch = useDispatch();
@@ -20,24 +25,20 @@ const SignUp = () => {
   const [response, setResponse] = React.useState("");
 
   const Submit = async () => {
-    //https://nice-red-piglet-veil.cyclic.app
     try {
-      const submit = await fetch(
-        "https://all-servers.vercel.app/pizzaSignUp",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            fullname: fullname,
-            email: email,
-            phone: phone,
-            password: password,
-            confirmPassword: confirmPassword,
-          }),
-        }
-      );
+      const submit = await fetch("https://all-servers.vercel.app/pizzaSignUp", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          fullname: fullname,
+          email: email,
+          phone: phone,
+          password: password,
+          confirmPassword: confirmPassword,
+        }),
+      });
 
       const submitted = await submit.json();
       console.log(submitted);
@@ -148,16 +149,8 @@ const SignUp = () => {
             icon={"google"}
             width="100%"
             marginTop={30}
-            backgroundColor="white"
             borderRadius={10}
-          />
-          <Buttons2
-            text="Sign up with email"
-            icon={"gmail"}
-            width="100%"
-            marginTop={30}
-            backgroundColor="white"
-            borderRadius={10}
+            onPress={SignInWithRedirectGoogle2}
           />
           <Buttons2
             text="Sign up with facebook"

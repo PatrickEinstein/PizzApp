@@ -1,6 +1,6 @@
 {
   "expo": {
-    "scheme": "acme",
+    "scheme": "exp2e1234567890",
     "web": {
       "bundler": "metro"
     },
