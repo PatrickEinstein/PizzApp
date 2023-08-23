@@ -1,4 +1,4 @@
-package com.pizzaapp;
+package pizz.app.pat;
 
 import android.os.Build;
 import android.os.Bundle;

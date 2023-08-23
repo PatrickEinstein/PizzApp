@@ -1,17 +1,14 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { TextInput, Button } from "react-native-paper";
-import { ScrollView, Text, View } from "react-native";
+import { ScrollView, Text, View, Image } from "react-native";
 import Buttons from "../components/Buttton";
 import { Buttons2 } from "../components/Buttton";
 import { useRouter } from "expo-router";
 import { useDispatch } from "react-redux";
 import SnackBar from "../components/snackbar";
 import { saveLoggedInUser } from "../Redux/Reducers";
-import {
-  SignInWithRedirectGoogle2,
-  handleRedirectResult,
-  SignOut,
-} from "../FireBaseConfig";
+import * as Facebook from "expo-auth-session/providers/facebook";
+import * as WebBrowser from "expo-web-browser";
 
 const SignUp = () => {
   const dispatch = useDispatch();
@@ -22,7 +19,25 @@ const SignUp = () => {
   const [password, setPassword] = React.useState("");
   const [confirmPassword, setConfirmpassword] = React.useState("");
   const [visible, setVisible] = React.useState(false);
-  const [response, setResponse] = React.useState("");
+  const [responses, setResponse] = React.useState("");
+
+  WebBrowser.maybeCompleteAuthSession();
+  const [user, setUser] = useState(null);
+  const [request, response, promptAsync] = Facebook.useAuthRequest({
+    clientId: "334492429005026",
+  });
+
+  useEffect(() => {
+    if (response && response.type === "success" && response.authentication) {
+      (async () => {
+        const userInfoREsponse = await fetch(
+          `https://graph.facebook.com/me?access_token=${response.authentication.accessToken}`
+        );
+        const userInfo = await userInfoREsponse.json();
+        setUser(userInfo);
+      })();
+    }
+  }, [response]);
 
   const Submit = async () => {
     try {
@@ -64,7 +79,7 @@ const SignUp = () => {
       <SnackBar
         visible={visible}
         onDismissSnackBar={() => setVisible(false)}
-        message={response}
+        message={responses}
       />
       <View>
         <TextInput
