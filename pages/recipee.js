@@ -4,7 +4,9 @@ import { ScrollView } from "react-native-gesture-handler";
 import Logo from "../assets/images/pizza.png";
 import { useDispatch } from "react-redux";
 import AdminRecipeeCard from "../components/AdminCard";
-import MyCarousel from "../components/Carousel2"
+import MyCarousel from "../components/Carousel2";
+import BootLoader from "../components/BootLoader";
+
 const useInterval = (callback, delay) => {
   useEffect(() => {
     const interval = setInterval(callback, delay);
@@ -16,7 +18,6 @@ const Recipee = () => {
   const dispatch = useDispatch();
   const [categories, setCategories] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-
 
   const GetAdminData = async () => {
     const getAdminData = await fetch(
@@ -48,52 +49,54 @@ const Recipee = () => {
       <Text>Loading, please wait</Text>
     </View>
   ) : (
-    <ScrollView>
-       <View>
-       <MyCarousel />
-       </View>
-      {categories.map(({ _id, name, filteredFormattedRecipes }) => (
-        <View   > 
-          <Text
-          key={_id}
-            style={{
-              textAlign: "left",
-              fontSize: 25,
-              fontWeight: "bold",
-              marginTop: 10,
-              paddingLeft: 10,
-            }}
-          >
-            {name}
-          </Text>
-          <ScrollView horizontal={true} key={name} >
-            {filteredFormattedRecipes.map(
-              ({
-                _id,
-                name,
-                cover,
-                descriptions,
-                ingredients,
-                preparations,
-                title,
-                covervideo,
-              }) => (
-                <AdminRecipeeCard
-                  key={cover}
-                  name={name}
-                  cover={cover}
-                  description={descriptions}
-                  ingredients={ingredients}
-                  preparations={preparations}
-                  title={title}
-                  covervideo={covervideo}
-                />
-              )
-            )}
-          </ScrollView>
-        </View >
-      ))}
-    </ScrollView>
+    <>
+      <ScrollView>
+        <View>
+          <MyCarousel />
+        </View>
+        {categories.map(({ _id, name, filteredFormattedRecipes }) => (
+          <View>
+            <Text
+              key={_id}
+              style={{
+                textAlign: "left",
+                fontSize: 25,
+                fontWeight: "bold",
+                marginTop: 10,
+                paddingLeft: 10,
+              }}
+            >
+              {name}
+            </Text>
+            <ScrollView horizontal={true} key={name}>
+              {filteredFormattedRecipes.map(
+                ({
+                  _id,
+                  name,
+                  cover,
+                  descriptions,
+                  ingredients,
+                  preparations,
+                  title,
+                  covervideo,
+                }) => (
+                  <AdminRecipeeCard
+                    key={cover}
+                    name={name}
+                    cover={cover}
+                    description={descriptions}
+                    ingredients={ingredients}
+                    preparations={preparations}
+                    title={title}
+                    covervideo={covervideo}
+                  />
+                )
+              )}
+            </ScrollView>
+          </View>
+        ))}
+      </ScrollView>
+    </>
   );
 };
 

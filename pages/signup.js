@@ -28,16 +28,40 @@ const SignUp = () => {
   });
 
   useEffect(() => {
-    if (response && response.type === "success" && response.authentication) {
-      (async () => {
-        const userInfoREsponse = await fetch(
-          `https://graph.facebook.com/me?access_token=${response.authentication.accessToken}`
-        );
-        const userInfo = await userInfoREsponse.json();
-        setUser(userInfo);
-      })();
+    try {
+      if (response && response.type === "success" && response.authentication) {
+        (async () => {
+          const userInfoResponse = await fetch(
+            `https://graph.facebook.com/me?access_token=${response.authentication.accessToken}&fields=id,name,picture.type(large)`
+          );
+          const userInfo = await userInfoResponse.json();
+          setUser(userInfo);
+        })();
+      }
+    } catch (error) {
+      alert(error.message);
     }
   }, [response]);
+
+  const handlePressAsync = async () => {
+    const result = await promptAsync();
+    if (result.type !== "success") {
+      alert("Uh oh, something went wrong");
+      return;
+      // setEmail(result.email);
+      // setPhone(result.phoneNumber);
+    }
+  };
+
+  function Profile({ user }) {
+    return (
+      <View>
+        <Image source={{ uri: user.picture.data.url }} />
+        <Text>{user.name}</Text>
+        <Text>{user.id}</Text>
+      </View>
+    );
+  }
 
   const Submit = async () => {
     try {
@@ -82,6 +106,7 @@ const SignUp = () => {
         message={responses}
       />
       <View>
+        {user && <Profile user={user} />}
         <TextInput
           value={fullname}
           onChangeText={(text) => setFullname(text)}
@@ -165,11 +190,13 @@ const SignUp = () => {
             width="100%"
             marginTop={30}
             borderRadius={10}
-            onPress={SignInWithRedirectGoogle2}
+            // onPress={}
           />
           <Buttons2
             text="Sign up with facebook"
             icon={"facebook"}
+            disabled={!request}
+            onPress={handlePressAsync}
             width="100%"
             marginTop={30}
             backgroundColor="white"
