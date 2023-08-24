@@ -5,10 +5,10 @@
       "bundler": "metro"
     },
     "name": "PizzaApp",
-    "slug": "pizzaapp",
+    "slug": "sam",
     "extra": {
       "eas": {
-        "projectId": "6a1477c6-8ceb-4795-9d64-0209bd0a746e"
+        "projectId": "e9e37bee-7e0c-4ccc-9223-d24295b25d6b"
       }
     },
     "android": {
@@ -16,10 +16,6 @@
     },
     "ios": {
       "bundleIdentifier": "pizz.app.pat"
-    }
-  }
+    }
+  }
 }
-
-
-
-
