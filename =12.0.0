@@ -1,0 +1,14 @@
++ ajv@6.12.6
++ expo@48.0.20
++ metro@0.76.8
++ @types/react-native@0.72.2
++ @types/react-native@0.72.2
++ react-native-svg@13.13.0
++ react@16.14.0
+added 92 packages from 108 contributors, removed 31 packages, updated 48 packages, moved 1 package and audited 2424 packages in 116.678s
+
+146 packages are looking for funding
+  run `npm fund` for details
+
+found 178 vulnerabilities (10 low, 81 moderate, 71 high, 16 critical)
+  run `npm audit fix` to fix them, or `npm audit` for details
