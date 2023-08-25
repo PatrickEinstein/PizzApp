@@ -25,7 +25,7 @@ const Buttons = ({
 
   return (
     <Button
-      // icon={icon}
+      icon={icon}
       mode="contained"
       onPress={onPress}
       onPressIn={handlePressIn}

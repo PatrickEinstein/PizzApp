@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { TextInput, Button } from "react-native-paper";
-import { ScrollView, Text, View, Image } from "react-native";
+import { ScrollView, Text, View } from "react-native";
 import Buttons from "../components/Buttton";
 import { Buttons2 } from "../components/Buttton";
 import { useRouter } from "expo-router";
@@ -9,6 +9,7 @@ import SnackBar from "../components/snackbar";
 import { saveLoggedInUser } from "../Redux/Reducers";
 import * as Facebook from "expo-auth-session/providers/facebook";
 import * as WebBrowser from "expo-web-browser";
+import { AuthSession } from "expo-auth-session";
 
 const SignUp = () => {
   const dispatch = useDispatch();
@@ -28,23 +29,22 @@ const SignUp = () => {
   });
 
   useEffect(() => {
-    try {
-      if (response && response.type === "success" && response.authentication) {
-        (async () => {
-          const userInfoResponse = await fetch(
-            `https://graph.facebook.com/me?access_token=${response.authentication.accessToken}&fields=id,name,picture.type(large)`
-          );
-          const userInfo = await userInfoResponse.json();
-          setUser(userInfo);
-        })();
-      }
-    } catch (error) {
-      alert(error.message);
+    if (response && response.type === "success" && response.authentication) {
+      (async () => {
+        const userInfoResponse = await fetch(
+          `https://graph.facebook.com/me?access_token=${response.authentication.accessToken}&fields=id,name,picture.type(large)`
+        );
+        const userInfo = await userInfoResponse.json();
+        // setUser(userInfo);
+        dispatch(saveLoggedInUser(userInfo));
+        // console.log(`userInfo`, user);
+      })();
     }
   }, [response]);
 
   const handlePressAsync = async () => {
     const result = await promptAsync();
+    console.log(`result`, result);
     if (result.type !== "success") {
       alert("Uh oh, something went wrong");
       return;
@@ -53,15 +53,15 @@ const SignUp = () => {
     }
   };
 
-  function Profile({ user }) {
-    return (
-      <View>
-        <Image source={{ uri: user.picture.data.url }} />
-        <Text>{user.name}</Text>
-        <Text>{user.id}</Text>
-      </View>
-    );
-  }
+  // function Profile({ user }) {
+  //   return (
+  //     <View>
+  //       <Image source={{ uri: user.picture.data.url }} />
+  //       <Text>{user.name}</Text>
+  //       <Text>{user.id}</Text>
+  //     </View>
+  //   );
+  // }
 
   const Submit = async () => {
     try {
@@ -106,7 +106,7 @@ const SignUp = () => {
         message={responses}
       />
       <View>
-        {user && <Profile user={user} />}
+        {/* {user && <Profile user={user} />} */}
         <TextInput
           value={fullname}
           onChangeText={(text) => setFullname(text)}
