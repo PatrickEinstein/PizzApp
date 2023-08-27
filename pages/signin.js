@@ -9,6 +9,7 @@ import { useDispatch } from "react-redux";
 import { saveLoggedInUser } from "../Redux/Reducers";
 import * as Facebook from "expo-auth-session/providers/facebook";
 import * as WebBrowser from "expo-web-browser";
+import BootLoader from "../components/BootLoader";
 WebBrowser.maybeCompleteAuthSession();
 const SignIn = () => {
   const dispatch = useDispatch();
@@ -17,8 +18,10 @@ const SignIn = () => {
   const [password, setPassword] = React.useState("");
   const [response, setResponse] = React.useState("");
   const [visible, setVisible] = React.useState(false);
+  const [isLoading, setIsLoading] = React.useState(false);
 
   const Submit = async (e) => {
+    setIsLoading(true);
     if (password.length > 3) {
       try {
         const submit = await fetch(
@@ -40,7 +43,6 @@ const SignIn = () => {
         setVisible(true);
         if (submitted.status === "200") {
           dispatch(saveLoggedInUser(submitted));
-          router.push("BottomNavs");
           setResponse(submitted.message);
           setVisible(true);
         } else {
@@ -54,6 +56,7 @@ const SignIn = () => {
         console.log(err);
         setResponse("something went wrong, please try again later");
       }
+      setIsLoading(false);
     } else {
       setVisible(true);
       setResponse("Please enter a valid password");
@@ -67,6 +70,7 @@ const SignIn = () => {
         onDismissSnackBar={() => setVisible(false)}
         message={response}
       />
+        {isLoading && <BootLoader/>}
       <View>
         <TextInput
           value={email}

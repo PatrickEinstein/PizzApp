@@ -1,7 +1,7 @@
 const Factors = (clickedLabel) => {
   switch (clickedLabel) {
     case "CY":
-      return +15;
+      return +18;
       break;
     case "ADY":
       return +15;
@@ -13,7 +13,7 @@ const Factors = (clickedLabel) => {
       return +23;
       break;
     case "LSD":
-      return +6;
+      return +7;
       break;
     default:
       return +0.1;

@@ -8,9 +8,16 @@ import { useDispatch } from "react-redux";
 import SnackBar from "../components/snackbar";
 import { saveLoggedInUser } from "../Redux/Reducers";
 import * as Facebook from "expo-auth-session/providers/facebook";
+import * as Google from "expo-auth-session/providers/google";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import * as WebBrowser from "expo-web-browser";
 import { AuthSession } from "expo-auth-session";
 
+//276191175383-chv89i65r0p35hck2vd6pbqlaa6dsin4.apps.googleusercontent.com//web
+//276191175383-7mke6hp95aibh2bt1ne8vc1lhv3omk70.apps.googleusercontent.com//ios id for google sign in
+//276191175383-fitfq7bqkbi3bp7irol7vk8u7e96aro5.apps.googleusercontent.com //android
+
+WebBrowser.maybeCompleteAuthSession();
 const SignUp = () => {
   const dispatch = useDispatch();
   const router = useRouter();
@@ -21,13 +28,21 @@ const SignUp = () => {
   const [confirmPassword, setConfirmpassword] = React.useState("");
   const [visible, setVisible] = React.useState(false);
   const [responses, setResponse] = React.useState("");
+  const [isLoading, setIsLoading] = React.useState(false);
 
-  WebBrowser.maybeCompleteAuthSession();
-  const [user, setUser] = useState(null);
   const [request, response, promptAsync] = Facebook.useAuthRequest({
     clientId: "334492429005026",
   });
+  const [Grequest, Gresponse, GpromptAsync] = Google.useAuthRequest({
+    androidClientId:
+      "276191175383-fitfq7bqkbi3bp7irol7vk8u7e96aro5.apps.googleusercontent.com",
+    iosClientId:
+      "276191175383-7mke6hp95aibh2bt1ne8vc1lhv3omk70.apps.googleusercontent.com",
+    // webClientId:
+    //   "276191175383-chv89i65r0p35hck2vd6pbqlaa6dsin4.apps.googleusercontent.com",
+  });
 
+  // FACEBOOK API
   useEffect(() => {
     if (response && response.type === "success" && response.authentication) {
       (async () => {
@@ -35,35 +50,58 @@ const SignUp = () => {
           `https://graph.facebook.com/me?access_token=${response.authentication.accessToken}&fields=id,name,picture.type(large)`
         );
         const userInfo = await userInfoResponse.json();
-        // setUser(userInfo);
         dispatch(saveLoggedInUser(userInfo));
         // console.log(`userInfo`, user);
       })();
     }
-  }, [response]);
+    handleSignInWithGoogle();
+  }, [response,Gresponse]);
 
+  // FACEBOOK API
   const handlePressAsync = async () => {
     const result = await promptAsync();
     console.log(`result`, result);
     if (result.type !== "success") {
       alert("Uh oh, something went wrong");
       return;
-      // setEmail(result.email);
-      // setPhone(result.phoneNumber);
     }
   };
 
-  // function Profile({ user }) {
-  //   return (
-  //     <View>
-  //       <Image source={{ uri: user.picture.data.url }} />
-  //       <Text>{user.name}</Text>
-  //       <Text>{user.id}</Text>
-  //     </View>
-  //   );
-  // }
+  // GOOGLE API
+  const handleSignInWithGoogle = async () => {
+    const user = await AsyncStorage.getItem("@user");
+    if (!user) {
+      if (Gresponse?.type === "success") {
+        await getUserInfo(Gresponse.authentication.accessToken);
+      }
+    } else {
+      dispatch(saveLoggedInUser(user));
+    }
+  };
+
+  // GOOGLE API
+  const getUserInfo = async (token) => {
+    if (!token) return;
+
+    try {
+      const response = await fetch(
+        "https://www.googleapis.com/userinfo/v2/me",
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      const user = await response.json();
+      await AsyncStorage.setItem("@user", JSON.stringify(user));
+      dispatch(saveLoggedInUser(user));
+    } catch (error) {
+      alert("Uh oh, something went wrong");
+    }
+  };
 
   const Submit = async () => {
+    setIsLoading(true);
     try {
       const submit = await fetch("https://all-servers.vercel.app/pizzaSignUp", {
         method: "POST",
@@ -93,6 +131,7 @@ const SignUp = () => {
         alert("verifying ... click again");
         return;
       }
+      setIsLoading(false);
     } catch (err) {
       setResponse("verifying ... click again");
     }
@@ -105,8 +144,8 @@ const SignUp = () => {
         onDismissSnackBar={() => setVisible(false)}
         message={responses}
       />
+      {isLoading && <BootLoader/>}
       <View>
-        {/* {user && <Profile user={user} />} */}
         <TextInput
           value={fullname}
           onChangeText={(text) => setFullname(text)}
@@ -190,7 +229,8 @@ const SignUp = () => {
             width="100%"
             marginTop={30}
             borderRadius={10}
-            // onPress={}
+            disabled={!Grequest}
+            onPress={() => GpromptAsync()}
           />
           <Buttons2
             text="Sign up with facebook"

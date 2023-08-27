@@ -10,7 +10,7 @@ import CoursesTemplate from "./CoursesTemplate";
 import { Linking } from "react-native";
 import { useSelector } from "react-redux";
 import { useState } from "react";
-
+import BootLoader from "./BootLoader";
 
 const openLink = async (link) => {
   try {
@@ -20,10 +20,9 @@ const openLink = async (link) => {
   }
 };
 
-
 const FirstRoute = () => {
   const [categories, setCategories] = useState({});
- 
+  const [isLoading, setIsLoading] = useState(true);
 
   const GetAdminData = async () => {
     try {
@@ -35,6 +34,7 @@ const FirstRoute = () => {
       );
       const gottenAdminData = await getAdminData.json();
       setCategories(gottenAdminData.categories);
+      setIsLoading(false);
     } catch (error) {
       console.error("Error fetching data:", error);
     }
@@ -43,6 +43,7 @@ const FirstRoute = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       GetAdminData();
+      setIsLoading(false);
     }, 3000);
 
     return () => clearInterval(interval);
@@ -50,14 +51,22 @@ const FirstRoute = () => {
 
   return (
     <ScrollView>
-      <View style={{ flex: 1, width:"90%", marginLeft:"auto", marginRight:"auto" }}>
+       {isLoading && <BootLoader />}
+      <View
+        style={{
+          flex: 1,
+          width: "90%",
+          marginLeft: "auto",
+          marginRight: "auto",
+        }}
+      >
         {categories.onlineCourse &&
-          categories.onlineCourse.map(({ _id, title, cover,link }) => (
+          categories.onlineCourse.map(({ _id, title, cover, link }) => (
             <CoursesTemplate
               background={cover}
               key={_id}
               title={title}
-              onClick={()=>  link ? openLink(link) : null}
+              onClick={() => (link ? openLink(link) : null)}
             />
           ))}
       </View>
@@ -65,9 +74,9 @@ const FirstRoute = () => {
   );
 };
 
-
 const SecondRoute = () => {
   const [categories, setCategories] = useState({});
+  const [isLoading, setIsLoading] = useState(true);
 
   const GetAdminData = async () => {
     try {
@@ -79,6 +88,7 @@ const SecondRoute = () => {
       );
       const gottenAdminData = await getAdminData.json();
       setCategories(gottenAdminData.categories);
+      setIsLoading(false);
     } catch (error) {
       console.error("Error fetching data:", error);
     }
@@ -87,34 +97,30 @@ const SecondRoute = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       GetAdminData();
+      setIsLoading(false);
     }, 3000);
 
     return () => clearInterval(interval);
   }, []);
   return (
     <View style={{ flex: 1 }}>
-      
-    {categories.romeCourse &&categories.romeCourse.map(({ _id, title, cover, link }) => (
-      <CoursesTemplate
-        background={cover}
-        key={_id}
-        title={title}
-        onClick={()=>  link ? openLink(link) : null}
-      />
-    ))}
-  </View>
+      {isLoading && <BootLoader />}
+      {categories.romeCourse &&
+        categories.romeCourse.map(({ _id, title, cover, link }) => (
+          <CoursesTemplate
+            background={cover}
+            key={_id}
+            title={title}
+            onClick={() => (link ? openLink(link) : null)}
+          />
+        ))}
+    </View>
   );
 };
 
-const ThirdRoute = () => {
-  return (
-    <View style={{ flex: 1, backgroundColor: "white", height: 500 }}></View>
-  );
-};
 const renderScene = SceneMap({
   first: FirstRoute,
   second: SecondRoute,
-  third: ThirdRoute,
 });
 
 const renderTabBar = (props) => (
@@ -131,7 +137,6 @@ const renderTabBar = (props) => (
 const Courses = () => {
   const router = useRouter();
   const layout = useWindowDimensions();
- 
 
   const [index, setIndex] = React.useState(0);
   const [routes, setRoutes] = React.useState([

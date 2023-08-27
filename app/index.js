@@ -32,24 +32,7 @@ const styles = StyleSheet.create({
 const persistor = persistStore(store);
 
 const Home = () => {
-  // const screen = useSelector((state) => state.recipe.loggedInUser.user);
-  // console.log(screen);
-  return (
-    // <Provider context={null} store={store}>
-    //   <PersistGate
-    //     loading={
-    //       <>
-    //         <Stackscreen title="" />
-    //         <Image source={Logo} style={styles.logo} />
-    //       </>
-    //     }
-    //     persistor={persistor}
-    //   >
-        <Layout />
-        // {/* {screen ? <BottomNavs /> : <HomePage />} */}
-    //   </PersistGate>
-    // </Provider>
-  );
+  return <Layout />;
 };
 
 export default Home;

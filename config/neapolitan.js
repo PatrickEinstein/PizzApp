@@ -19,7 +19,7 @@ export function calculateDoughIngredients(
   flour6,
   autolysisflour,
   autolysiswater,
-  fat,
+  fat
 ) {
   const Sigma = doughBalls1 * ballWeight1 + doughBalls2 * ballWeight2;
   // Convert percentages to decimal values
@@ -35,7 +35,6 @@ export function calculateDoughIngredients(
   // Calculate flour and water amounts
   const flourWeight =
     Sigma / (1 + waterRatio + saltRatio + CY + (fat ? +fatRatio : +0));
- 
 
   // Calculate salt and yeast amounts
   const saltWeight = flourWeight * saltRatio;
@@ -57,7 +56,7 @@ export function calculateDoughIngredients(
   const waterWeight = flourWeight * waterRatio - autolysiswatermass;
   const remains = flourWeight - +autolysisflourmass;
 
-  const flour1mass = (+flour1 / 100) * +remains ;
+  const flour1mass = (+flour1 / 100) * +remains;
   const flour2mass = (+flour2 / 100) * +remains;
   const flour3mass = (+flour3 / 100) * +remains;
   const flour4mass = (+flour4 / 100) * +remains;
@@ -67,7 +66,8 @@ export function calculateDoughIngredients(
 
   const autolysisdose = autolysisflourmass + autolysiswatermass;
 
-  const maindoughdose = remains + waterWeight + yeastWeight
+  const maindoughdose = remains + waterWeight + yeastWeight + saltWeight;
+
 
   // Return the dough ingredient amounts
   return {
@@ -88,6 +88,6 @@ export function calculateDoughIngredients(
     fats,
     autolysiswatermass,
     autolysisdose,
-    maindoughdose
+    maindoughdose,
   };
 }

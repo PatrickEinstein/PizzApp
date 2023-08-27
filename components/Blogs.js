@@ -3,9 +3,11 @@ import { View, ScrollView, useWindowDimensions } from "react-native";
 import { TabView, SceneMap, TabBar } from "react-native-tab-view";
 import { Linking } from "react-native";
 import BlogCard from "./BlogCard";
+import BootLoader from "./BootLoader";
 
 const FirstRoute = () => {
   const [categories, setCategories] = useState({});
+  const [isLoading, setisLoading] = useState(true);
 
   const GetAdminData = async () => {
     try {
@@ -17,6 +19,7 @@ const FirstRoute = () => {
       );
       const gottenAdminData = await getAdminData.json();
       setCategories(gottenAdminData);
+      setisLoading(false);
     } catch (error) {
       console.error("Error fetching data:", error);
     }
@@ -24,11 +27,12 @@ const FirstRoute = () => {
 
   useEffect(() => {
     // Fetch data when the component mounts
-    GetAdminData();
+    // GetAdminData();
 
     // Fetch data again every 10 seconds
     const interval = setInterval(() => {
       GetAdminData();
+      setisLoading(false);
     }, 10000);
 
     return () => clearInterval(interval); // Clear the interval when the component unmounts
@@ -36,6 +40,7 @@ const FirstRoute = () => {
 
   return (
     <ScrollView style={{ flex: 1, width: "100%", }}>
+      {isLoading && <BootLoader/>}
       {categories.message &&
         categories.message.map(({ _id, coverpicture, title, link, avatar, body, subtitle }) => (
           <BlogCard

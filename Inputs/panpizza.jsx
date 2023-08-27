@@ -10,12 +10,13 @@ import { useSelector } from "react-redux";
 import { calculateDoughIngredients } from "../config/neapolitan";
 import { Value } from "react-native-reanimated";
 import { Factors2 } from "../components/YeastFactors";
+
 const Inputs = () => {
   const [clickedLabel, setClickedLabel] = useState("");
 
   const handleButtonClick = (label) => {
     if (label === clickedLabel) {
-      setClickedLabel("CY");
+      setClickedLabel("");
     } else {
       setClickedLabel(label);
     }
@@ -40,9 +41,6 @@ const Inputs = () => {
   const flour04 = onOff.flour4;
   const flour05 = onOff.flour5;
   const flour06 = onOff.flour6;
-
-  console.log(`val in pizz`,flour02, flour03, flour04, flour05, flour06)
-
   const [Doughball1, setDoughball1] = useState(1);
   const [Doughball2, setDoughball2] = useState(0);
   const [BallWeight1, setBallWeight1] = useState(600);
@@ -1024,8 +1022,14 @@ const Inputs = () => {
             </Text>
           ) : null}
         </View>
+       
       </View>
-
+      {clickedLabel ? null : <Text
+      style={{
+        textAlign: "center",
+        fontWeight:"bold"
+      }}
+      >select a yeast type</Text>}
       {autolysis ? (
         <View
           style={{

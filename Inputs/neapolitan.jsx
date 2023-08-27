@@ -12,8 +12,7 @@ import { Value } from "react-native-reanimated";
 import Factors from "../components/YeastFactors";
 
 const Inputs = () => {
-  const [clickedLabel, setClickedLabel] = useState("CY");
-  // console.log(clickedLabel);
+  const [clickedLabel, setClickedLabel] = useState("");
   const handleButtonClick = (label) => {
     if (label === clickedLabel) {
       setClickedLabel("");
@@ -23,7 +22,6 @@ const Inputs = () => {
   };
 
   const Factores = Factors(clickedLabel);
-  // console.log(`FACTORS ===> ${Factores}`);
   const onOff = useSelector((state) => state.recipe);
  
 
@@ -966,7 +964,12 @@ const Inputs = () => {
           ) : null}
         </View>
       </View>
-
+      {clickedLabel ? null : <Text
+      style={{
+        textAlign: "center",
+        fontWeight:"bold"
+      }}
+      >select a yeast type</Text>}
       {autolysis ? (
         <View
           style={{
@@ -1145,7 +1148,7 @@ const Inputs = () => {
                 color: "white",
               }}
             >
-              Flour1 :{" "}
+              Flour1 :
               {isNaN(result.flour1mass) ? "" : result.flour1mass.toFixed(2)}g
             </Text>
 
@@ -1268,7 +1271,7 @@ const Inputs = () => {
               yeast:{" "}
               {isNaN(result.yeastWeight)
                 ? ""
-                : +result.yeastWeight.toFixed(5) *
+                : +result.yeastWeight.toFixed(2) *
                   (clickedLabel ? Factores : null)}
               g
             </Text>

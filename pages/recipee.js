@@ -35,69 +35,54 @@ const Recipee = () => {
     setIsLoading(false);
   }, 3000);
 
-  return isLoading ? (
-    <View justifyContent="center" alignItems="center">
-      <Image
-        source={Logo}
-        style={{
-          width: 200,
-          height: 200,
-          marginLeft: 50,
-          marginRight: 50,
-        }}
-      />
-      <Text>Loading, please wait</Text>
-    </View>
-  ) : (
-    <>
-      <ScrollView>
+  return (
+    <ScrollView>
+      <View>
+        <MyCarousel />
+      </View>
+      {isLoading && <BootLoader />}
+      {categories.map(({ _id, name, filteredFormattedRecipes }) => (
         <View>
-          <MyCarousel />
+          <Text
+            key={_id}
+            style={{
+              textAlign: "left",
+              fontSize: 25,
+              fontWeight: "bold",
+              marginTop: 10,
+              paddingLeft: 10,
+            }}
+          >
+            {name}
+          </Text>
+          <ScrollView horizontal={true} key={name}>
+            {filteredFormattedRecipes.map(
+              ({
+                _id,
+                name,
+                cover,
+                descriptions,
+                ingredients,
+                preparations,
+                title,
+                covervideo,
+              }) => (
+                <AdminRecipeeCard
+                  key={cover}
+                  name={name}
+                  cover={cover}
+                  description={descriptions}
+                  ingredients={ingredients}
+                  preparations={preparations}
+                  title={title}
+                  covervideo={covervideo}
+                />
+              )
+            )}
+          </ScrollView>
         </View>
-        {categories.map(({ _id, name, filteredFormattedRecipes }) => (
-          <View>
-            <Text
-              key={_id}
-              style={{
-                textAlign: "left",
-                fontSize: 25,
-                fontWeight: "bold",
-                marginTop: 10,
-                paddingLeft: 10,
-              }}
-            >
-              {name}
-            </Text>
-            <ScrollView horizontal={true} key={name}>
-              {filteredFormattedRecipes.map(
-                ({
-                  _id,
-                  name,
-                  cover,
-                  descriptions,
-                  ingredients,
-                  preparations,
-                  title,
-                  covervideo,
-                }) => (
-                  <AdminRecipeeCard
-                    key={cover}
-                    name={name}
-                    cover={cover}
-                    description={descriptions}
-                    ingredients={ingredients}
-                    preparations={preparations}
-                    title={title}
-                    covervideo={covervideo}
-                  />
-                )
-              )}
-            </ScrollView>
-          </View>
-        ))}
-      </ScrollView>
-    </>
+      ))}
+    </ScrollView>
   );
 };
-
 export default Recipee;

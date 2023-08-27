@@ -99,13 +99,6 @@ export default function BottomNavs() {
           return <Icon name={iconName} size={size} color={color} />;
         },
       })}
-      // tabBarOptions={{
-      //   backgroundColor: "grey",
-      //   activeTintColor: "black",
-      //   inactiveTintColor: "gray",
-      //   labelStyle: { fontSize: 12, textAlign: "center" },
-      //   style: { justifyContent: "center", backgroundColor: "#990000" },
-      // }}
     >
       <Tab.Screen
         name="RECIPE"
