@@ -83,9 +83,9 @@ export default function BottomNavs() {
         tabBarIcon: ({ focused, color, size }) => {
           let iconName;
 
-          if (route.name === "RECIPE") {
+          if (route.name === "RECIPES") {
             iconName = focused ? "book" : "book";
-          } else if (route.name === "PIZZA CALC") {
+          } else if (route.name === "PIZZA DOUGH CALCULATOR") {
             iconName = focused ? "calculator" : "calculator";
           } else if (route.name === "COURSES") {
             iconName = focused ? "graduation-cap" : "graduation-cap";
@@ -99,9 +99,10 @@ export default function BottomNavs() {
           return <Icon name={iconName} size={size} color={color} />;
         },
       })}
+
     >
       <Tab.Screen
-        name="RECIPE"
+        name="RECIPES"
         component={RECIPEES}
         options={{
           headerTitleAlign: "center",
@@ -110,7 +111,7 @@ export default function BottomNavs() {
         }}
       />
       <Tab.Screen
-        name="PIZZA CALC"
+        name="PIZZA DOUGH CALCULATOR"
         component={PIZZACALC}
         options={{
           headerTitleAlign: "center",

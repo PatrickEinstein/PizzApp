@@ -19,6 +19,7 @@ import Description from "./description";
 import AdminDescription from "./adminDescription";
 import AdminDetails from "./edit";
 import Input from "./input";
+import BootLoader from "../components/BootLoader";
 const persistor = persistStore(store);
 SplashScreen.preventAutoHideAsync();
 const Stack = createStackNavigator();
@@ -38,9 +39,8 @@ const Layout = () => {
   if (!fontsLoaded) return null;
 
   return (
-    <PersistGate loading={null} persistor={persistor}>
+    <PersistGate loading={<BootLoader />} persistor={persistor}>
       <Provider context={null} store={store}>
-        {/* <Stack onLayout={onLayoutRootView} /> */}
         <Stack.Navigator
           screenOptions={{
             headerShown: false,

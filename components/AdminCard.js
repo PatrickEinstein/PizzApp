@@ -11,6 +11,7 @@ const AdminCard = ({
   preparations,
   title,
   covervideo,
+  width: width
 }) => {
   const dispatch = useDispatch();
   const router = useRouter();
@@ -39,7 +40,7 @@ const AdminCard = ({
         height: "auto",
         marginLeft: 5,
         marginRight:5,
-        width:170
+        width:width
       }}
       onPress={onPress}
     >

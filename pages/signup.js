@@ -169,17 +169,6 @@ const SignUp = () => {
           }}
         />
         <TextInput
-          value={phone}
-          onChangeText={(text) => setPhone(text)}
-          mode="flat"
-          label="Phone number"
-          style={{
-            width: "98%",
-            backgroundColor: "white",
-            height: 60,
-          }}
-        />
-        <TextInput
           value={password}
           onChangeText={(text) => setPassword(text)}
           mode="flat"

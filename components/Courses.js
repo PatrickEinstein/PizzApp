@@ -141,7 +141,7 @@ const Courses = () => {
   const [index, setIndex] = React.useState(0);
   const [routes, setRoutes] = React.useState([
     { key: "first", title: "Online Courses" },
-    { key: "second", title: "Rome COurses" },
+    { key: "second", title: "IN PERSON COurses" },
   ]);
 
   return (

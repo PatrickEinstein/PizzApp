@@ -23,7 +23,6 @@ const Inputs = () => {
 
   const Factores = Factors(clickedLabel);
   const onOff = useSelector((state) => state.recipe);
- 
 
   const twoballsize = onOff.twoballsize;
   const fats = onOff.fats;
@@ -42,7 +41,15 @@ const Inputs = () => {
   const flour04 = onOff.flour4;
   const flour05 = onOff.flour5;
   const flour06 = onOff.flour6;
-  console.log(`flours in neap ==>`, flour02, flour03, flour03, flour04, flour05, flour06)
+  console.log(
+    `flours in neap ==>`,
+    flour02,
+    flour03,
+    flour03,
+    flour04,
+    flour05,
+    flour06
+  );
 
   const [Doughball1, setDoughball1] = useState(+1);
   const [Doughball2, setDoughball2] = useState(0);
@@ -964,12 +971,16 @@ const Inputs = () => {
           ) : null}
         </View>
       </View>
-      {clickedLabel ? null : <Text
-      style={{
-        textAlign: "center",
-        fontWeight:"bold"
-      }}
-      >select a yeast type</Text>}
+      {clickedLabel ? null : (
+        <Text
+          style={{
+            textAlign: "center",
+            fontWeight: "bold",
+          }}
+        >
+          select a yeast type
+        </Text>
+      )}
       {autolysis ? (
         <View
           style={{
@@ -1269,10 +1280,11 @@ const Inputs = () => {
               }}
             >
               yeast:{" "}
-              {isNaN(result.yeastWeight)
-                ? ""
-                : +result.yeastWeight.toFixed(2) *
-                  (clickedLabel ? Factores : null)}
+              {
+                isNaN(result.yeastWeight) ? "" : +result.yeastWeight.toFixed(2)
+                //  *
+                //   (clickedLabel ? Factores : null)
+              }
               g
             </Text>
           </View>

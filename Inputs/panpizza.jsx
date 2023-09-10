@@ -7,7 +7,8 @@ import { Divider, IconButton, List } from "react-native-paper";
 import StyledIconButton from "../components/stylediconButton";
 import HDivider from "../components/Divider";
 import { useSelector } from "react-redux";
-import { calculateDoughIngredients } from "../config/neapolitan";
+ import { calculateDoughIngredients } from "../config/neapolitan";
+
 import { Value } from "react-native-reanimated";
 import { Factors2 } from "../components/YeastFactors";
 
@@ -1349,8 +1350,10 @@ const Inputs = () => {
               yeast:{" "}
               {isNaN(result.yeastWeight)
                 ? ""
-                : (Math.round(+result.yeastWeight.toFixed(5) * 100) / 100) *
-                  (clickedLabel ? Factores : null)}
+                : (Math.round(+result.yeastWeight.toFixed(2) * 100) / 100)
+                //  *
+                //   (clickedLabel ? Factores : null)
+                  }
               g
             </Text>
           </View>

@@ -1,8 +1,9 @@
 import Carousel, { Pagination } from "react-native-snap-carousel";
 import React, { useState, useRef, useEffect } from "react";
-import { View, StyleSheet, Image } from "react-native";
-import RecipeeCardsCarousel from "./RecipeecardsCarousel";
-import { useSelector } from "react-redux";
+import { View, StyleSheet, Image, ScrollView } from "react-native";
+import AdminRecipeeCard from "./AdminCard";
+// import RecipeeCardsCarousel from "./RecipeecardsCarousel";
+import { useDispatch, useSelector } from "react-redux";
 import L1 from "../assets/P1.png";
 import L2 from "../assets/P2.png";
 import L3 from "../assets/P3.png";
@@ -14,6 +15,8 @@ const MyCarousel = () => {
   const [activeSlide, setActiveSlide] = useState(0);
   const recipees = [L1, L2, L3, L4, L6, L7];
   const carouselRef = useRef(null);
+  const dispatch = useDispatch();
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const autoScroll = setInterval(() => {
@@ -21,17 +24,13 @@ const MyCarousel = () => {
       const isLastSlide = nextSlide === recipees.length;
       carouselRef.current.snapToItem(nextSlide, !isLastSlide);
       setActiveSlide(nextSlide);
-    }, 2000);
-
+      setIsLoading(false);
+    });
     return () => clearInterval(autoScroll);
   }, [activeSlide]);
 
   const renderItem = ({ item }) => {
-    return (
-      <View style={styles.carouselItem}>
-        <Image source={item} style={{ width: 350, height: 200 }} />
-      </View>
-    );
+    return <Image source={item} style={{ width: 350, height: 200 }} />;
   };
 
   const pagination = () => {
@@ -75,7 +74,6 @@ const MyCarousel = () => {
         itemWidth={300}
         style={{
           height: 200,
-          
         }}
       />
       {pagination()}

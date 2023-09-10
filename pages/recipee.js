@@ -6,6 +6,7 @@ import { useDispatch } from "react-redux";
 import AdminRecipeeCard from "../components/AdminCard";
 import MyCarousel from "../components/Carousel2";
 import BootLoader from "../components/BootLoader";
+import NewCarousel from "../components/NewCarousel";
 
 const useInterval = (callback, delay) => {
   useEffect(() => {
@@ -38,7 +39,8 @@ const Recipee = () => {
   return (
     <ScrollView>
       <View>
-        <MyCarousel />
+        {/* <MyCarousel /> */}
+        <NewCarousel/>
       </View>
       {isLoading && <BootLoader />}
       {categories.map(({ _id, name, filteredFormattedRecipes }) => (
@@ -55,7 +57,7 @@ const Recipee = () => {
           >
             {name}
           </Text>
-          <ScrollView horizontal={true} key={name}>
+          <ScrollView horizontal={true} key={name} showsHorizontalScrollIndicator={false}>
             {filteredFormattedRecipes.map(
               ({
                 _id,
@@ -76,6 +78,7 @@ const Recipee = () => {
                   preparations={preparations}
                   title={title}
                   covervideo={covervideo}
+                  width={170}
                 />
               )
             )}
