@@ -7,7 +7,7 @@ import { Divider, IconButton, List } from "react-native-paper";
 import StyledIconButton from "../components/stylediconButton";
 import HDivider from "../components/Divider";
 import { useSelector } from "react-redux";
- import { calculateDoughIngredients } from "../config/neapolitan";
+import { calculateDoughIngredients } from "../config/neapolitan";
 
 import { Value } from "react-native-reanimated";
 import { Factors2 } from "../components/YeastFactors";
@@ -504,10 +504,7 @@ const Inputs = () => {
     <View>
       <View
         style={{
-          flexDirection: "row",
-          justifyContent: "space-between",
           marginTop: 20,
-          alignItems: "center",
         }}
       >
         <InputWithAdornments
@@ -533,11 +530,8 @@ const Inputs = () => {
         <>
           <View
             style={{
-              flexDirection: "row",
-              justifyContent: "space-between",
               marginBottom: 0,
-              justifyContent: "space-between",
-              alignItems: "center",
+  
               width: "auto",
             }}
           >
@@ -570,11 +564,11 @@ const Inputs = () => {
       {flour02 ? (
         <View
           style={{
-            flexDirection: "row",
-            justifyContent: "space-between",
+            // flexDirection: "row",
+            // justifyContent: "space-between",
             marginBottom: 1,
-            justifyContent: "space-between",
-            alignItems: "center",
+            // justifyContent: "space-between",
+            // alignItems: "center",
             margin: "auto",
           }}
         >
@@ -609,8 +603,8 @@ const Inputs = () => {
           <Spacer height={1} />
           <View
             style={{
-              flexDirection: "row",
-              justifyContent: "space-between",
+              // flexDirection: "row",
+              // justifyContent: "space-between",
               marginBottom: 1,
               justifyContent: "space-between",
               alignItems: "center",
@@ -648,8 +642,8 @@ const Inputs = () => {
       {flour05 ? (
         <View
           style={{
-            flexDirection: "row",
-            justifyContent: "space-between",
+            // flexDirection: "row",
+            // justifyContent: "space-between",
             marginBottom: 20,
             justifyContent: "space-between",
             alignItems: "center",
@@ -690,16 +684,17 @@ const Inputs = () => {
           onIncrement={waterplus}
           onDecrement={waterminus}
           borderColor={"#990000"}
+          viewWidth={150}
           label="Water (%)"
         />
       </View>
       <Spacer height={20} />
       <View
         style={{
-          flexDirection: "row",
-          justifyContent: "space-between",
+          // flexDirection: "row",
+          // justifyContent: "space-between",
           marginBottom: 20,
-          alignItems: "center",
+          // alignItems: "center",
         }}
       >
         <InputWithAdornments
@@ -724,10 +719,10 @@ const Inputs = () => {
       </View>
       <View
         style={{
-          flexDirection: "row",
-          justifyContent: "space-between",
+          // flexDirection: "row",
+          // justifyContent: "space-between",
           marginBottom: 20,
-          alignItems: "center",
+          // alignItems: "center",
         }}
       >
         <InputWithAdornments
@@ -756,10 +751,10 @@ const Inputs = () => {
         <>
           <View
             style={{
-              flexDirection: "row",
-              justifyContent: "space-between",
+              // flexDirection: "row",
+              // justifyContent: "space-between",
               marginBottom: 20,
-              alignItems: "center",
+              // alignItems: "center",
             }}
           >
             <InputWithAdornments
@@ -789,11 +784,11 @@ const Inputs = () => {
       {autolysis ? (
         <View
           style={{
-            flexDirection: "row",
-            justifyContent: "space-between",
+            // flexDirection: "row",
+            // justifyContent: "space-between",
             marginBottom: 20,
-            justifyContent: "space-between",
-            alignItems: "center",
+            // justifyContent: "space-between",
+            // alignItems: "center",
           }}
         >
           <InputWithAdornments
@@ -824,11 +819,11 @@ const Inputs = () => {
           <Spacer height={20} />
           <View
             style={{
-              flexDirection: "row",
-              justifyContent: "space-between",
+              // flexDirection: "row",
+              // justifyContent: "space-between",
               marginBottom: 20,
-              justifyContent: "space-between",
-              alignItems: "center",
+              // justifyContent: "space-between",
+              // alignItems: "center",
             }}
           >
             <InputWithAdornments
@@ -845,11 +840,11 @@ const Inputs = () => {
               <Text>OD Leav. Power</Text>
               <View
                 style={{
-                  flexDirection: "row",
-                  justifyContent: "space-around",
+                  // flexDirection: "row",
+                  // justifyContent: "space-around",
                   marginBottom: 20,
-                  justifyContent: "space-around",
-                  alignItems: "center",
+                  // justifyContent: "space-around",
+                  // alignItems: "center",
                   marginRight: 10,
                 }}
               >
@@ -882,11 +877,11 @@ const Inputs = () => {
           <Spacer height={10} />
           <View
             style={{
-              flexDirection: "row",
-              justifyContent: "space-between",
+              // flexDirection: "row",
+              // justifyContent: "space-between",
               marginBottom: 20,
-              justifyContent: "space-between",
-              alignItems: "center",
+              // justifyContent: "space-between",
+              // alignItems: "center",
             }}
           >
             <InputWithAdornments
@@ -1023,19 +1018,23 @@ const Inputs = () => {
             </Text>
           ) : null}
         </View>
-       
       </View>
-      {clickedLabel ? null : <Text
-      style={{
-        textAlign: "center",
-        fontWeight:"bold"
-      }}
-      >select a yeast type</Text>}
+      {clickedLabel ? null : (
+        <Text
+          style={{
+            textAlign: "center",
+            fontWeight: "bold",
+          }}
+        >
+          select a yeast type
+        </Text>
+      )}
       {autolysis ? (
         <View
           style={{
             justifyContent: "space-between",
             alignItems: "center",
+            marginTop: 10,
           }}
         >
           <HDivider />
@@ -1348,12 +1347,13 @@ const Inputs = () => {
               }}
             >
               yeast:{" "}
-              {isNaN(result.yeastWeight)
-                ? ""
-                : (Math.round(+result.yeastWeight.toFixed(2) * 100) / 100)
+              {
+                isNaN(result.yeastWeight)
+                  ? ""
+                  : Math.round(+result.yeastWeight.toFixed(2) * 100) / 100
                 //  *
                 //   (clickedLabel ? Factores : null)
-                  }
+              }
               g
             </Text>
           </View>

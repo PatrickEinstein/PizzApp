@@ -193,7 +193,7 @@ const Settings = () => {
   return (
     <ScrollView>
       <View flexDirection="row" justifyContent="space-between">
-        <TouchableOpacity onPress={() => router.push("/BottomNavs")}>
+        <TouchableOpacity onPress={() => router.push("/index")}>
           <Text
             style={{
               paddingTop: 25,

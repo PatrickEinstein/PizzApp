@@ -28,13 +28,19 @@ const InputWithAdornments = ({
   };
 
   return (
-    <View sx={{ alignItems: "center", justifyContent: "center" }}>
+    <View   style={{
+      flexDirection: "row",
+      justifyContent: "space-between",
+      marginTop: 20,
+      alignItems: "center",
+      paddingRight:5,
+      paddingRight:5
+    }}>
       <Text
         style={{
-          textAlign: "center",
           display: display,
         }}
-      >
+      > 
         {label}
         <Icon name={name} size={15} color="grey" />
       </Text>

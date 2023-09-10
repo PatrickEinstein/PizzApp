@@ -472,10 +472,10 @@ const Inputs = () => {
     <View>
       <View
         style={{
-          flexDirection: "row",
-          justifyContent: "space-between",
+          // flexDirection: "row",
+          // justifyContent: "space-between",
           marginTop: 10,
-          alignItems: "center",
+          // alignItems: "center",
         }}
       >
         <InputWithAdornments
@@ -501,11 +501,11 @@ const Inputs = () => {
         <>
           <View
             style={{
-              flexDirection: "row",
-              justifyContent: "space-between",
+              // flexDirection: "row",
+              // justifyContent: "space-between",
               marginBottom: 0,
-              justifyContent: "space-between",
-              alignItems: "center",
+              // justifyContent: "space-between",
+              // alignItems: "center",
               width: "auto",
             }}
           >
@@ -538,11 +538,11 @@ const Inputs = () => {
       {flour02 ? (
         <View
           style={{
-            flexDirection: "row",
-            justifyContent: "space-between",
+            // flexDirection: "row",
+            // justifyContent: "space-between",
             marginBottom: 1,
-            justifyContent: "space-between",
-            alignItems: "center",
+            // justifyContent: "space-between",
+            // alignItems: "center",
             margin: "auto",
           }}
         >
@@ -577,11 +577,11 @@ const Inputs = () => {
           <Spacer height={1} />
           <View
             style={{
-              flexDirection: "row",
-              justifyContent: "space-between",
+              // flexDirection: "row",
+              // justifyContent: "space-between",
               marginBottom: 1,
-              justifyContent: "space-between",
-              alignItems: "center",
+              // justifyContent: "space-between",
+              // alignItems: "center",
             }}
           >
             {flour03 ? (
@@ -616,11 +616,11 @@ const Inputs = () => {
       {flour05 ? (
         <View
           style={{
-            flexDirection: "row",
-            justifyContent: "space-between",
+            // flexDirection: "row",
+            // justifyContent: "space-between",
             marginBottom: 20,
-            justifyContent: "space-between",
-            alignItems: "center",
+            // justifyContent: "space-between",
+            // alignItems: "center",
           }}
         >
           {flour05 ? (
@@ -656,6 +656,7 @@ const Inputs = () => {
           onIncrement={waterplus}
           onDecrement={waterminus}
           borderColor={"#990000"}
+          viewWidth={150}
           label="Water (%)"
         />
         <InputWithAdornments
@@ -664,16 +665,17 @@ const Inputs = () => {
           onIncrement={saltplus}
           onDecrement={saltminus}
           borderColor={"#990000"}
+          viewWidth={150}
           label="Salt (%)"
         />
       </View>
       <Spacer height={20} />
       <View
         style={{
-          flexDirection: "row",
-          justifyContent: "space-between",
+          // flexDirection: "row",
+          // justifyContent: "space-between",
           marginBottom: 20,
-          alignItems: "center",
+          // alignItems: "center",
         }}
       >
         <InputWithAdornments
@@ -702,10 +704,10 @@ const Inputs = () => {
         <>
           <View
             style={{
-              flexDirection: "row",
-              justifyContent: "space-between",
+              // flexDirection: "row",
+              // justifyContent: "space-between",
               marginBottom: 20,
-              alignItems: "center",
+              // alignItems: "center",
             }}
           >
             <InputWithAdornments
@@ -736,10 +738,10 @@ const Inputs = () => {
         <>
           <View
             style={{
-              flexDirection: "row",
-              justifyContent: "space-between",
+              // flexDirection: "row",
+              // justifyContent: "space-between",
               marginBottom: 20,
-              alignItems: "center",
+              // alignItems: "center",
             }}
           >
             <InputWithAdornments
@@ -771,8 +773,8 @@ const Inputs = () => {
           <Spacer height={20} />
           <View
             style={{
-              flexDirection: "row",
-              justifyContent: "space-between",
+              // flexDirection: "row",
+              // justifyContent: "space-between",
               marginBottom: 20,
               // justifyContent: "space-between",
               // alignItems: "center",
@@ -792,11 +794,12 @@ const Inputs = () => {
               <Text>OD Leav. Power</Text>
               <View
                 style={{
-                  flexDirection: "row",
-                  justifyContent: "space-around",
+                  // flexDirection: "row",
+                  // justifyContent: "space-around",
+                  marginTop:10,
                   marginBottom: 20,
-                  justifyContent: "space-around",
-                  alignItems: "center",
+                  // justifyContent: "space-around",
+                  // alignItems: "center",
                   marginRight: 10,
                 }}
               >
@@ -806,7 +809,7 @@ const Inputs = () => {
                   helperText="Max value reached"
                   // style={{ marginBottom: 20 }}
                   onPress={() => {
-                    handleButtonClick("LOW");
+                    handleButtonClick("ON");
                     // LSDplus();
                   }}
                   clickedLabel={clickedLabel}
@@ -818,7 +821,7 @@ const Inputs = () => {
                   helperText="Max value reached"
                   // style={{ marginBottom: 20 }}
                   onPress={() => {
-                    handleButtonClick("HIGH");
+                    handleButtonClick("OFF");
                     // LSDplus();
                   }}
                   clickedLabel={clickedLabel}
@@ -830,11 +833,11 @@ const Inputs = () => {
           <Spacer height={10} />
           <View
             style={{
-              flexDirection: "row",
-              justifyContent: "space-between",
+              // flexDirection: "row",
+              // justifyContent: "space-between",
               marginBottom: 20,
-              justifyContent: "space-between",
-              alignItems: "center",
+              // justifyContent: "space-between",
+              // alignItems: "center",
             }}
           >
             <InputWithAdornments
@@ -861,7 +864,7 @@ const Inputs = () => {
           style={{
             flexDirection: "row",
             position: "relative",
-            // justifyContent: "space-between",
+            justifyContent: "space-between",
           }}
         >
           <StyledIconButton
@@ -986,6 +989,7 @@ const Inputs = () => {
           style={{
             justifyContent: "space-between",
             alignItems: "center",
+            marginTop:10
           }}
         >
           <HDivider />
