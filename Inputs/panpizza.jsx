@@ -13,7 +13,7 @@ import { Value } from "react-native-reanimated";
 import { Factors2 } from "../components/YeastFactors";
 
 const Inputs = () => {
-  const [clickedLabel, setClickedLabel] = useState("");
+  const [clickedLabel, setClickedLabel] = useState("CY");
 
   const handleButtonClick = (label) => {
     if (label === clickedLabel) {
@@ -23,7 +23,6 @@ const Inputs = () => {
     }
   };
   const Factores = Factors2(clickedLabel);
-  console.log(`facts ===> ${Factores}`);
   const onOff = useSelector((state) => state.recipe);
 
   const twoballsize = onOff.twoballsize;
@@ -1039,7 +1038,7 @@ const Inputs = () => {
         >
           <HDivider />
           <Text>
-            Autolysis doses
+            Autolysis doses: 
             {isNaN(result.autolysisdose) ? "" : result.autolysisdose.toFixed(2)}
             g
           </Text>
@@ -1226,7 +1225,7 @@ const Inputs = () => {
                 color: "white",
               }}
             >
-              Flour1 :{" "}
+              Flour1 :
               {isNaN(result.flour1mass) ? "" : result.flour1mass.toFixed(2)}g
             </Text>
 
@@ -1376,7 +1375,7 @@ const Inputs = () => {
             color: "white",
           }}
         >
-          Fats: {isNaN(result.fats) ? "" : result.fats.toFixed(2)}g
+          Fats: {isNaN(result.Fatss) ? "" : result.Fatss.toFixed(2)}g
         </Text>
       </View>
     </View>

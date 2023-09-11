@@ -12,7 +12,7 @@ import { Value } from "react-native-reanimated";
 import Factors from "../components/YeastFactors";
 
 const Inputs = () => {
-  const [clickedLabel, setClickedLabel] = useState("");
+  const [clickedLabel, setClickedLabel] = useState("CY");
   const handleButtonClick = (label) => {
     if (label === clickedLabel) {
       setClickedLabel("");
@@ -1137,7 +1137,7 @@ const Inputs = () => {
         <Text style={{ fontWeight: "bold" }}>
           Main dough doses{" "}
           <Text style={{ color: "#990000" }}>
-            {isNaN(result.maindoughdose) ? "" : result.maindoughdose.toFixed(0)}
+          {isNaN(result.maindoughdose) ? "" : result.maindoughdose.toFixed(0)}
             g
           </Text>
         </Text>

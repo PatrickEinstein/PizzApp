@@ -21,49 +21,58 @@ export function calculateDoughIngredients(
   autolysiswater,
   Fats
 ) {
+  const Sigma =
+    doughBalls1 * ballWeight1 + doughBalls2 * ballWeight2;
 
-  const Sigma = doughBalls1 * ballWeight1 + doughBalls2 * ballWeight2;
-  // Convert percentages to decimal values
+  //define the intial ratios
   const waterRatio = waterPercentage / 100;
   const saltRatio = saltPercentage / 100;
   const FatsRatio = Fats / 100;
 
-  //   const leaveningfactor =
-  //     1 + (leaveningHours / 24) * (leaveningTemperature / 24);
-
-  // Calculate flour and water amounts
+  //define the actual weights
   const flourWeight =
-    Sigma / (1 + waterRatio + saltRatio + CY + (Fats ? +FatsRatio : +0));
+    Sigma * (1 - waterRatio - saltRatio - CY - (Fats ? +FatsRatio : +0)); ///Original value
+  const saltWeight = Sigma * saltRatio; ///Original value
+  const yeastWeight = Sigma * CY; ///Original value
+  const Fatss = +FatsRatio * +Sigma; ///Original value
+  const waterWeight = Sigma * waterRatio; ///Original value
 
-  // Calculate salt and yeast amounts
-  const saltWeight = flourWeight * saltRatio; ///Original value
-  const yeastWeight = flourWeight * CY; ///Original value
-
-  // Calculate the final dough hydration level
-  const doughHydration = waterWeight / flourWeight;
-
-  // Calculate the final dough salt level
-  const doughSaltPercentage = (saltWeight / flourWeight) * 100;
-
-  // Calculate the final dough temperature
-  const doughTemperature = leaveningTemperature + (leaveningHours * 0.5 - 1);
-
-  const autolysisflourmass = (+autolysisflour * flourWeight) / 100;
-
+  // define the autolysis parameters
+  const autolysisflourmass = (+autolysisflour * Sigma) / 100;
   const autolysiswatermass = (+autolysiswater * autolysisflourmass) / 100;
-  const waterWeight = flourWeight * waterRatio - autolysiswatermass;
-
-  const remains = flourWeight - +autolysisflourmass;
-  const Fatss = +FatsRatio * +remains;
   const autolysisdose = autolysisflourmass + autolysiswatermass;
+
+
   const maindoughdose =
-    remains + waterWeight + yeastWeight + saltWeight + (Fatss ? Fatss : 0);
-  const flour1mass = (+flour1 / 100) * +remains;
-  const flour2mass = (+flour2 / 100) * +remains;
-  const flour3mass = (+flour3 / 100) * +remains;
-  const flour4mass = (+flour4 / 100) * +remains;
-  const flour5mass = (+flour5 / 100) * +remains;
-  const flour6mass = (+flour6 / 100) * +remains;
+    flourWeight +
+    waterWeight +
+    yeastWeight +
+    CY +
+    saltWeight +
+    (Fats ? Fatss : 0) - autolysisflourmass;
+
+  console.log(
+    `flourWeight==>`,
+    flourWeight,
+    `waterWeight==>`,
+    waterWeight,
+    `yeastWeight==>`,
+    yeastWeight,
+    `CY==>`,
+    CY,
+    `saltWeight==>`,
+    saltWeight,
+    `Fats==>`,
+    Fats,
+    `maindoughness==>`,maindoughdose
+  );
+
+  const flour1mass = (+flour1 / 100) * +flourWeight;
+  const flour2mass = (+flour2 / 100) * +flourWeight;
+  const flour3mass = (+flour3 / 100) * +flourWeight;
+  const flour4mass = (+flour4 / 100) * +flourWeight;
+  const flour5mass = (+flour5 / 100) * +flourWeight;
+  const flour6mass = (+flour6 / 100) * +flourWeight;
 
   // Return the dough ingredient amounts
   return {
@@ -71,9 +80,6 @@ export function calculateDoughIngredients(
     waterWeight,
     saltWeight,
     yeastWeight,
-    doughHydration,
-    doughSaltPercentage,
-    doughTemperature,
     autolysisflourmass,
     flour1mass,
     flour2mass,
